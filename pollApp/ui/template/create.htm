@@ -1,0 +1,179 @@
+<script type="text/javascript">
+  var count = 0;
+  var alpha =new Array("C:","D:","E:","F:","G:","H:","I:","J:");
+  var num=0;
+  var opt = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+  var opts = $("#inputtext tbody").children("tr").length;
+  $('p#add_field').click(function(){
+    var opt = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+    var opts = $("#inputtext tbody").children("tr").length;
+    if(opts < 10) {
+      $("#inputtext ").append('<tr><td><label>' + opt[opts] + ':</label></td><td><input type="text" autofocus required name="option[]" ><a id="' + opts + '" href="#" class="extraLink">X</a></td></tr>');
+    }
+    if(opts > 8) {
+      $(this).hide();
+      showMessage({
+        m: 'No more options are available .',
+        t: 'success'
+      })
+    }
+    return false;
+  });
+
+
+  $("#resett").click( function(){
+    $("#pad-form").each(function(){
+      this.reset();
+    });
+  });
+
+  $('#pollList').dataTable();
+  $( "#date" ).datepicker({ dateFormat: "yy-mm-dd", maxDate:"+6m",minDate:"+1d"}) ;
+  $("#inputtext tbody tr td  a").live("click", function() {
+    var link=$("#inputtext tbody").find('tr:last,td:last').remove();
+    if(link){
+      $("p#add_field").show();
+    }
+    return false;  
+  });
+
+  $("#createPublish").attr('title', 'This is the hover-over text');
+
+  $("#cancel").click(function() {
+    window.location = '{{@BASE}}/myPolls';
+    return false;
+  });
+
+  $("#keywordrepeat").dialog({
+    // show: "blind",
+    resizable: false,
+    height:140,
+    modal: true,
+    buttons: {
+
+      Cancel: function() {
+        $( this ).dialog( "close" );
+      }
+    }
+  });
+
+  $("#createPollReply").keyup(function() {
+    $("#createPollCharacters").text($(this).val().length);
+    if($(this).val().length > 100) {
+      $("#createPollCharacters").css("color", "red");
+    } else {
+      $("#createPollCharacters").css("color", "inherit");
+    }
+    return false;
+  });
+
+  $("#submitAction").click(function() {
+    var datas=$("#pad-form").serialize();
+    $.post("{{@BASE}}/myPolls",datas,
+    function(data){
+      if(data.message){
+        showMessage({t: 'success', m:data.message });
+        setTimeout(function() {
+          window.location = "{{@BASE}}/myPolls"
+        }, 1000);
+      }else{
+        showMessage({t: 'error', m:data.mes });
+      }         
+    },"json");
+  });
+
+  $("#createPublish").click(function() {
+    var c = confirm('The published polls cannot be edited');
+    if(c){
+      var datas = $("#pad-form").serialize();
+      $.post("{{@BASE}}/createpublish",datas,
+      function(data){
+        if(data.message){
+          showMessage({t: 'success', m:data.message });
+
+         
+          FB.ui({
+            method: 'feed',
+            link: 'http://smscentral.com.np/poll/poll/' + data.id,
+            picture: 'http://smscentral.com.np/poll/ui/images/fblogo.png',
+            name:  data.keyword,
+            caption: data.question,
+            description: data.option +"To answer this question, type @poll&lt;space&gt;"+data.keyword+ "&lt;space&gt;[option] and SMS to 4321. For e.g. @poll"+" "  +data.keyword +"  "+ "a"
+          }, function (response) {
+            if (response && response.post_id) {
+              showMessage({t: 'success', m: 'Successfully shared on Facebook'});
+              setTimeout(function() {
+                window.location = "{{@BASE}}/myPolls"
+              }, 2000);
+            }
+          });
+
+          
+        }
+        else{
+          showMessage({t: 'error', m:data.mes });
+        }
+      },"json");
+    }           
+  });
+
+</script>
+
+<div id="createDialog" style="display:none;background:white;">The published poll cannot be edited </div>
+<F3:check if="{{@keyword}}">
+  <F3:true>
+    <div id="keywordrepeat" style="color:white">{{@keyword}} already exist</div>
+  </F3:true>
+</F3:check>
+
+
+<div id="form" class="background" >
+  <div style="width:auto;background:#339900;height:25px;padding:5px;color:white"> All form fields are required</div>
+  <form name="PollForm" method="post"   font-color="red" id="pad-form" data-webforms2-force-js-validation="true" >
+
+    <fieldset id="inputs" >
+      <label for='keyword'> Keyword :</label>
+      <input type="text" name="keyword" id="keyword" autofocus required size="60" placeholder="insert 3 to 10 alphanumerical characters"
+             autofocus  name="keyword" /><span id="results" style="width:400px;color:red;magin-left:100px;"></span><br />
+
+      <label for='question'> Question :</label>
+      <input type="text" name="question" id="question" size="60" autofocus required  placeholder="Write your poll question"
+             autofocus  name="question" /><span id="quesSpan" style="width:400px;color:red;"></span><br />
+
+      <div id="options">
+        <table id="inputtext" style="position:relative;left:25px">
+          <tr>
+            <td><label>A:</label></td>
+            <td><input type="text" placeholder="first option" autofocus required  name="option[]" id="field_1"  /></td>
+          </tr>
+          <tr>
+            <td>  <label>B:</label></td><td><input type="text" placeholder="Second option" autofocus required  name="option[]" id="field_2" /></td>
+          </tr>
+        </table>
+      </div>
+
+      <p id="add_field" >
+        <a href="#" style="position:relative;left:80px"><span> Add more options.....</span></a>
+      </p>
+
+      <label for='keyword'>Expiry Date: </label>
+      <input type="text" size="20px;" id="date"  placeholder="Expiry date"   name="expiry_date" required ><br>
+
+      <label for="createPollReply" >Reply SMS:</label>
+      <textarea id="createPollReply" name="reply" style="border: 1px dotted #339900;margin-left:10px;"></textarea>
+      No. of characters: <strong id="createPollCharacters">0</strong> Limit: <strong>100</strong>
+      </p>
+
+
+
+      <span style="position:relative;left:100px;"><input type="checkbox" name="private" id="private" value="1" >Make private</span><br/>
+    </fieldset>
+
+
+    <fieldset id="actions">
+      <input  type="button" value="Create" id="submitAction" />
+      <input  type="button" value="Create & Publish" id="createPublish" />
+      <input  type="button" value="Cancel"  id="cancel"/>
+    </fieldset>
+  </form>
+</div>

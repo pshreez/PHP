@@ -1,0 +1,62 @@
+<form  method="POST" id="myform" enctype="multipart/form-data">
+    <div id="dialog" title="attention">The file you uploaded is not picture </div>
+Choose a file to upload: <input name="uploadfile" type="file"  data-max-size='32k' class="required" data-type='image' id="file" /><br />
+<input type="submit" value="Upload File" />
+</form>
+
+<script type="text/javascript">
+
+     $("#myform").validate({
+      messages: {
+        	required: "Required.",
+        	file: "Invalid email",
+        	lot_number: "Invalid lot number",
+                number: "Invalid number"
+    	    }
+            });
+            /*
+    var img = document.getElementById('file');
+    var width = img.clientWidth;
+    var height = img.clientHeight;
+$("#file").change(function() {
+    var val = $("#file").val();
+   if (!val.match(/(?:gif|jpg|png|bmp)$/)) {
+        $( "#dialog" ).dialog();
+        return false;
+     }
+   else if( width >11 || height > 11){
+       alert("the size of the file is bigger");
+       
+   }
+});
+*/
+
+$("#file").rules("add", {  required: true, picture : true,size:true});
+ jQuery.validator.addMethod("picture", function(val, element) {
+        return this.optional(element) || 
+           val.match(/(?:gif|jpg|png|bmp)$/);
+    }, "Please insert a picture ");
+    
+  var img = document.getElementById('file');
+  var width = img.clientWidth;
+    var height = img.clientHeight;
+     jQuery.validator.addMethod("size", function(height, width) {
+        return  img.height <600 || img.width <600;
+    }, "Please insert a picture  size smaller than 500kb ");
+/*
+$("#file").change(function() {
+
+    var val = $(this).val();
+
+    switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+        case 'gif': case 'jpg': case 'png':
+            alert("an image");
+            break;
+        default:
+            $(this).val('');
+            // error message here
+            alert("not an image");
+            break;
+    }
+});8*/
+    </script>

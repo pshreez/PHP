@@ -1,0 +1,67 @@
+<style type="text/css">
+	h1 {
+		background: #6db3f2; /* Old browsers */
+		background: -moz-linear-gradient(top, #6db3f2 0%, #1e69de 96%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6db3f2), color-stop(96%,#1e69de)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #6db3f2 0%,#1e69de 96%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #6db3f2 0%,#1e69de 96%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #6db3f2 0%,#1e69de 96%); /* IE10+ */
+		background: linear-gradient(to bottom, #6db3f2 0%,#1e69de 96%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+		-moz-border-radius: 5px 5px 0px 0px;
+		-webkit-border-radius: 5px 5px 0px 0px;
+		border-radius: 5px 5px 0px 0px;
+		color: #FFF;
+		margin: 0px;
+		text-align: center;
+	}
+	form {
+		border: 1px solid #1e69de;
+		padding: 0px 10px;
+	}
+	label.error {
+		position: absolute;
+		color: red;
+		background-color: #FFF;
+		border: 1px solid red;
+		padding: 2px 3px;
+		margin-left: 5px;
+	}
+	#login {
+		position: absolute;
+		bottom: -30px;
+		left: -20px;
+		right: -20px;
+		color: red;
+	}
+</style>
+<div style="width: 245px; margin: auto; position: relative;">
+	<div id="login" class="message">{{@error}}</div>
+	<h1>User Login</h1>
+	<form name="OnlineUser" id="OnlineUser" action=""accept-charset="utf-8" method="post" >
+		<table>
+			<tbody><tr><td  style="width:60px;"><label for="username">Username</label></td>
+					<td ><input type="text" name="username" id="username" placeholder="username" class="required" ></td></tr>
+				<tr><td style="width:60px;" ><label for="password" >Password</label></td>
+					<td><input type="password" name="password"  id="password" placeholder="password" class="required" ></td></tr></tbody>
+
+			<tr><td></td><td> <input type="submit" value="Login" class="button" >&nbsp;
+			<F3:exclude><input type="button" value="cancel" id="cancel"class="button" ></F3:exclude></td</tr>
+		</table>
+	</form>
+	<div style="display:none;">Please log into with correct username and password</div>
+</div>
+<script type="text/javascript">
+	$("#OnlineUser").validate({
+		messages: {
+			required: "Required.",
+			username: "Empty",
+			password: "Empty"
+		}
+	});
+	$("#login").show();
+	$("#cancel").bind("click", function() {
+		$("input[type=text],input[type=password]").val("");
+	});
+	//$(".message").fadeOut(3000);
+</script>

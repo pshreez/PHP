@@ -1,0 +1,34 @@
+<div id="admin" >
+          <form id="login" method="post" class="background">
+    <h1>ADMIN</h1>
+
+      <fieldset id="inputs" >
+        <label>Admin Username</label>   <input id="username" type="text" placeholder="Username" autofocus required name="usr"><br style="clear: left;" /><br>
+        <label>Password</label><input id="password" type="password" placeholder="Password" required name="pwd">
+
+    </fieldset>
+    <fieldset id="actions">
+        <input type="button" id="submit" value="Log in">
+
+    </fieldset>
+</form>
+</div>
+
+
+<script>
+  $("#submit").click(function() {
+    var datas=$("#login").serialize();
+    $.post("{{@BASE}}/admin",datas,
+    function(data){
+      console.log(data);
+      if(data.message){
+        showMessage({t: 'success', m:data.message });
+        window.location="{{@BASE}}/admin/user";
+      }else{
+        showMessage({t: 'error', m:data.mes });
+      }
+    },"json");
+  });
+
+
+</script>

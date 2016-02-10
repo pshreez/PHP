@@ -1,0 +1,48 @@
+<style>
+	ul {
+		margin: 10px 0px;
+	}
+	li {
+		list-style: disc;
+		padding: 0px;
+	}
+</style>
+<div class="home" style="padding:10px; background-color: #DDD; display: inline-block; padding:20px">
+	<a href="#" class="printFeed">Print this feedback</a><br><br>
+  <F3:check if="{{@pic}}">
+   <img src="{{@BASE}}/photo/{{@pic->picture}}" height="100px" width="100px">
+  </F3:check>
+  <br>
+ 
+  Reference no:<span style="color:red">{{@refer}}</span><br><br>
+	<span style="color: #999;">
+    <!--(तपाईको अनलाईन नामसारी फर्म स्वीकृत भएको  छ । सवारी  {{@vehicle}} नामसारी  प्रकियामा छ|)-->
+     तपाईको अनलाईन नामसारी फारम यातायात व्यवस्था कार्यालय {{@value}} मा प्राप्त भयो|
+     तपाई मिति <span style="color:red">{{@date}}</span>भित्र 
+   निम्न सक्कलै कागजात सहित {{@value}}  मा सम्पर्क गर्नु होला ।
+  </span>
+	<ul>
+		<li>सक्कलै सवारी दर्ता प्रमाणपत्र (व्लुबुक)</li>
+		<li>किन्ने बेच्ने दुबैको सक्कलै नागरिकता</li>
+		<li>किन्ने बेच्ने दुबै थरी व्यक्ति वा रितपुर्वको अधिकृत वारेसनामा सहित सम्बन्धित व्यक्ति</li>
+		<li>किन बेच हुने सवारी साधन</li>
+    <li>सवारी कर चुक्ता गरेको विवरण</li>
+    <li>संस्थागत भएमा कर चुक्ता बिवरण</li>
+    <li>बिमा सम्बन्धि कागजात</li>
+     <li>संस्थाको हकमा आधिकारिक प्रतिनिधी</li>
+      <li>संस्थाको सम्बन्धमा स्थायी लेखा नम्बर प्रमाणपत्र</li>
+       <li>बिदेशी नागरिकको हकमा आधिकारिक प्रमाणपत्र</li>
+        <li>मृत्यु भई हस्तान्तरण गर्नु पर्ने भएमा हकवाला खुलेको प्रमाणपत्र नाता प्रमाणित प्रमाणपत्र र मृत्यु दर्ता प्रमाणपत्र</li>
+	</ul>
+</div>
+<script type="text/javascript">
+	$('.printFeed').click(function() {
+		window.print();
+	});
+</script>
+
+
+
+
+
+

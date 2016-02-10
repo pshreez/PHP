@@ -1,0 +1,19 @@
+<div class="heading" style="width:400px;padding:20px;position:relative;left:150px;text-align: center;">
+<p><strong>Keyword:</strong> <em>{{strtoupper(@keyword)}}</em></p>
+<p><strong>Question:</strong> <em>{{@question}}</em></p>
+<p style="color: red;">Are you sure? Published poll is not editable.</p>
+<p><button id="publish">Publish</button> &nbsp<button id="cancel">Cancel</button></p>
+</div>
+<script type="text/javascript">
+  document.title = "{{@title}} - {{@site}}";
+  $("#publish").click(function() {
+    var id = "{{@id}}";
+    window.location.href =  "{{@BASE}}/published/" + id;
+  });
+  
+  $("#cancel").click(function() {
+   window.location.href = "{{@BASE}}/myPolls";
+  });
+
+
+</script>

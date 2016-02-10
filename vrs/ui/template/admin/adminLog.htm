@@ -1,0 +1,107 @@
+<script>
+$(function() {$( "#userFrom" ).datepicker({dateFormat: 'yy-mm-dd'});});
+$(function() {$( "#userTo" ).datepicker( {dateFormat: 'yy-mm-dd'});});
+
+
+</script>
+
+
+<div id="">
+     
+          
+    <center>
+        <h1 >Admin Log</h1>
+    <form id="adminLog" method="post" action="{{@BASE}}/admin/adminLog" style="background:grey;padding:5px;">
+        
+        <label for="userFrom" >From:</label>
+        <input id="userFrom" type="text" name="date1" placeholder="from" value="{{@POST.date1}}"  class="required"/>
+        <label for="userTo">To:</label>
+        <input id="userTo" type="text"  name="date2" placeholder="to" value="{{@POST.date2}}" class="required"/>
+        <input  type="submit" value="show"  class="button" />
+
+        <!--  <button style="margin-left: 5px;">View</button>-->
+    </form>
+        </center>
+</div>
+
+
+
+
+<F3:check if="{{@POST}}">
+    <F3:true>
+    <F3:check if="{{count(@report) >0}}">
+        <F3:true>
+<center>
+    <h1>{{@heading}}</h1>
+    <table class="tableDecor" id="adminLogReport" " >
+        <thead style="background:grey">
+            <tr>
+                <th>Date </th><th>Username</th>
+                <th>Vehicle no</th>
+                <th>form type</th>
+                <th>Action</th>
+                 
+        </thead>
+
+        
+        <tbody style="background:white">
+
+        <F3:repeat group="{{@report}}" value="{{@list}}" >
+            <tr>
+                 <td>{{@list.date}}</td>
+                 <td>{{@list.admin_username}}</td>
+                <td>{{@list.vehicle_no}}</td>
+                <td>{{@list.form_type}}</td>
+                <td>{{@list.status}}</td>
+               
+                
+         
+            </tr>
+        </F3:repeat>
+        </tbody>
+    </table>
+</center>
+        </F3:true>
+        <F3:false>
+            No data records yet
+        </F3:false>
+    </F3:check>
+</F3:true>
+    </F3:check>
+
+<script type="text/javascript">
+
+
+
+ $("#adminLog").validate({
+  rules: {
+    date1: {
+      required: true,
+      date: true
+    },
+    date2: {
+      required: true,
+      date: true
+    }
+  }
+});
+
+$(document).ready(function() {
+  
+    $('#adminLogReport').dataTable(
+{
+        "bPaginate": true,
+        "bLengthChange": true,
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": true,
+        "bJQueryUI":true,
+        "bAutoWidth": false
+        
+    } );
+} );
+
+
+
+
+</script>

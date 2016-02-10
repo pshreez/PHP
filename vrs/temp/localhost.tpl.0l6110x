@@ -1,0 +1,759 @@
+<script type="text/javascript" src="<?php echo ($_BASE=F3::get('BASE')); ?>/<?php echo ($_UI=F3::get('UI')); ?>js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.8.3.min.js"></script>
+
+<style>
+  input[text], td{
+    font-size:12px;
+  }
+  input{
+    height: 17px;
+  }
+</style>
+<form  method="post" id="new" >
+  <div id="registration">
+    <fieldset>
+      <legend>सवारीको विवरण</legend>
+      <table>
+
+        <tr><td><label for=""> सवारीको किसिम </label></td><td>
+            <input name="wheeler"id="wheeler" value="<?php echo F3::get('POST.wheeler') == 21 ? '२  पांग्रे': '४  पांग्रे'; ?> ">
+        </tr>
+        <tr><td><label for="">मोडल:</label></td><td><input type="text" name="model" id="model" class="required" value="<?php echo F3::get('POST.model'); ?>">*</td></tr>
+        <tr><td><label for="">निर्माता कम्पनि</label></td><td>
+            <input name="manufacture_id" id="manufacture_id" class="required" value="<?php echo ($_manufacturer=F3::get('manufacturer')); ?>">
+          </td></tr>
+        <tr><td><label for="">निर्माण भएको साल</label></td><td><input type="text" name="manufacture_date" id="manufacture_date" value="<?php echo F3::get('POST.manufacture_date'); ?>" class="required"></td></tr>
+        <tr><td><label for="">इन्धनको किसिम</label></td><td>
+
+            <input name="fuel_type_id" id="fuel_type_id" value="<?php echo ($_fuel=F3::get('fuel')); ?>">
+
+          </td></tr>
+        <tr><td><label for="">इन्जिन नं.</label></td><td><input type="text" name="engine_num" id="engine_num" class="required" value="<?php echo F3::get('POST.engine_num'); ?>">*</td></tr>
+        <tr><td><label for="">चेसिस नं.</label></td><td><input type="text" name="chessis_num" id="chessis_num" class="required" value="<?php echo F3::get('POST.chessis_num'); ?>">*</td></tr>
+        <tr><td><label for="">सिलिण्डर संख्या</label></td><td><input type="text" name="cylinder_num" id="cylinder_num" class="required" value="<?php echo F3::get('POST.chessis_num'); ?>">*</td></tr>
+        <tr><td><label for="">सि सि /हर्ष पावर  </label></td><td><input type="text" name="horse_power" id="horse_power" class="required" value="<?php echo F3::get('POST.horse_power'); ?>">
+            <input  name="horse_power_type" id="horse_power_type" value="<?php echo F3::get('POST.horse_power_type') == 'hp' ? 'हर्ष पावर':'सि सि'; ?>">
+          </td></tr>
+        <tr>
+          <td>
+            <label for="">इलेक्ट्रोनिक  उपकरण</label>
+          </td>
+          <td>
+            <input type="text" name="electronic_device" id="electronic_device" value="<?php echo F3::get('POST.electronic_device'); ?>"></td> </tr>
+        <tr>
+          <td>
+            <label for="">दर्ता मिति</label></td><td><input type="text" id="registration_date" name="registration_date" value="<?php echo ($_date=F3::get('date')); ?>" class="required" value="<?php echo F3::get('POST.registration_date'); ?>" ></td> </tr>
+        <tr>
+          <td>
+            <label for="">स. द. प्र. नं.</label>
+          </td>
+          <td>
+            <input type="text" name="certificate_num" id="certificate_num" class="required" value="<?php echo F3::get('POST.certificate_num'); ?>">*</td> </tr>
+        <tr>
+          <td>
+            <label for="">प्रायोजन </label>
+          </td>
+          <td>
+            <input name="purpose_id" id="purpose_id" class="required" value="<?php echo ($_purpose=F3::get('purpose')); ?>">
+          </td>
+        </tr>
+        <tr id="hood">
+          <td>
+            <label for="">हुड</label>
+          </td>
+          <td>
+            <input name="hood"  value="<?php echo F3::get('POST.hood') == 'छ' ? 'छ':'छैन'; ?>">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">गाडीको किसिम</label>
+          </td>
+          <td>
+            <input name="type" id="type" value="<?php echo ($_type=F3::get('type')); ?>"></td> </tr>
+
+        <tr><td><label for="">कैफियत</label></td><td><input type="textarea" name="remarks" id="remarks" width="200px" breadth="200px" value="<?php echo F3::get('POST.remarks'); ?>"></td><td>
+
+      </table>
+    </fieldset>
+
+    <fieldset >
+      <legend>प्राविधिक निरिक्षकको विवरण</legend>
+      <table >
+
+
+        <tr><td><label for="">निरिक्षकको नाम</label></td><td><input type="text" name="technical_inspector"id="technical_inspector" value="<?php echo F3::get('POST.technical_inspector'); ?>"></td></tr>
+        <tr><td><label for="">मिति</label></td><td><input type="text" id="inspection_date" name="inspection_date" value="<?php echo F3::get('POST.inspection_date'); ?>" class="date"></td></tr>
+
+      </table>
+    </fieldset>
+
+    <fieldset id="bhansar">
+      <legend>भन्सार विवरण</legend>
+      <table >
+        <tr>
+          <td class="left">
+            <label for="" >सवारी प्राप्त विवरण</label>
+          </td>
+          <td>
+            <input type="text" name="custom_receive_type" id="new_type"  value="<?php echo ($_customs=F3::get('customs')) ; ?>">
+
+          </td>
+        </tr>
+        <tr id="lilami_office" style="display: none">
+          <td><label for="">कार्यालय </label>
+          </td>
+          <td>
+            <input type="text" name="custom_office_type" id="lilami_option" value="<?php echo F3::get('POST.custom_office_type') =='bhansar' ?'भन्सार':'अन्य'; ?>">
+
+          </td>
+        </tr>
+      </table >
+      <!-- anya ko inforamtion-->
+      <table id="anya_info" style="display: none">
+        <tr>
+          <td class="left">
+            <label for="">कार्यालयको नाम </label></td>
+          <td><input type="text" name="custom_office_name" id="anya_office"  value="<?php echo F3::get('POST.custom_office_name'); ?>"></td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">लिलाम मिति</label></td>
+          <td><input type="text" id="lilam_date" name="lilami_date"  class="date" value="<?php echo F3::get('POST.lilam_date') ? F3::get('POST.lilam_date') : $_date; ?>">*(साल - महिना -गते)</td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">चलानी नम्बर</label></td>
+          <td><input type="text" name="jafat_chalani_number " id="chalani_no"  value="<?php echo F3::get('POST.jafat_chalani_number'); ?>"></td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">चलानी मिति</label></td>
+          <td><input type="text" id="chalini_date" name="jafat_chalani_date "  class="date" value="<?php echo F3::get('POST.jafat_chalani_date') ? F3::get('POST.jafat_chalani_date') : $_date; ?>">*(साल - महिना -गते)</td>
+        </tr>
+
+      </table>
+
+      <!-- anya ko inforamtion-->
+      <table id="jafat_info" style="display: none">
+        <tr>
+          <td class="left">
+            <label for="">निर्णय  मिति </label></td>
+          <td><input type="text" id="nirnaya_date" name="jafat_decision_date"  class="date" value="<?php echo F3::get('POST.jafat_decision_date') ? F3::get('POST.jafat_decision_date') : $_date; ?>">*(साल - महिना -गते)></td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">निर्णय गर्ने पदाधिकारी</label></td>
+          <td><input type="text" name="jafat_decision_maker" id="jafat_office"  value="<?php echo F3::get('POST.jafat_decision_maker'); ?>"></td></td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">चलानी नम्बर</label></td>
+          <td><input type="text" name="jafat_chalani_number" id="jafat_chalani_no"  value="<?php echo F3::get('POST.jafat_chalani_number'); ?>"></td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">चलानी मिति</label></td>
+          <td><input type="text" id="jafat_chalini_date" name="jafat_chalani_date"  class="date" value="<?php echo F3::get('POST.jafat_chalani_date') ? F3::get('POST.jafat_chalani_date') : $_date; ?>">*(साल - महिना -गते)</td>
+        </tr>
+
+      </table>
+
+      <table id="customoffice" style="display: none">
+        <tr>
+          <td class="left">
+            <label for="">भन्सार कार्यालय</label>
+          </td>
+          <td>
+            <input  name="custom_office_id" id="custom_office" value="<?php echo ($_custom=F3::get('custom')); ?>">
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">प्रज्ञापन पत्र नम्बर </label></td><td><input type="text" name="pragyapan_patra_no" id="pragyapan_patra_no" class="required" value="<?php echo F3::get('POST.pragyapan_patra_no'); ?>">*</td></tr>
+        <tr>
+          <td class="left">
+            <label for="">प्रज्ञापन पत्र मिति</label></td> <td><input type="text" id="custom_Date" name="custom_Date"  class="date" value="<?php echo F3::get('POST.custom_Date') ? F3::get('POST.custom_Date') : $_date; ?>">*(साल - महिना -गते)</td></tr>
+        <tr>
+          <td class="left">
+            <label for="">रसिद नम्बर</label>
+          </td>
+          <td>
+            <input type="text" name="receipt" id="receipt_num" class="required" value="<?php echo F3::get('POST.receipt') ?F3::get('POST.receipt') :F3::get('POST.receipt_num'); ?>">*
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">रसिदको मिति</label>
+          </td>
+          <td>
+            <input type="text" name="receipt" id="receipt_date" class="required" value="<?php echo F3::get('POST.receipt') ?F3::get('POST.receipt') :F3::get('POST.receipt_num'); ?>">*(साल - महिना -गते)
+          </td>
+        </tr>
+        
+      </table>
+    </fieldset>
+    <fieldset >
+      <legend>प्रबेश दर्ता विवरण</legend>
+      <table>
+
+
+
+        <tr>
+          <td>
+            <label for="">प्रहरी कायार्लयको नाम</label>
+          </td><td><input type="text" name="police_office" id="police_office" value="<?php echo F3::get('POST.police_office'); ?>"></td> </tr>
+        <tr>
+          <td>
+            <label for="">दर्ता नं.</label>
+          </td>
+          <td>
+            <input type="text" name="reg_num" id="reg_num" value="<?php echo F3::get('POST.reg_num'); ?>" >
+          </td> </tr>
+        <tr>
+          <td><label for="">मिति</label></td><td><input type="text" id="entry_date" name="entry_date"  class="date" value="<?php echo F3::get('POST.entry_date'); ?>"></td> </tr>
+
+      </table>
+    </fieldset>
+
+    <fieldset >
+      <legend>वजन क्षमता</legend>
+      <table >
+
+
+        <tr><td><label for="">कुल वजन</label>
+            <input type="text"  name="weight"id="weight" class="required" value="<?php echo F3::get('POST.weight'); ?>">
+            <input name="weight_type" value="<?php echo F3::get('POST.weight_type') == 'के जी' ? 'के जी':'टन'; ?>">
+
+            <label for="">वजन क्षमता</label><input type="text" name="weight_capacity" id="weight_capacity"class="required" value="<?php echo F3::get('POST.weight_capacity'); ?>">
+            <input name="weight_capacity_type"  value="<?php echo F3::get('POST.weight_capacity_type') == 'के जी' ? 'के जी':'टन'; ?>">
+            <br>
+            <label for="">सिट संख्या</label><input type="text" name="seat_num" id="seat_num" class="required" value="<?php echo F3::get('POST.seat_num'); ?>"></td></tr>
+
+      </table>
+    </fieldset>
+
+    <fieldset >
+      <legend>गाडिको रङ्ग</legend>
+      <table >
+
+
+
+        <tr><td><label for="">बडिको रङ्ग</label></td><td>
+            <input  name="color_id" id="color_id" value="<?php echo ($_color=F3::get('color')); ?>">
+
+          </td></tr>
+        <tr><td><label for="">शिशाको रङ्ग</label></td><td>
+            <input name="glass_color_id" id="glass_color_id" value="<?php echo F3::get('POST.glass_color_id') == 1 ? 'छ':'छैन'; ?>">
+          </td></tr>
+
+      </table>
+    </fieldset>
+
+    <fieldset >
+      <legend></legend>
+      <table>
+        <tr><td><label for="">सवारी नं</label></td><td>
+            <input name="zone_id" id="zone_id" value="<?php echo F3::get('zcode->code').' '.F3::get('POST.lot_number').' '.($_symbol=F3::get('symbol')).' '.F3::get('POST.number'); ?>">
+          </td>
+          <!-- <td></td><td><input type="text" name="lot_number" id="lot_number" class="required" value="<?php echo F3::get('POST.lot_number'); ?>">*</td>
+           <td></td><td><input type="text" name="vehicle_symbol_type" id="vehicle_symbol_type" value="<?php echo $_symbol; ?>">
+
+           </td>
+           <td></td><td><input type="text" name="number" id="number" class="required" value="<?php echo F3::get('POST.number'); ?>">*</td>---></tr>
+
+      </table>
+    </fieldset>
+
+    <fieldset >
+
+      <table >
+        <tr><td><label for="">कर लाग्छ</label></td><td><input type="checkbox" name="tax" value="1"<?php echo F3::get('POST.tax') == '1' ? ' checked="checked"' : ''; ?>></td>
+
+      </table>
+    </fieldset>
+
+
+
+  </div>
+
+
+    <hr>
+    <fieldset>
+      <legend>व्यक्तिगत विवरण</legend>
+      <table >
+
+
+        <tr><td><label for="">सवारी धनी किसिम</label></td><td>
+            <input name="owner_type" id="owner_type" value="<?php echo ($_owner=F3::get('owner')); ?>">
+          </td></tr>
+        <tr>
+          <td>
+            <label for="name"><span id="names">नाम</span></label>
+          </td>
+          <td>
+            <input type="text" name="first_name" id="first_name" class="required" value="<?php echo F3::get('POST.first_name'); ?>">*
+          </td>
+        </tr>
+
+
+        <?php if (F3::get('POST.owner_type') != 2 && F3::get('POST.owner_type') != 4 && F3::get('POST.owner_type') != 1): ?>
+
+
+            <tr id="caste">
+              <td>
+                <label for="" class="labels" >थर</label>
+              </td>
+              <td>
+                <input type="text" name="last_name" id="last_name" class="required" value="<?php echo F3::get('POST.last_name'); ?>">*
+              </td>
+            </tr>
+            <tr id="father">
+              <td>
+                <label for="father_name" class="labels">बाबु /आमा/ पतीको नाम</label>
+              </td>
+              <td>
+                <input type="text" name="father_name" id="father_name" value="<?php echo F3::get('POST.father_name'); ?>">
+              </td>
+            </tr>
+            
+          
+        <?php endif; ?>
+        <tr>
+          <td>
+            <label for=""><span id="reg">जन्म मिति</span></label>
+          </td>
+          <td>
+            <input type="text" name="dob" id="dob" value="<?php echo F3::get('POST.dob'); ?>" >
+          </td>
+        </tr>
+        <tr id="regNum">
+          <td class="left">
+            <label for=""><span id="reg">रजिष्ट्रेशन नम्बर</span> </label>
+          </td>
+          <td>
+            <input type="text" name="reg_num" id="reg_num" value="<?php echo F3::get('POST.reg_num'); ?>" >
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">रसिदको मिति</label>
+          </td>
+          <td>
+            <input type="text" name="receipt" id="receipt_date" class="required" value="<?php echo F3::get('POST.receipt') ?F3::get('POST.receipt') :F3::get('POST.receipt_num'); ?>">*
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">इमेल ठेगाना </label>
+          </td>
+          <td>
+            <input type="text" name="email" id="email" value="<?php echo F3::get('POST.email'); ?>">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">सम्पर्क नम्बर</label>
+          </td>
+          <td>
+            <input type="text" name="mobileno" id="mobileno" value="<?php echo F3::get('POST.mobileno'); ?>" class="required">*
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>
+        <span id="address">स्थायी ठेगाना</span>
+      </legend>
+      <table >
+        <tr>
+          <td><label for="">अञ्चल</label></td>
+          <td>
+            <input name="p_zone_id" id="p_zone_id" value="<?php echo F3::get('p_zone->name'); ?>">
+          </td>
+        </tr>
+        <tr>
+          <td><label for="">जिल्ला</label></td><td>
+            <input name="p_district_id" id="p_district_id" value="<?php echo F3::get('POST.p_district_id'); ?>">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">ननगरपालिका / गा. वि. स.</label>
+          </td>
+          <td>
+            <input type="text" name="p_metropolitan"id="" class="required" value="<?php echo F3::get('POST.p_metropolitan'); ?>">*
+          </td></tr>
+        <tr>
+          <td>
+            <label for="">वडा  नम्बर </label></td><td><input type="text" name="p_ward_no"id="p_ward_no" value="<?php echo F3::get('POST.p_ward_no'); ?>">
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <label for="">फोन नम्बर </label>
+          </td>
+          <td>
+            <input type="text" name="p_phone"id="p_phone" class="required" value="<?php echo F3::get('POST.p_phone'); ?>">*
+          </td>
+        </tr>
+
+      </table>
+    </fieldset>
+
+
+    <?php if (F3::get('POST.owner_type') != 2 && F3::get('POST.owner_type') != 3): ?>
+      
+        <fieldset  id="presentAddress">
+          <legend>हालको ठेगाना</legend>
+          <table>
+            <tr>
+              <td>
+                <label for="">अञ्चल</label>
+              </td>
+              <td>
+                <input name="temp_zone_id"id="temp_zone_id" value="<?php echo F3::get('t_zone->name'); ?>" >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जिल्ला</label>
+              </td>
+              <td>
+                <input name="temp_district_id"id="temp_district_id" value="<?php echo F3::get('POST.temp_district_id'); ?>">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">नगरपालिका / गा. वि. स.</label>
+              </td>
+              <td>
+                <input type="text" name="temp_metropolitan"id="temp_metropolitan" class="required" value="<?php echo F3::get('POST.temp_metropolitan'); ?>">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">वडा  नम्बर </label>
+              </td>
+              <td>
+                <input type="text" name="temp_ward_no"id="temp_ward_no" value="<?php echo F3::get('POST.temp_ward_no'); ?>">
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                <label for="">फोन नम्बर </label>
+              </td>
+              <td>
+                <input type="text" name="temp_phone"id="temp_phone" class="required" value="<?php echo F3::get('POST.temp_phone'); ?>">*
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <br>
+      
+    <?php endif; ?>
+    <?php if ($_owner == 6): ?>
+      
+        <fieldset >
+          <legend>संरक्षकको  विवरण</legend>
+          <table>
+            <tr>
+              <td>
+                <label for="">संरक्षकको  नाम थर </label>
+              </td>
+              <td>
+                <input type="text" name="nabalik_guardian_name"id="nabalik_guardian_name" class="required"  value="<?php echo F3::get('POST.nabalik_guardian_name'); ?>">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">संरक्षकसंगको  नाता</label>
+              </td>
+              <td>
+                <input type="text" name="nabalik_relation"id="nabalik_relation" class="required"  value="<?php echo F3::get('POST.nabalik_relation'); ?>">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">पासपोर्ट / नागरिकता नं.</label>
+              </td><td><input type="text" name="nabalik_identity_no"id="nabalik_identity_no" class="required"  value="<?php echo F3::get('POST.nabalik_identity_no'); ?>">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जारी  जिल्ला</label>
+              </td>
+              <td>
+                <input name="nabalik_district"id="nabalik_district" value="<?php echo F3::get('POST.nabalik_district'); ?>">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जारी  मिति</label>
+              </td>
+              <td>
+                <input type="text" name="nabalik_year" id="nabalik_year" value="<?php echo $_date; ?>" class="date"  class="required" value="<?php echo F3::get('POST.nabalik_year'); ?>" >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">संरक्षकको  ठेगानां</label>
+              </td><td><input type="text"  name="nabalik_address" id="nabalik_address" class="required" value="<?php echo F3::get('POST.nabalik_address'); ?>">
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      
+    <?php endif; ?>
+    <?php if (F3::get('POST.owner_type') == 2): ?>
+      
+        <fieldset>
+          <legend>ॠणीको  विवरण</legend>
+          <table>
+            <tr>
+              <td>
+                <label for="">ॠणीको नाम थर </label>
+              </td>
+              <td>
+                <input type="text"  name="bank_name" id="bank_name" class="required" value="<?php echo F3::get('POST.bank_name'); ?>">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">ॠणीको नागरिकता नम्बर</label>
+              </td>
+              <td>
+                <input type="text"  name="creditor_name" id="creditor_name" class="required" value="<?php echo F3::get('POST.creditor_name'); ?>">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जारी जिल्ला</label>
+              </td>
+              <td>
+                <input  name="creditor_district" id="creditor_district" value="<?php echo F3::get('POST.creditor_district'); ?>">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जारी मिति</label>
+              </td>
+              <td>
+                <input type="text"  name="creditor_year" id="creditor_year" value="<?php echo F3::get('POST.creditor_year'); ?>" class="date">
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <fieldset>
+          <legend> ॠणीको  ठेगाना</legend>
+          <!--  <tr>
+               <td class="left">
+                 <label for="">ॠणीको  ठेगाना</label>
+               </td>
+               <td>
+                 <input type="text"  name="creditor_address" id="creditor_address" class="required" value="<?php echo F3::get('POST.creditor_address'); ?>"></td></tr>-->
+          <table>
+            <tr>
+              <td class="left">
+                <label for="">अञ्चल</label>
+              </td>
+              <td>
+                <input name="creditor_zone_id"id="creditor_zone_id" value="<?php echo F3::get('t_zone->name'); ?>" >
+            </tr>
+            <tr>
+              <td class="left">
+                <label for="">जिल्ला</label>
+              </td>
+              <td>
+                <input name="creditor_district_id" id="creditor_district_id" value="<?php echo F3::get('POST.creditor_district_id'); ?>" >
+              </td>
+            </tr>
+            <tr>
+              <td class="left">
+                <label for="">नगरपालिका / गा. वि. स.</label>
+              </td>
+              <td><input type="text" name="creditor_metropolitan"id="" class="required" value="<?php echo F3::get('POST.creditor_metropolitan'); ?>">*
+              </td>
+            </tr>
+            <tr>
+              <td  class="left"><label for="">वडा  नम्बर </label>
+              </td>
+              <td>
+                <input type="text" name="creditor_ward_no"id="p_ward_no" value="<?php echo F3::get('POST.creditor_ward_no'); ?>">
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      
+    <?php endif; ?>
+
+    <?php if (F3::get('POST.owner_type') == 3): ?>
+        <fieldset >
+          <legend> नागरिकता/ पासपोर्ट विवरण</legend>
+          <table>
+            <tr>
+              <td>
+                <label for="citizenship">राष्ट्रियता </label>
+              </td>
+              <td><input type="text"  name="per_nagarikta" id="" class="required" value="<?php echo ($_nationality=F3::get('nationality')); ?>">*</td>
+            </tr>
+            <tr class="nepali">
+              <td>
+                <label for="passport">नागरिकता / पासपोर्ट नम्बर</label>
+              </td>
+              <td>
+                <input type="text"  name="per_identificationno" id="per_identificationno" class="required" value="<?php echo F3::get('POST.per_identificationno'); ?>">*
+              </td>
+            </tr>
+            <tr class="nepali">
+              <td>
+                <label for="district">जारी जिल्ला</label>
+              </td>
+              <td>
+                <input  name="per_district" id="per_district" value="<?php echo F3::get('POST.p_district_id'); ?>">
+              </td>
+            </tr>
+            <tr class="nepali">
+              <td
+                <label for="">जारी मिति </label>
+              </td>
+              <td><input type="text"  name="per_year" id=""  class="date" class="required" value="<?php echo F3::get('POST.per_year'); ?>">
+              </td>
+            </tr>
+            <tr id="embassy_num">
+              <td class="left">
+                <label for=""> पासपोर्ट / दुताबास दार्ता  नम्बर </label>
+              </td>
+              <td>
+                <input type="text"  name="indian_identificationno" id="" class="required" value="<?php echo F3::get('POST.indian_identificationno'); ?>">*
+              </td>
+            </tr>
+            <tr id="other_nationality">
+              <td>पासपोर्ट नम्बर </td>
+              <td>
+                <input type="text"  name="other_identificationno" id="" class="required" value="<?php echo F3::get('POST.other_identificationno'); ?>">*
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      
+    <?php endif; ?>
+  </div >
+</form>
+
+
+
+<script type="text/javascript">
+  window.print();
+</script>
+
+<script>
+  var hood='<?php echo F3::get('POST.wheeler'); ?>';
+  $("#regNum").hide();
+  //owner type
+  var id='<?php echo F3::get('POST.owner_type'); ?>';
+  if( id == 1 || id == 4 || id == 2)
+  {
+    $("#caste").hide();
+    $("#grand_father").hide();
+    $("#father").hide();
+    $("#presentAddress").hide();
+    $('#address').text('ठेगाना');
+    $('#reg').text(' दर्ता मिति');
+    $("#regNum").show();
+    if(id == 1)
+    {
+      $('#names').text('कम्पनीको नाम ');
+    }
+    if(id == 4)
+    {
+      $('#names').text('संस्थाको नाम');
+    }
+    if(id == 2)
+    {
+      $('#names').text('बैंक तथा बित्तिय संस्थाको नाम');
+    }
+
+  }
+  else
+  {
+    $('#address').text('स्थायी ठेगाना');
+    $('#reg').text('जन्म मिति ');
+    $('#names').text('नाम');
+    $("#caste").show();
+    $("#grand_father").show();
+    $("#father").show();
+    $("#presentAddress").show();
+  }
+//show hide hood
+  if(hood == 22){
+    $('#hood').show();
+  }
+  else{
+    $('#hood').hide();
+  }
+
+
+  //bhansar info
+  var n='<?php echo F3::get('POST.custom_receive_type'); ?>';
+  var y="<?php echo F3::get('POST.custom_office_type'); ?>";
+  if(n == 'new'){
+    $("#lilami_office").hide();
+    $("#jafat_info").hide();
+    $("#anya_info").hide();
+    $("#customoffice").show();
+
+  }
+  if(n == 'lilami'){
+    $("#lilami_office").show();
+    $("#jafat_info").hide();
+    $("#customoffice").show();
+    if(y == 'bhansar')
+    {
+      $("#customoffice").show();
+      $("#anya_info").hide();
+      $("#jafat_info").hide();
+
+    }
+    if(y == 'other')
+    {
+      $("#customoffice").hide();
+      $("#jafat_info").hide();
+      $("#anya_info").show();
+
+    }
+
+  }
+  if(n == 'jafat'){
+    $("#lilami_office").hide();
+    $("#customoffice").hide();
+    $("#anya_info").hide();
+    $("#jafat_info").hide();
+    $("#jafat_info").show();
+
+  }
+
+//owner information
+    var n='<?php echo F3::get('POST.per_nagarikta'); ?>';
+   if(n == 1){
+      $('#embassy_num').hide();
+      $('#other_nationality').hide();
+      $('.nepali').show();
+    }
+    if(n == 2){
+      $('#embassy_num').show();
+      $('#other_nationality').hide();
+      $('.nepali').hide();
+    }
+    if(n == 3){
+      $('#other_nationality').show();
+      $('.nepali').hide();
+      $('#embassy_num').hide();
+    }
+  
+</script>
+

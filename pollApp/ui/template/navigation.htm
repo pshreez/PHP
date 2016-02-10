@@ -1,0 +1,30 @@
+ <!--
+<ul>
+  <F3:repeat group="{{@menu}}" key="{{@k}}" value="{{@mg}}">
+    <F3:check if="{{(@k == 'private' && @SESSION.sid) || @k == 'public'}}">
+      <F3:true>
+        <F3:repeat group="{{@mg}}" value="{{@m}}">
+          <li>
+            <a href="{{@BASE}}/{{@m.url}}" id="{{@m.id}}"{{@m.id == @template ? ' class="activeNav"' : ''}}>{{@m.text}}</a>
+          </li>
+        </F3:repeat>
+      </F3:true>
+    </F3:check>
+  </F3:repeat>
+</ul>-->
+<ul>
+    <li style="border-left-color:white;"><a href="{{@BASE}}/home/">home</a></li>
+    <li><a href="{{@BASE}}/polls/all/">polls</a></li>
+       <F3:check if="{{@SESSION.sid}}">
+         <F3:true>
+           <li><a href="{{@BASE}}/myPolls" style="border-right-style: none;">my polls</a>
+        </F3:true>
+           <F3:false>
+           </F3:false>    
+    </F3:check>
+</ul>
+<!----
+
+ <ul>
+                <li><a href="{{@BASE}}/home/">home</a></li><li><a href="{{@BASE}}/polls/all/">polls</a></li>
+            </ul>-->

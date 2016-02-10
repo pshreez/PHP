@@ -1,0 +1,546 @@
+<script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery-1.8.3.min.js"></script>
+
+
+<style>
+  input[text], td{
+    font-size:12px;
+  }
+  input{
+    height: 17px;
+  }
+</style>
+<form method="post" id="namsari" action="">
+
+  <div id="transfer">
+    <h1>नामसारी विवरण </h1>
+    <fieldset >
+      <legend>   (सवारी विवरण) </legend>
+      <table>
+
+        <tr>
+
+          <td>
+            <label for="">  सवारीको प्रकार </label>
+            <input name="wheeler"id="wheeler" value="{{@POST.wheeler == 21 ? '२  पांग्रे': '४  पांग्रे'}} "></td></tr>
+        <tr><td>
+            <label for="">    सवारी नम्बर    </label>  <input name="zone_id" id="zone_id" value="{{@zcode->code.' '.@POST.lot_number.' '.@symbol.' '.@POST.number}}"><!--
+               <input type="text" name="lot_number" id="lot_number" class="required" value="{{@POST.lot_number}}">
+               <input type="text" name="vehicle_symbol_type" id="vehicle_symbol_type" value="{{@symbol}}">
+
+               <input type="text" name="number" id="number"  class="required" value="{{@POST.number}}">*</td>--></td></tr>
+
+      </table>
+    </fieldset>
+
+    <fieldset >
+      <legend>नामसारी विवरण </legend>
+      <table >
+        <tr><td><label for="">नामसारीको कारण</label></td><td><input id="reason" name="reason" value="{{@POST.reason == 0?'किन बेच':'मृत्य'}}"><!--<option selected="selected" name="reason" id="reason">Choose One</option>>--->
+          </td></tr>
+        <tr><td><label for="">नामसारी मिति</label></td><td><input type="text" name="date" id="date"  class="required" value="{{@POST.date}}">*जस्तै  (2013-01-15/ 2069-10-01)*</td></tr>
+        <tr><td><label for="">नामसारी कैफियत{{@POST.remarks}}</label></td><td><input type="text" name="remarks" id="remarks"  value="{{@POST.remarks}}"></td></tr>
+
+
+
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>साक्षी विवरण</legend>
+      <table >
+        <tr>
+          <td>
+            <label for="">नाम</label>
+          </td>
+          <td>
+            <input type="text" name="witness_name" id="witness_name"   value="{{@POST.witness_name}}">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">ठेगाना</label>
+          </td><td><input type="text" name="witness_address" id="witness_address" value="{{@POST.witness_address}}">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">पासपोर्ट / नागरिकता नम्बर</label>
+          </td><td><input type="text" name="citizenship_no" id="citizenship_no"   value="{{@POST.citizenship_no}}">
+          </td>
+        </tr>
+
+
+      </table>
+    </fieldset>
+    <hr>
+    <fieldset>
+      <legend>व्यक्तिगत विवरण</legend>
+      <table >
+
+
+        <tr><td><label for="">सवारी धनी किसिम</label></td><td>
+            <input name="owner_type" id="owner_type" value="{{@owner}}">
+          </td></tr>
+        <tr>
+          <td>
+            <label for="name"><span id="names">नाम</span></label>
+          </td>
+          <td>
+            <input type="text" name="first_name" id="first_name" class="required" value="{{@POST.first_name}}">*
+          </td>
+        </tr>
+
+
+        <F3:check if="{{@POST.owner_type != 2 && @POST.owner_type != 4 && @POST.owner_type != 1}}"><F3:true>
+
+
+            <tr id="caste">
+              <td>
+                <label for="" class="labels" >थर</label>
+              </td>
+              <td>
+                <input type="text" name="last_name" id="last_name" class="required" value="{{@POST.last_name}}">*
+              </td>
+            </tr>
+            <tr id="father">
+              <td>
+                <label for="father_name" class="labels">बाबु /आमा/ पतीको नाम</label>
+              </td>
+              <td>
+                <input type="text" name="father_name" id="father_name" value="{{@POST.father_name}}">
+              </td>
+            </tr>
+            <F3:exclude>
+              <tr id="grand_father">
+                <td>
+                  <label for="grandfather_name" class="labels">हजुर बुबाको नाम</label>
+                </td>
+                <td>
+                  <input type="text" name="grandfather_name" id="grandfather_name" value="{{@POST.grandfather_name}}">
+                </td>
+              </tr>
+            </F3:exclude>
+          </F3:true>
+        </F3:check>
+        <tr>
+          <td>
+            <label for=""><span id="reg">जन्म मिति</span></label>
+          </td>
+          <td>
+            <input type="text" name="dob" id="dob" value="{{@POST.dob}}" >
+          </td>
+        </tr>
+        <tr id="regNum">
+          <td class="left">
+            <label for="">
+              <span id="reg">रजिष्ट्रेशन नम्बर</span> </label>
+          </td>
+          <td>
+            <input type="text" name="reg_num" id="reg_num" value="{{@POST.reg_num}}" >
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">रसिदको मिति</label>
+          </td>
+          <td>
+            <input type="text" name="receipt" id="receipt_date" class="required" value="{{@POST.receipt ?@POST.receipt :@POST.receipt_num}}">*
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">इमेल ठेगाना </label>
+          </td>
+          <td>
+            <input type="text" name="email" id="email" value="{{@POST.email}}">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">सम्पर्क नम्बर</label>
+          </td>
+          <td>
+            <input type="text" name="mobileno" id="mobileno" value="{{@POST.mobileno}}" class="required">*
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>
+        <span id="address">स्थायी ठेगाना</span>
+      </legend>
+      <table >
+        <tr>
+          <td><label for="">अञ्चल</label></td>
+          <td>
+            <input name="p_zone_id" id="p_zone_id" value="{{@p_zone->name}}">
+          </td>
+        </tr>
+        <tr>
+          <td><label for="">जिल्ला</label></td><td>
+            <input name="p_district_id" id="p_district_id" value="{{@POST.p_district_id}}">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="">ननगरपालिका / गा. वि. स.</label>
+          </td>
+          <td>
+            <input type="text" name="p_metropolitan"id="" class="required" value="{{@POST.p_metropolitan}}">*
+          </td></tr>
+        <tr>
+          <td>
+            <label for="">वडा  नम्बर </label></td><td><input type="text" name="p_ward_no"id="p_ward_no" value="{{@POST.p_ward_no}}">
+          </td>
+        </tr>
+        <F3:exclude>
+          <tr>
+            <td>
+              <label for="">टोल</label>
+            </td>
+            <td>
+              <input type="text" name="p_address"id="p_address" value="{{@POST.p_address}}">
+          </tr>
+          <tr>
+            <td>
+              <label for="">ब्लक नं / घर नं</label></td><td><input type="text" name="p_house_no"id="p_house_no" value="{{@POST.p_house_no}}">
+            </td>
+          </tr>
+        </F3:exclude>
+        <tr>
+          <td>
+            <label for="">फोन नम्बर </label>
+          </td>
+          <td>
+            <input type="text" name="p_phone"id="p_phone" class="required" value="{{@POST.p_phone}}">*
+          </td>
+        </tr>
+
+      </table>
+    </fieldset>
+
+
+    <F3:check if="{{@POST.owner_type != 2 && @POST.owner_type != 3}}">
+      <F3:true>
+        <fieldset  id="presentAddress">
+          <legend>हालको ठेगाना</legend>
+          <table>
+            <tr>
+              <td>
+                <label for="">अञ्चल</label>
+              </td>
+              <td>
+                <input name="temp_zone_id"id="temp_zone_id" value="{{@t_zone->name}}" >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जिल्ला</label>
+              </td>
+              <td>
+                <input name="temp_district_id"id="temp_district_id" value="{{@POST.temp_district_id}}">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">नगरपालिका / गा. वि. स.</label>
+              </td>
+              <td>
+                <input type="text" name="temp_metropolitan"id="temp_metropolitan" class="required" value="{{@POST.temp_metropolitan}}">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">वडा  नम्बर </label>
+              </td>
+              <td>
+                <input type="text" name="temp_ward_no"id="temp_ward_no" value="{{@POST.temp_ward_no}}">
+              </td>
+            </tr>
+            <F3:exclude>
+              <tr>
+                <td>
+                  <label for="">टोल</label>
+                </td>
+                <td>
+                  <input type="text" name="temp_address"id="temp_address" value="{{@POST.temp_address}}">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="">ब्लक नं / घर नं</label>
+                </td>
+                <td>
+                  <input type="text" name="temp_house_no"id="temp_house_no" value="{{@POST.temp_house_no}}">
+                </td>
+              </tr>
+            </F3:exclude>
+            <tr>
+              <td>
+                <label for="">फोन नम्बर </label>
+              </td>
+              <td>
+                <input type="text" name="temp_phone"id="temp_phone" class="required" value="{{@POST.temp_phone}}">*
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <br>
+      </F3:true>
+    </F3:check>
+    <F3:check if="{{@owner == 6}}">
+      <F3:true>
+        <fieldset >
+          <legend>संरक्षकको  विवरण</legend>
+          <table>
+            <tr>
+              <td>
+                <label for="">संरक्षकको  नाम थर </label>
+              </td>
+              <td>
+                <input type="text" name="nabalik_guardian_name"id="nabalik_guardian_name" class="required"  value="{{@POST.nabalik_guardian_name}}">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">संरक्षकसंगको  नाता</label>
+              </td>
+              <td>
+                <input type="text" name="nabalik_relation"id="nabalik_relation" class="required"  value="{{@POST.nabalik_relation}}">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">पासपोर्ट / नागरिकता नं.</label>
+              </td><td><input type="text" name="nabalik_identity_no"id="nabalik_identity_no" class="required"  value="{{@POST.nabalik_identity_no}}">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जारी  जिल्ला</label>
+              </td>
+              <td>
+                <input name="nabalik_district"id="nabalik_district" value="{{@POST.nabalik_district}}">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जारी  मिति</label>
+              </td>
+              <td>
+                <input type="text" name="nabalik_year" id="nabalik_year" value="{{@date}}" class="date"  class="required" value="{{@POST.nabalik_year}}" >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">संरक्षकको  ठेगानां</label>
+              </td><td><input type="text"  name="nabalik_address" id="nabalik_address" class="required" value="{{@POST.nabalik_address}}">
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </F3:true>
+    </F3:check>
+    <F3:check if="{{@POST.owner_type == 2}}">
+      <F3:true>
+        <fieldset>
+          <legend>ॠणीको  विवरण</legend>
+          <table>
+            <tr>
+              <td>
+                <label for="">ॠणीको नाम थर </label>
+              </td>
+              <td>
+                <input type="text"  name="bank_name" id="bank_name" class="required" value="{{@POST.bank_name}}">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">ॠणीको नागरिकता नम्बर</label>
+              </td>
+              <td>
+                <input type="text"  name="creditor_name" id="creditor_name" class="required" value="{{@POST.creditor_name}}">*
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जारी जिल्ला</label>
+              </td>
+              <td>
+                <input  name="creditor_district" id="creditor_district" value="{{@POST.creditor_district}}">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="">जारी मिति</label>
+              </td>
+              <td>
+                <input type="text"  name="creditor_year" id="creditor_year" value="{{@POST.creditor_year}}" class="date">
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <fieldset>
+          <legend> ॠणीको  ठेगाना</legend>
+          <!--  <tr>
+               <td class="left">
+                 <label for="">ॠणीको  ठेगाना</label>
+               </td>
+               <td>
+                 <input type="text"  name="creditor_address" id="creditor_address" class="required" value="{{@POST.creditor_address}}"></td></tr>-->
+          <table>
+            <tr>
+              <td class="left">
+                <label for="">अञ्चल</label>
+              </td>
+              <td>
+                <input name="temp_zone_id"id="creditor_zone_id" value="{{@t_zone->name}}" >
+            </tr>
+            <tr>
+              <td class="left">
+                <label for="">जिल्ला</label>
+              </td>
+              <td>
+                <input name="temp_district_id" id="creditor_district_id" value="{{@POST.temp_district_id}}" >
+              </td>
+            </tr>
+            <tr>
+              <td class="left">
+                <label for="">नगरपालिका / गा. वि. स.</label>
+              </td>
+              <td><input type="text" name="temp_metropolitan"id="" class="required" value="{{@POST.temp_metropolitan}}">*
+              </td>
+            </tr>
+            <tr>
+              <td  class="left"><label for="">वडा  नम्बर </label>
+              </td>
+              <td>
+                <input type="text" name="temp_ward_no"id="temp_ward_no" value="{{@POST.temp_ward_no}}">
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </F3:true>
+    </F3:check>
+
+    <F3:check if="{{@POST.owner_type == 3}}"><F3:true>
+        <fieldset >
+          <legend> नागरिकता/ पासपोर्ट विवरण</legend>
+          <table>
+            <tr>
+              <td>
+                <label for="citizenship">राष्ट्रियता </label>
+              </td>
+              <td><input type="text"  name="per_nagarikta" id="" class="required" value="{{@nationality}}">*</td>
+            </tr>
+            <tr class="nepali">
+              <td>
+                <label for="passport">नागरिकता / पासपोर्ट नम्बर</label>
+              </td>
+              <td>
+                <input type="text"  name="per_identificationno" id="per_identificationno" class="required" value="{{@POST.per_identificationno}}">*
+              </td>
+            </tr>
+            <tr class="nepali">
+              <td>
+                <label for="district">जारी जिल्ला</label>
+              </td>
+              <td>
+                <input  name="per_district" id="per_district" value="{{@POST.p_district_id}}">
+              </td>
+            </tr>
+            <tr class="nepali">
+              <td
+                <label for="">जारी मिति </label>
+              </td>
+              <td><input type="text"  name="per_year" id=""  class="date" class="required" value="{{@POST.per_year}}">
+              </td>
+            </tr>
+            <tr id="embassy_num">
+              <td class="left">
+                <label for=""> पासपोर्ट / दुताबास दार्ता  नम्बर </label>
+              </td>
+              <td>
+                <input type="text"  name="indian_identificationno" id="" class="required" value="{{@POST.indian_identificationno}}">*
+              </td>
+            </tr>
+            <tr id="other_nationality">
+              <td>पासपोर्ट नम्बर </td>
+              <td>
+                <input type="text"  name="other_identificationno" id="" class="required" value="{{@POST.other_identificationno}}">*
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </F3:true>
+    </F3:check>
+  </div >
+</form>
+
+
+<script type="text/javascript">
+  window.print();
+</script>
+
+<script>
+  $("#regNum").hide();
+  var id='{{@POST.owner_type}}';
+  if( id == 1 || id == 4 || id == 2)
+  {
+    $("#caste").hide();
+    $("#grand_father").hide();
+    $("#father").hide();
+    $("#presentAddress").hide();
+    $('#address').text('ठेगाना');
+    $('#reg').text(' दर्ता मिति');
+    $("#regNum").show();
+
+    if(id == 1)
+    {
+      $('#names').text('कम्पनीको नाम ');
+    }
+    if(id == 4)
+    {
+      $('#names').text('सस्थाको नाम');
+    }
+    if(id == 2)
+    {
+      $('#names').text('बैंक तथा बित्तिय संस्थाको नाम');
+    }
+
+  }
+  else
+  {
+    $('#address').text('स्थायी ठेगाना');
+    $('#reg').text('जन्म मिति ');
+    $('#names').text('नाम');
+    $("#caste").show();
+    $("#grand_father").show();
+    $("#father").show();
+    $("#presentAddress").show();
+  }
+
+
+    var n='{{@POST.per_nagarikta}}';
+   if(n == 1){
+      $('#embassy_num').hide();
+      $('#other_nationality').hide();
+      $('.nepali').show();
+    }
+    if(n == 2){
+      $('#embassy_num').show();
+      $('#other_nationality').hide();
+      $('.nepali').hide();
+    }
+    if(n == 3){
+      $('#other_nationality').show();
+      $('.nepali').hide();
+      $('#embassy_num').hide();
+    }
+</script>
+
+
+

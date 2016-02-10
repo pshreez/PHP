@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><?php echo ($_title=F3::get('title')); ?></title>
+        <link rel="stylesheet" href="<?php echo ($_BASE=F3::get('BASE')); ?>/<?php echo ($_UI=F3::get('UI')); ?>css/style.css" type="text/css">
+        <link type="text/css" rel="stylesheet" href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/jquery.dataTables.css" />
+        <link href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/smoothness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.6.2.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.9.0.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-ui-1.10.0.custom.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery.dataTables.min.js"></script>
+       
+        <script src="" type="text/javascript"></script>
+
+
+    </head>
+    <body>
+        <!-- define header--->
+    <header class="headerbackground">
+        
+<div style="float:right;position:relative;">
+
+<img src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>/images/nepal.gif"  width="80px" height="80px" />
+</div>
+
+<div style="float:left;width:320px;">
+<img src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>/images/nepal_government_logo.png"   height="70px" width="70px" />
+<!--<?php if (F3::get('SESSION.asid')): ?><span style="position:relative;top:40px;left:680px;" id="logging">You are logged in </span><?php endif; ?>-->
+<br>
+Government of Nepal
+<br>
+Ministry of Physical Planning,Works and Transport Management
+<br>
+<span>Department of Transport Management</span>
+
+</div>
+
+<div>
+
+    <img src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>/images/department_transport_nepal.png"  height="100px" width="380px" />
+</div>
+  
+
+
+<script type="text/javascript">
+    $("#logging").fadeOut(3000);
+    
+</script>
+    </header>
+    <!--- define navigaition -->
+    <nav>
+        
+    </nav>
+    <!-- main content area--->
+    <section>
+        
+<div class="home" style="padding:20px;">
+    <center >
+    <h2 style="color:white"> Vehicle <?php echo ($_vehicle=F3::get('vehicle')); ?> have been registered</h2>
+    <h3>Please visit Department of transportation management- <?php echo ($_value=F3::get('value')); ?>  office along with  the following documents</h3>
+    </center>
+    <ul type="1" style="position:relative;left:200px;">
+        
+        <li>- भन्सार प्रज्ञापन </li>
+        <li>- इन्जिन  र  चेस्सिस को फोटो </li>
+        <li>- नागरिकता</li>
+         <li>- सवारी  </li>
+          <li>- दुईवोटा पस्स्पोर्ट साइज  फोटो </li>
+          <li>- सवारी  धनी  अथवा कम्पनी प्रतिनिधि  </li>
+          <li>- दर्ता राजस्व र कर तिरेको कागजपत्र</li>
+    </ul>
+    
+  
+</div>
+
+
+        
+    </section>
+    <!--sidebar--->
+    <aside>
+
+    </aside>
+    <!--footer--->
+    <footer>
+
+    </footer>
+    <script type="text/javascript">
+        var base = "<?php echo $_BASE; ?>/";
+    </script>
+ <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/fileValidator.js"></script>
+        <script src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/sh_main.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/sh_javascript_dom.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/sh_html.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/sh_mac_classic.min.css" type="text/css">
+</body>
+</html>

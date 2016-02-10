@@ -1,0 +1,17 @@
+<p><strong>Keyword:</strong> <em>{{strtoupper(@keyword)}}</em></p>
+<p><strong>Question:</strong> <em>{{@question}}</em></p>
+<p style="color: red;">Are you sure? Deleted polls are not active and can't be available .</p>
+<p><button id="delete">Delete</button><button id="cancel">Cancel</button></p>
+<script type="text/javascript">
+  document.title = "{{@title}} - {{@site}}";
+  $("#delete").click(function() {
+    var id = "{{@id}}";
+    window.location.href =  "{{@BASE}}/delete/" + id;
+  });
+
+  $("#cancel").click(function() {
+   window.location.href = "{{@BASE}}/myPolls";
+  });
+
+
+</script>

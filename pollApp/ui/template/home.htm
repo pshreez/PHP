@@ -1,0 +1,159 @@
+<div id="sliderContainer">
+     
+    <div id="slides">
+        <div class="slides_container">
+          
+           
+            <div>
+                <img src="{{@BASE}}/{{@UI}}images/one.jpg" />
+            </div>
+            <div>
+                <img src="{{@BASE}}/{{@UI}}images/two.jpg" />
+            </div>
+            <div><img src="{{@BASE}}/{{@UI}}images/three.jpg" /></div>
+            <div><img src="{{@BASE}}/{{@UI}}images/four.jpg" /></div>
+        </div>
+        <a href="#" class="prev"><img src="{{@BASE}}/{{@UI}}images/prev-slide.png"></a>
+        <a href="#" class="next"><img src="{{@BASE}}/{{@UI}}images/next-slide.png"></a>
+    </div>
+      
+</div>
+<!------top polls--->
+<table id="toppolls" cellspacing="1px" "cellpadding="5px" border="0" class="displayPoll"class="decorate">
+    <thead>
+        <tr><th>Top Polls<a href="{{@BASE}}/polls/top">View All</a></th></tr>
+    </thead>
+    <tbody>
+    <F3:repeat group="{{@top}}" key="{{@id}}" value="{{@topPolls}}">
+        <tr><td><a href="{{@BASE}}/pollView/{{@id}}" data-id="{{@id}}" class="sldown">{{@topPolls}}</a></td></tr>
+    </F3:repeat>
+</tbody>
+</table>
+
+<!------latest polls----->
+<div style="margin-top: 10px;">
+    <table id="latestpolls" cellspacing="1px" cellpadding="5px" border="0" class="displayPoll" calss="decorate">
+        <thead>
+            <tr><th>Latest Polls<a href="{{@BASE}}/polls/latest">View All</a></th></tr>
+        </thead>
+        <tbody>
+
+        <F3:repeat group="{{@polls}}" key="{{@id}}" value="{{@latestPoll}}">
+            <tr><td><a href="{{@BASE}}/pollView/{{@id}}" data-id="{{@id}}"  class="sldown">{{@latestPoll}}</a></td></tr>
+
+        </F3:repeat>
+
+
+        </tbody>
+    </table>
+</div>
+
+
+<!-- recent activities----->
+<div style="margin-top: 10px;">
+    <table id="recentactivity" cellspacing="1px" cellpadding="5px" border="0" class="displayPoll" class="decorate">
+        <thead>
+            <tr><th>Recent Activity<a href="{{@BASE}}/polls/recent">View All</a></th></tr>
+        </thead>
+        <tbody>
+        <F3:repeat group="{{@recent}}" key="{{@id}}" value="{{@activity}}">
+            <tr><td><a href="{{@BASE}}/pollView/{{@id}}" data-id="{{@id}}"  class="sldown">{{@activity}}</a></td></tr>
+        </F3:repeat>
+        </tbody>
+    </table>
+</div>
+<div id="polldialog"></div>
+<F3:check if="{{@poll->is_archive == 'n'}}"><F3:true><div id="blocked" style="display:none;">Your account has been blocked</div></F3:true></F3:check>
+<script type="text/javascript">
+    document.title = "{{@title}} - {{@site}}";
+
+    // {{* Image Slider configuration *}}
+    $("#slides").slides({
+        preload: true,
+        preloadImage: '{{@BASE}}/{{@UI}}images/loading.gif',
+        radnomize: true,
+        play: 5000,
+        pause: 2500,
+        hoverPause: true
+    });
+
+  $(document).ready(function(){
+
+           $( "#blocked" ).dialog({
+            show: "blind",
+            resizable: false,
+            height:140,
+            modal: true,
+            buttons: {
+
+               close: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+        return false;
+    });
+
+ 
+  //top polls
+  $topPolls = $("#toppolls").dataTable({
+    "bAutoWidth": false,
+    "bFilter": false,
+    "bInfo": false,
+    "bLengthChange": false,
+    "bPaginate": false,
+    "bSort": false
+  });
+  $('#toppolls tbody td a').click(function () {
+    var nTr = $(this).parents('tr')[0];
+    $(this).parents('tr').toggleClass('opened');
+    if($(this).parents('tr').hasClass("opened")) {
+      $topPolls.fnOpen(nTr, getPollDetails($(this).attr('data-id')));
+    } else {
+      $topPolls.fnClose(nTr);
+    }
+    return false;
+  });
+
+
+   $latestPolls = $("#latestpolls").dataTable({
+    "bAutoWidth": false,
+    "bFilter": false,
+    "bInfo": false,
+    "bLengthChange": false,
+    "bPaginate": false,
+    "bSort": false
+  });
+  
+  $('#latestpolls tbody td a').click(function () {
+   // alert("shreejana");
+    var nTr = $(this).parents('tr')[0];
+    $(this).parents('tr').toggleClass('opened');
+    if($(this).parents('tr').hasClass("opened")) {
+      $latestPolls.fnOpen(nTr, getPollDetails($(this).attr('data-id')));
+    } else {
+      $latestPolls.fnClose(nTr);
+    }
+    return false;
+  });
+
+  // {{* Recent Activity *}}
+  $recentactivity = $("#recentactivity").dataTable({
+    "bAutoWidth": false,
+    "bFilter": false,
+    "bInfo": false,
+    "bLengthChange": false,
+    "bPaginate": false,
+    "bSort": false
+  });
+  $('#recentactivity tbody td a').click(function () {
+    var nTr = $(this).parents('tr')[0];
+    $(this).parents('tr').toggleClass('opened');
+    if($(this).parents('tr').hasClass("opened")) {
+      $recentactivity.fnOpen(nTr, getPollDetails($(this).attr('data-id')));
+    } else {
+      $recentactivity.fnClose(nTr);
+    }
+    return false;
+  });
+</script>

@@ -1,0 +1,109 @@
+<div style="position:relative;">
+<table  cellspacing="0" cellpadding="0" id="Polls" class="decorate" >
+  <thead>
+    <tr><th ">Keyword</th>
+        <th>Question</th>
+        <th>Created By</th>
+        <th>Expired</th>
+        <th>Published</th>
+        <th>Active</th>
+        <th>Private/Public</th>
+        <th>Hits</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <F3:repeat group="{{@pollList}}" key="{{@id}}" value="{{@ql}}">
+    <tr>
+    <F3:repeat group="{{@ql}}" value="{{@q}}">
+      <td><a href="{{@BASE}}/pollView/{{@id}}" data-id="{{@id}}">{{@q}}</a></td>
+    </F3:repeat>
+    </tr>
+  </F3:repeat>
+
+</tbody>
+<tfoot>
+  <tr>
+    <th style="  background-image:none;"></th>
+    <th style="  background-image:none;"></th>
+    <th style="  background-image:none;">
+      <select>
+        <option value="">All</option>
+        <F3:repeat group="{{@users}}" value="{{@u}}">
+          <option value="{{@u}}">{{@u}}</option>
+        </F3:repeat>
+      </select>
+    </th>
+    <th style="  background-image:none;">
+      <select>
+        <option value="">All</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </th>
+    <th style="  background-image:none;">
+      <select>
+        <option value="">All</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </th>
+    <th style="  background-image:none;">
+      <select>
+        <option value="">All</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </th>
+    <th style="  background-image:none;">
+      <select>
+        <option value="">All</option>
+        <option value="Private">Private</option>
+        <option value="Public">Public</option>
+      </select>
+    </th>
+    <th style="  background-image:none;"></th>
+  </tr>
+</tfoot>
+</table>
+</div>
+<script type="text/javascript">
+  document.title = "{{@title}} - Admin - {{@site}}";
+
+  var options = {
+    "bProcessing": true,
+    "bJQueryUI":false,
+    "bAutoWidth": false,
+    "oLanguage": {
+      "sZeroRecords": "No polls to be displayed"
+    },
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": {{@conf.PAGESIZE}},
+    "aoColumnDefs": [{
+        "sWidth": '50px',
+        "aTargets": [-1]
+      }, {
+        "sWidth": '100px',
+        "aTargets": [0]
+      }]
+  };
+
+  $pollTable = $("#Polls").dataTable(options);
+
+   $("#Polls tfoot th").each(function(i) {
+    $(this).find("select").change( function () {
+      $pollTable.fnFilter( $(this).val(), i );
+    } );
+  });
+
+  $('#Polls tbody td a').click(function () {
+    var nTr = $(this).parents('tr')[0];
+    $(this).parents('tr').toggleClass('opened');
+    if($(this).parents('tr').hasClass("opened")) {
+      $pollTable .fnOpen(nTr, getPollDetails($(this).attr('data-id')));
+    } else {
+    $pollTable .fnClose(nTr);
+    }
+    return false;
+  });
+</script>

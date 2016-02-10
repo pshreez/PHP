@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><?php echo ($_title=$this->get('title')); ?></title>
+        <link rel="stylesheet" href="<?php echo ($_BASE=$this->get('BASE')); ?>/<?php echo ($_UI=$this->get('UI')); ?>css/style.css" type="text/css">
+             <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.7.2.min.js"></script>
+        <script src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-ui-1.8.22.custom.min.js" type="text/javascript">//datepicker</script>
+      
+       <script src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-ui-timepicker-addon.js" type="text/javascript">//timepicker</script>
+        <script src="" type="text/javascript"></script>
+        <script> 
+         </script>
+     
+       
+    </head>
+    <body>
+        <!-- define header--->
+    <header class="headerbackground">
+     
+<img src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>/images/1.png"  align="left" style="float:left;padding:0px;width:80px;height:80px;"/>
+<h1 align="right" style="padding-right:50px;">Vehicle registration system</h1>
+    </header>
+    <!--- define navigaition -->
+    <nav>
+ 
+    </nav>
+    <!-- main content area--->
+    <section>
+      
+       
+    </section>
+    <!--sidebar--->
+    <aside>
+
+    </aside>
+    <!--footer--->
+    <footer>
+
+    </footer>
+           <script type="text/javascript">
+            var base = "<?php echo $_BASE; ?>/";
+      </script>
+
+</body>
+</html>

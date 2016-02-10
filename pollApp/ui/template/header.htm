@@ -1,0 +1,68 @@
+
+
+
+
+
+
+<F3:check if="{{@SESSION.sid && @SESSION.user->active == 'y'}}">
+  <F3:true>
+      <div style="float: right;padding-right:20px;">
+    <div style=" padding:10px;position:relative;top:40px;" class="bubble">
+      
+        <a href="https://www.facebook.com/{{@SESSION.user->username}}"> <span >{{@SESSION.user->fullname}}</span>
+    <img src="https://graph.facebook.com/{{@SESSION.user->id}}/picture" width="30px" height="30px" /></a>
+        
+    </div><br>
+             <a href="{{@BASE}}/logout/" style="position:relative;left:20px;top:40px;padding:2px 8px 2px 8px;color:grey;"><img src="{{@BASE}}/{{@UI}}images/logout.png" height="25px" width="60px"></a>
+      </div>
+      
+  </F3:true>
+  <F3:false>
+  <a  href="#" id="fb-login" style="float: right; position: absolute; padding-right: 60px;right:0px; "><image src="{{@BASE}}/{{@UI}}images/login.png" height="60px" width="180px"></a>
+
+ </F3:false>
+</F3:check>
+<img src="{{@BASE}}/{{@UI}}images/12.png"  style="float:left;padding-left:40px;" height=120px />
+
+
+
+
+       <script type="text/javascript">
+      $("#fb-login").click(function() {
+
+        login();
+        return false;
+      });
+    </script>
+
+   
+
+
+
+
+<!--
+
+<F3:check if="{{@user->active == 'n'}}">
+    <F3:true>
+        <script type="text/javascript">
+      $("#fb-login").click(function() {
+         $( "#blocked" ).dialog({
+            show: "blind",
+            resizable: false,
+            height:140,
+            modal: true,
+            buttons: {
+
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+         return false;
+      });
+    </script>
+    </F3:true>
+</F3:check>
+<div id="blocked" style="display:none;">You have been blocked by the admin</div>
+*/
+-->

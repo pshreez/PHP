@@ -1,0 +1,43 @@
+<div id="formContain" style="display: block;padding-bottom:20px;padding-top:20px;margin-top:20px;margin-bottom:20px;width:860px;" class="heading">
+  <form id="reportForm"  style="position:relative;left:70px;">
+    <label for="reportFrom" style="color:grey;"">From:</label>
+    <input id="reportFrom" type="text"  autofocus required  name="from" style="margin-left: 40px;color:grey;" />
+    <label for="reportTo" style="margin-left: 5px;color:grey;">To:</label>
+    <input id="reportTo" type="text"  autofocus required  name="to"  style="margin-left: 40px;color:grey;" />
+    <label for="reportTelco" style="margin-left: 5px;color:grey;">Telco:</label>
+    <select id="reportTelco" name="telco" style="margin-left: 40px;">
+      <option value="">All</option>
+      <option value="ntc">NTC</option>
+      <option value="spice">Spice</option>
+      <option value="utl">UTL</option>
+    </select>
+    
+    <button style="margin-left: 5px;">View</button>
+  </form>
+</div>
+<div id="reportListContainer"></div>
+<script type="text/javascript">
+  document.title = "{{@title}} - Admin - {{@site}}";
+  $("#reportFrom").datepicker({
+    dateFormat: "yy-mm-dd",
+    onSelect: function(selectedDate) {
+      $("#reportTo").datepicker("option", "minDate", selectedDate);
+    }
+  });
+  $("#reportTo").datepicker({
+    dateFormat: "yy-mm-dd",
+    onSelect: function(selectedDate) {
+      $("#reportFrom").datepicker("option", "maxDate", selectedDate);
+    }
+  });
+  $("#reportForm").submit(function() {
+    postData({
+      url: "{{@BASE}}/admin/report",
+      data: $("#reportForm").serialize(),
+      type: "html"
+    }, function(data) {
+      $("#reportListContainer").html(data);
+    });
+    return false;
+  });
+</script>

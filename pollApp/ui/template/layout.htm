@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+    <title>{{@title}}-{{@site}}</title>
+   <link rel="icon" type="image/png" href="{{@BASE}}/{{@UI}}images/11.png">
+    <link type="text/css" rel="stylesheet" href="{{@BASE}}/{{@UI}}css/quiz-theme/jquery-ui-1.8.22.custom.css" />
+    <link type="text/css" rel="stylesheet" href="{{@BASE}}/{{@UI}}css/dataTablesJui.css" />
+    <link type="text/css" rel="stylesheet" href="{{@BASE}}/{{@UI}}css/jquery.pnotify.default.css" />
+    <link type="text/css" rel="stylesheet" href="{{@BASE}}/{{@UI}}css/style.css" />
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery-ui-1.8.22.custom.min.js"></script>
+     <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery.ui.datepicker.validation.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/slides.min.jquery.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery.pnotify.min.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery.lazyload.min.js"></script>
+    <!--    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/cssrefresh.js"></script>-->
+  </head>
+  <body id="gradient">
+    <div id="fb-root"></div>
+    <script type="text/javascript">
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '430439810346961', // App ID
+          channelUrl : 'http://localhost/pollApp/channel.html', // Channel File
+          status     : true, // check login status
+          xfbml      :true,
+          oauth      :true,
+         logging    : false
+ 
+        });
+      };
+      // Load the SDK Asynchronously
+      (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+      }(document));
+    </script>
+    <div id="loading">Loading...</div>
+    <div id="header"><F3:include href="template/header.htm"/></div>
+    <div id="navigation"><F3:include href="template/navigation.htm"/></div>
+    <div id="main">
+    <F3:include href="template/{{@template}}.htm"/></div>
+    <div id="footer"><F3:include href="template/footer.htm"/></div>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/script.js"></script>
+    <script type="text/javascript">
+      var base = "{{@BASE}}/";
+      $("#footer").find("a").click(function() {
+        if($(this).text() == "Terms of Use") {
+          var tou = $(this).attr("href");
+          getView({
+            id: "main",
+            url: terms
+          }, function() {
+            if(window.history.pushState) {
+              window.history.pushState("", "", tou);
+            }
+          });
+        } else {
+          window.open($(this).attr("href"), "_blank");
+        }
+        return false;
+      });
+       var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8078213-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

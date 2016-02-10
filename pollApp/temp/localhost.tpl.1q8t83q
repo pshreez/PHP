@@ -1,0 +1,174 @@
+<div id="viewPoll"  style="text-decoration: none;">
+    <div id="poll_info" style="first-letter:capitalize;">
+        <?php if (($_published_date=F3::get('published_date'))): ?>
+                <div  style="color:white;float:right;padding-right:50px;padding-top:45px;" >
+
+                    <a class="share-fb" id="shareFB" href="#" data-id="<?php echo ($_id=F3::get('id')); ?>"></a><br>
+                    <a class="share-gp" href="https://plus.google.com/share?url=http://smscentral.com.np/poll/poll/<?php echo $_id; ?>" data-id="<?php echo $_id; ?>" style="padding: 0px !important;"></a><br>
+                    <a class="share-tw" href="https://twitter.com/share?url=http://smscentral.com.np/poll/poll/<?php echo $_id; ?>&text=<?php echo ($_question=F3::get('question')); ?>&via=smscentral&related=smscentral&hashtags=poll" data-id="<?php echo $_id; ?>" style="padding: 0px !important;"></a></br>
+                    
+
+                </div>
+            <?php endif; ?>
+
+        <div class="heading" style="height:auto;padding:40px;padding-bottom: 15px;border-top-left-radius:15px;border-top-right-radius:15px;">
+
+            <font style="color:#522931;font-size:20px;display:block;"><?php echo ($_question=F3::get('question')); ?></font>
+
+
+            <ul  style="list-style:none;color:#522931;"  >
+
+                <?php if (is_array(($_options=F3::get('options')))):foreach ((($_options=F3::get('options'))?:array()) as $_values):?>
+
+                    <li style="text-transform:capitalize;font-size:15px;margin:2px;">
+                        <span style="width:200px;">  <strong> <?php echo $_values['0']; ?>:</strong> <?php echo $_values['1']; ?></span>
+                    <?php if (($_total=F3::get('total')) != 0): ?><div  style="width: 200px;
+                                                                   border: 1px solid #000;height:15px;
+                                                                   background-color: #ddd;display:inline-block;position:relative;right:150px;float:right;"><div style="background:green;display:inline-block;height:15px;width: <?php echo $_values['3']*2; ?>px;clear:right;">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red"><?php echo $_values['2']; ?>&nbsp;&nbsp;Votes
+
+                                    </span>
+                                </div> </div><?php endif; ?><br>
+                    </li>
+                <?php endforeach;endif;?>
+
+
+            </ul>
+
+
+            <div >
+
+
+                <?php if (($_total=F3::get('total')) != 0): ?>Total votes : <?php echo $_total; ?> <?php endif; ?>
+                <?php if (($_total=F3::get('total')) == 0): ?>No votes yet <?php endif; ?>
+
+            </div>
+
+
+
+        </div>
+
+
+        <div style="padding:10px; color: #6F103B;text-align:center;" class="pollbk" >
+
+
+
+            To vote , type @poll<strong>&lt;space&gt;</strong><?php echo strtolower(($_keyword=F3::get('keyword'))); ?><strong>&lt;space&gt;</strong>[option] and SMS to 4321. For e.g. @poll <?php echo $_keyword; ?> a
+        </div>
+        <div class="heading" style="padding:10px;border-bottom-left-radius:15px;border-bottom-right-radius:15px;padding-left:35px;">
+            <div style="color: #522931;text-align: center;">
+                <strong >Created by ::</strong>&nbsp;&nbsp;<span ><span style="margin:8px;margin-right:16px;font-size:18px;"><?php echo ($_fullname=F3::get('fullname')); ?></span><img src="https://graph.facebook.com/<?php echo ($_user_id=F3::get('user_id')); ?>/picture" width="30px" height="30px" /></span><br>
+                Created date  :  <?php echo date("F j, Y",strtotime(($_created_date=F3::get('created_date')))); ?>
+                <span style="padding:10px">&</span>
+                <?php if (($_expiry_date=F3::get('expiry_date')) != NULL): ?> Expiry date  :  <?php echo date("F j, Y",strtotime($_expiry_date)); ?>
+                <?php endif; ?>
+                <br><br>
+                <?php if (F3::get('SESSION.sid') && $_user_id == F3::get('SESSION.user->id')): ?>
+
+                    
+
+                        <?php if (($_published_date=F3::get('published_date')) == NULL): ?> 
+                            
+                                <?php if (($_expiry_date=F3::get('expiry_date')) > ($_date=F3::get('date'))): ?>
+                                    
+                                        <a href="<?php echo ($_BASE=F3::get('BASE')); ?>/edit/<?php echo ($_id=F3::get('id')); ?>" class="userfn" data-id="<?php echo $_id; ?>"> Edit</a>
+                                        <a href="<?php echo $_BASE; ?>/publish/<?php echo $_id; ?>" class="userfn" data-id="<?php echo $_id; ?>"> Publish</a>
+                                    
+                                <?php endif; ?>
+
+
+
+                            
+                        <?php endif; ?>
+                    
+                    <a href="#" id="delete" data-id="<?php echo ($_id=F3::get('id')); ?>" id="del" class="userfn" > Delete</a>
+                    <br></br>
+                    <?php if (($_published_date=F3::get('published_date')) == NULL): ?> 
+
+                            <div style="padding:10px;"><i>This is a private poll,not yet published,The published  poll can be shared on Facebook,Google+ and twitter</i></div>
+                        <?php endif; ?>
+
+
+
+                    
+                <?php endif; ?>
+
+
+
+
+
+                
+                
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<script>
+
+   
+
+    var desc ="";
+        <?php if (is_array(($_options=F3::get('options')))):foreach ((($_options=F3::get('options'))?:array()) as $_values):?>
+        desc = desc + " (<?php echo $_values['0']; ?>) <?php echo $_values['1']; ?>,";
+        <?php endforeach;endif;?>
+
+        $("#shareFB").click(function(){
+  
+        FB.ui({
+            method: 'feed',
+            link: 'http://smscentral.com.np/poll/pollView/<?php echo ($_id=F3::get('id')); ?>',
+            picture: 'http://smscentral.com.np/poll/ui/images/fblogo.png',
+            name: "<?php echo $_keyword; ?>",
+            caption: "<?php echo htmlentities($_question); ?>",
+            description: desc +"To answer this question, type @poll&lt;space&gt;<?php echo strtolower($_keyword); ?>&lt;space&gt;[option] and SMS to 4321. For e.g. @poll <?php echo strtolower($_keyword); ?> a"
+        }, function (response) {
+            if (response && response.post_id) {
+                showMessage({t: 'success', m: 'Successfully shared on Facebook'});
+            }
+        });
+        return false;
+    }); 
+
+    $('a[class="invite-fb"][data-id="<?php echo $_id; ?>"]').click(function() {
+        inviteFriends({
+            link: 'http://smscentral.com.np/poll/pollView/<?php echo $_id; ?>',
+            keyword: "<?php echo $_keyword; ?>",
+            question: "<?php echo htmlentities($_question); ?>",
+            desc: desc + "To answer this question, type @poll&lt;space&gt;<?php echo strtolower($_keyword); ?>&lt;space&gt;[option] and SMS to 4321. For e.g. @poll <?php echo strtolower($_keyword); ?> a",
+            message: "<?php echo F3::get('conf.smes'); ?>"
+        });
+        return false;
+    });
+
+
+
+    // Share Google Plus and Twitter
+    $('a[class="share-gp"][data-id="<?php echo $_id; ?>"], a[class="share-tw"][data-id="<?php echo $_id; ?>"]').click(function() {
+        window.open($(this).attr("href"), '_blank', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+        return false;
+    });
+
+      
+
+
+    $( "#delete" ).click(function()
+    {
+        var id = $(this).attr('data-id');
+          var c = confirm('Are you sure?');
+                if(c){
+                    window.location = '<?php echo ($_BASE=F3::get('BASE')); ?>/poll/delete/'+id;
+                    showMessage({
+                        m: 'Poll deleted.',
+                        t: 'success'
+                    })
+                  }
+                });
+</script>
+
+
+<div id="confirm" style="display:none;color:white">Are you sure you want to delete the poll? the deleted polls willnot be available anymore</div>

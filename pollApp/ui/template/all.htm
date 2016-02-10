@@ -1,0 +1,67 @@
+
+
+
+
+                <table style="position:relative;first-letter:capitalize;" id="pollTable" class="decorate">
+                    <thead style="color:black; background:#339900">
+                        <tr>
+
+                            <th >Keyword  </th>
+                            <th >Question </th>
+                            <th >Created by </th>
+                          
+
+                        </tr>
+                    </thead>
+                    <tbody style="background: white;color:black;first-letter:capitalize;">
+                  
+                            <F3:repeat group="{{@pollList}}" key="{{@id}}" value="{{@ql}}">
+
+                                <tr >
+                                <F3:repeat group="{{@ql}}" value="{{@q}}">
+                                    <td style="first-letter:text-transform:capitalize;"><a href="{{@BASE}}/pollView/{{@id}}" data-id="{{@id}}">{{@q}}</a></td>
+                                </F3:repeat>
+                                </tr>
+                            </F3:repeat>
+                            </tbody>
+                            </table>
+                            <script>
+                                $(document).ready(function(){
+                                    $('#pollTable').dataTable();
+                                });
+
+
+
+  var options = {
+    "bProcessing": true,
+    "bJQueryUI":false,
+    "bAutoWidth": false,
+    "oLanguage": {
+      "sZeroRecords": "No polls to be displayed"
+    },
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": {{@conf.PAGESIZE}},
+    "aoColumnDefs": [{
+        "sWidth": '200px',
+        "aTargets": [-1]
+      }, {
+        "sWidth": '100px',
+        "aTargets": [0]
+      }]
+  };
+
+  $Polls= $("#pollTable").dataTable(options);
+  $('#pollTable tbody td a').click(function () {
+     // $(this).css("color","8b9dc3");
+    var nTr = $(this).parents('tr')[0];
+    $(this).css("color","#8b9dc3");
+  $(this).parents('tr').toggleClass('opened');
+    if($(this).parents('tr').hasClass("opened")) {
+      $Polls .fnOpen(nTr, getPollDetails($(this).attr('data-id')));
+    } else {
+     $Polls .fnClose(nTr);
+    }
+    return false;
+  });
+ 
+                            </script>

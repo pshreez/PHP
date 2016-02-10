@@ -1,0 +1,15 @@
+<table >
+  <thead>
+    <tr><th>vehicle no</th><th>type</th><th>wheeler</th><th> formtype</th></tr>
+  </thead>
+  <tbody>
+  <?php if (is_array(($_dataRegistrations=F3::get('dataRegistrations')))):foreach ((($_dataRegistrations=F3::get('dataRegistrations'))?:array()) as $_list):?>
+    <tr>
+      <td><?php echo $_list['0']; ?></td>
+       <td><?php echo $_list['1']; ?></td>
+         <td><?php echo $_list['2']; ?></td>
+          <td><?php echo $_list['3']; ?></td>
+    </tr>
+  <?php endforeach;endif;?>
+</tbody>
+</table>

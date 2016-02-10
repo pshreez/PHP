@@ -1,0 +1,242 @@
+
+
+<div class="owner"><h1>{{@heading}}</h1><h2>  <a href="{{@BASE}}/register">{{@back}} </a></h2>
+<form name="" id="vehicleOwner" method="post">
+    <fieldset width="200px">
+
+        <table align="center">
+
+            <legend>व्यक्तिगत विवरण</legend>
+            <tr><td><label for="">सवारी धनी किसिम</label></td><td>
+                    <select name="vehicle_id" id="vehicle_id">
+                        <F3:repeat group="{{@owner_type}}" value="{{@list}}">
+
+                        <option value="{{@list.0}}">{{@list.1}}</option>
+
+                         </F3:repeat>
+                    </select></td></tr>
+            <tr><td><label for="">नाम</label></td><td><input type="text" name="first_name" id="first_name" class="required">*</td></tr>
+            <tr id="caste"><td><label for="" class="labels" >थर</label></td><td><input type="text" name="last_name" id="last_name" class="required">*</td></tr>
+            <tr id="father"><td><label for="father_name" class="labels">बाबुको नाम</label></td><td><input type="text" name="father_name" id="father_name"></td></tr>
+            <tr id="grand_father"><td><label for="grandfather_name" class="labels">हजुर बुबाको नाम</label></td><td><input type="text" name="grandfather_name" id="grandfather_name"></td></tr>
+            <tr><td><label for="">जन्म मिति / रजिष्ट्रेशन नम्बर</label></td><td><input type="text" name="dob" id="dob" >जस्तै  (2013-01-15/4654574675467)</td></tr>
+            <tr><td><label for="">इमेल</label></td><td><input type="text" name="email" id="email"></td></tr>
+            <tr><td><label for="">मोबाइल नं.</label></td><td><input type="text" name="mobile" id="mobile" class="required">*</td> </tr>
+            
+        </table>
+    </fieldset>
+
+    <fieldset width="200px">
+
+        <table align="center">
+
+            <legend>स्थायी ठेगाना</legend>
+            <tr><td><label for="">अञ्चल</label></td><td>
+                    <select name="p_zone_id" id="p_zone_id">
+                         <F3:repeat group="{{@zone_code}}" value="{{@list}}">
+
+                        <option value="{{@list.0}}">{{@list.2}}</option>
+
+                         </F3:repeat>
+                    </select></tr>
+            <tr><td><label for="">जिल्ला</label></td><td>
+                    <select name="p_district_id" id="p_district_id">
+                         <F3:repeat group="{{@district_code}}" value="{{@list}}">
+
+                        <option value="{{@list.1}}">{{@list.1}}</option>
+
+                         </F3:repeat>
+                    </select></td></tr>
+            <tr><td><label for="">ननगरपालिका / गा बि स</label></td><td><input type="text" name="p_metropolitan"id="" class="required">*</td></tr>
+            <tr><td><label for="">वार्ड नं.</label></td><td><input type="text" name="p_ward_no"id="p_ward_no"></td></tr>
+            <tr><td><label for="">टोल</label></td><td><input type="text" name="p_address"id="p_address"></tr>
+            <tr><td><label for="">ब्लक नं / घर नं</label></td><td><input type="text" name="p_house_no"id="p_house_no"></td></tr>
+            <tr><td><label for="">फोन</label></td><td><input type="text" name="p_phone"id="p_phone" class="required">*</td></tr>
+           
+        </table>
+    </fieldset>
+
+    <fieldset width="200px" id="presentAddress">
+
+        <table align="center">
+
+            <legend>हालको ठेगाना</legend>
+
+           <tr><td><label for="">अञ्चल</label></td><td>
+                   <select name="temp_zone_id"id="temp_zone_id">
+                         <F3:repeat group="{{@zone_code}}" value="{{@list}}">
+
+                        <option value="{{@list.0}}">{{@list.2}}</option>
+
+                         </F3:repeat>
+                    </select>
+               </td></tr>
+            <tr><td><label for="">जिल्ला</label></td><td>
+                    <select name="temp_district_id"id="temp_district_id">
+                         <F3:repeat group="{{@district_code}}" value="{{@list}}">
+
+                        <option value="{{@list.1}}">{{@list.1}}</option>
+
+                         </F3:repeat>
+                    </select></td></tr>
+            <tr><td><label for="">नगरपालिका / गा बि स</label></td><td><input type="text" name="temp_metropolitan"id="temp_metropolitan" class="required">*</td></tr>
+            <tr><td><label for="">वार्ड नं.</label></td><td><input type="text" name="temp_ward_no"id="temp_ward_no"></td></tr>
+            <tr><td><label for="">टोल</label></td><td><input type="text" name="temp_address"id="temp_address"></td></tr>
+            <tr><td><label for="">ब्लक नं / घर नं</label></td><td><input type="text" name="temp_house_no"id="temp_house_no"></td></tr>
+            <tr><td><label for="">फोन</label></td><td><input type="text" name="temp_phone"id="temp_phone" class="required">*</td></tr>
+           
+
+        </table>
+    </fieldset><br>
+      <div id="6" style="display:none;" class="hide">
+    <fieldset width="200px">
+
+        <table align="center">
+
+            <legend>अभिभाबक विवरण</legend>
+            <tr><td><label for="">नाम</label></td><td><input type="text" name="nabalik_guardian_name"id="nabalik_guardian_name" class="required">*</td></tr>
+            <tr><td><label for="">नाता</label></td><td><input type="text" name="nabalik_relation"id="nabalik_relation" class="required">*</td></tr>
+            <tr><td><label for="">पासपोर्ट / नागरिकता नं.</label></td><td><input type="text" name="nabalik_identity_no"id="nabalik_identity_no" class="required">*</td></tr>
+            <tr><td><label for="">जिल्ला</label></td><td>
+                    <select name="nabalik_district"id="nabalik_district">
+                         <F3:repeat group="{{@district_code}}" value="{{@list}}">
+
+                        <option value="{{@list.1}}">{{@list.1}}</option>
+
+                         </F3:repeat>
+                    </select></td></tr>
+            <tr><td><label for="">साल</label></td><td><input type="text" name="nabalik_year" id="nabalik_year" value="{{@date}}" class="date"  class="required">*जस्तै  (2013-01-15/ 2069-10-01)</td></tr>
+            <tr><td><label for="">ठेगानां</label></td><td><input type="text"  name="nabalik_address" id="nabalik_address" class="required"></td></tr>
+
+
+        </table>
+    </fieldset>
+      </div>
+    
+
+    
+        <div id="5" style="display:none;" class="hide">
+    <fieldset width="200px">
+
+        <table align="center">
+
+            <legend>पासपोर्ट / नागरिकता विवरण</legend>
+            <tr><td><label for="">नागरिकता</label></td><td><input type="text"  name="bidesi_nagarikta" id="bidesi_nagarikta" class="required"></td></tr>
+            <tr><td><label for="">पासपोर्ट / नागरिकता नं.ा</label></td><td><input type="text"  name="bidesi_identification_no" id="bidesi_identification_no" class="required"></td></tr>
+            <tr><td><label for="">जिल्ला</label></td><td>
+
+                <select  name="bidesi_district" id="bidesi_district">
+                         <F3:repeat group="{{@district_code}}" value="{{@list}}">
+
+                        <option value="{{@list.1}}">{{@list.1}}</option>
+
+                         </F3:repeat>
+                    </select></td></tr>
+            <tr><td><label for="">साल</label></td><td><input type="text"  name="bidesi_year" id="bidesi_year" value="{{@date}}" class="date"></td></tr>
+            
+
+        </table>
+    </fieldset>
+        </div>
+
+  <div id="2" style="display:none;" class="hide">
+    <fieldset width="200px">
+
+        <table align="center">
+
+            <legend>ॠणी विवरण</legend>
+            <tr><td><label for="">नाम</label></td><td><input type="text"  name="bank_name" id="bank_name" class="required">*</td></tr>
+            <tr><td><label for="">ॠणी नांम</label></td><td><input type="text"  name="creditor_name" id="creditor_name" class="required">*</td></tr>
+            <tr><td><label for="">जिल्ला</label></td><td>
+                    <select  name="creditor_district" id="creditor_district">
+                         <F3:repeat group="{{@district_code}}" value="{{@list}}">
+
+                        <option value="{{@list.1}}" selected="selected">{{@list.1}}</option>
+
+                         </F3:repeat>
+                    </select></td></tr>
+            <tr><td><label for="">साल</label></td><td><input type="text"  name="creditor_year" id="creditor_year" value="{{@date}}" class="date"></td></tr>
+            <tr><td><label for="">ठेगाना</label></td><td><input type="text"  name="creditor_address" id="creditor_address" class="required"></td></tr>
+            
+
+        </table>
+    </fieldset>
+       </div>
+     <div id="3" style="display:none;" class="hide">
+    <fieldset width="200px">
+
+
+        <table align="center">
+
+            <legend>पासपोर्ट / नागरिकता विवरण</legend>
+            <tr><td><label for="">नागरिकता</label></td><td><input type="text"  name="bidesi_nagarikta" id="" class="required">*</td></tr>
+            <tr><td><label for="">पासपोर्ट / नागरिकता  नं.</label></td><td><input type="text"  name="nabalik_identity_no" id="" class="required">*</td></tr>
+            <tr><td><label for="">जिल्ला</label></td><td>
+                    <select  name="" id="">
+                         <F3:repeat group="{{@district_code}}" value="{{@list}}">
+
+                        <option value="{{@list.1}}">{{@list.1}}</option>
+
+                         </F3:repeat>
+                    </select></td></tr>
+            <tr><td><label for="">साल</label></td><td><input type="text"  name="nabalik_year" id="" value="{{@date}}" class="date" class="required"> *जस्तै  (2013-01-15/ 2069-10-01)</td></tr>
+            
+
+        </table>
+    </fieldset>
+</div>
+   
+    <fieldset width="200px">
+        <table align="center">
+             <tr><td> <img src="{{@BASE}}/image" title="captcha image" alt="captcha" />
+            </td><td><input type="text" name="code"  name="" id="code" class="required">*
+                     <p>यहाँ सेकुरिटी कोड
+ लेख्नु होला |</p> </td>
+            <tr><td></td><td><input type="submit" value="submit"><input type="button" value="cancel"  name="" id=""></td>
+
+
+
+        </table>
+    </fieldset>
+
+
+</form>
+
+</div>
+
+<script type="text/javascript">
+$("#namsari").validate();
+     $("#owner").hide();
+$("#vehicleOwner").validate();
+$("#vehicle_id").change(function () {
+    var id = $(this).children(":selected").attr("value");
+    $(".hide").hide();
+    $("#" + id).show();
+     if( id == 1 || id == 4 || id == 2)
+        {
+            $("#caste").hide();
+             $("#grand_father").hide();
+              $("#father").hide();
+         $("#presentAddress").hide();
+
+        }
+     else
+         {
+              $("#caste").show();
+             $("#grand_father").show();
+              $("#father").show();
+             $("#presentAddress").show();
+         }
+
+
+
+
+});
+
+
+
+
+
+
+
+</script>

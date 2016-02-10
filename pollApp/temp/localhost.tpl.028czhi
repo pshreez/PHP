@@ -1,0 +1,45 @@
+
+<a id="createPoll" href="<?php echo ($_BASE=F3::get('BASE')); ?>/myPolls" class="button" style="position:relative; left:50px; background:lavender;">Create Poll</a><br/>
+<!--div id="polltable"><table></table> </div>-->
+<div id="formContain">
+<table id="pollList" style="position:relative;left:200px;">
+  <thead style="background:#339900">
+    <tr style="color:white">
+        <th style="width:200px;">Keyword</th>
+        <th style="width:200px;">Question</th></tr>
+  </thead>
+  <tbody style="background:white;text:black;">
+
+  <?php if (is_array(($_myList=F3::get('myList')))):foreach ((($_myList=F3::get('myList'))?:array()) as $_id=>$_pl):?>
+    <tr>
+    <?php if (is_array($_pl)):foreach (($_pl?:array()) as $_p):?>
+      <td ><a href="<?php echo $_BASE; ?>/myPolls" ><?php echo $_p; ?></a></td>
+    <?php endforeach;endif;?>
+    </tr>
+  <?php endforeach;endif;?>
+</tbody>
+</table>
+</div>
+<script>
+$(function() {//$.documentready
+$( "#date" ).datepicker({ dateFormat: "yy-mm-dd" });
+});
+
+$( "#createPoll" )
+            .button()
+            .click(function() {
+                getView({
+              url: "<?php echo $_BASE; ?>/create",
+               id: "formContain "
+    });
+    return false;
+            });
+
+/*$("#createPoll").click(function() {
+    getView({
+      url: "<?php echo $_BASE; ?>/create"
+     // id: "polltable "
+    });
+    return false;
+  });*/
+</script>

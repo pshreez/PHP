@@ -1,0 +1,135 @@
+
+
+
+
+
+<center>
+  <div  style="width:auto;height:700px">
+    <h1> Welcome to online VRS system</h1>
+    Please click the menus to proceed
+
+    <table class="tableDecor" id="availableData">
+      <thead style="background:grey">
+        <tr>
+          <th>Reference N0</th>
+          <th>Entry date</th>
+          <th>IP address</th>
+          <th>Form type</th>
+      <F3:check if="{{@SESSION.wheeler == 1}}">
+        <F3:true>
+          <th>wheeler</th>
+        </F3:true>
+      </F3:check>
+      <th>Action</th>
+      </tr>
+      </thead>
+
+      <tbody style="background:white">
+      <F3:repeat group="{{@data}}" value="{{@list}}">
+        <tr>
+          <td>{{@list.0}}</td>
+          <td>{{@list.1}}</td>
+          <td>{{@list.2}}</td>
+          <td>{{@list.4}}</td>
+        <F3:check if="{{@SESSION.wheeler == 1}}">
+          <F3:true>
+            <td>{{@list.3 ? 'four wheeler' :'two wheeler'}} </td>
+          </F3:true>
+        </F3:check>
+        <td>
+
+        <F3:check if="{{@list.5 == 'pending'}}">
+
+          <F3:true>
+            <F3:check if="{{@list.4 == 'namsari' }}">
+
+              <a href="{{@BASE}}/admin/viewNamsari/{{@list.0}}" class="hyperlink" >View</a>
+
+              <a href="#" class="print hyperlink" data="{{@list.0}}">Print</a>
+
+            </F3:check>
+            <F3:check if="{{@list.4 == 'registration'}}">
+
+              <a href="{{@BASE}}/admin/viewRegistration/{{@list.0}}" class="hyperlink" >View</a>
+              <a href="#" class="printt hyperlink"  data="{{@list.0}}">Print</a>
+
+            </F3:check>
+          </F3:true>
+          <F3:false>
+            <F3:check if="{{@list.4 == 'namsari'}}">
+              <a href="#" class="print hyperlink" data="{{@list.0}}">Print</a>
+            </F3:check>
+            <F3:check if="{{@list.4 == 'registration'}}">
+              <a href="#" class="printt hyperlink"  data="{{@list.0}}">Print</a>
+
+            </F3:check>
+              can't be viewed
+          </F3:false>
+        </F3:check>
+
+
+
+
+
+
+
+
+
+
+
+        </td>
+        </tr>
+      </F3:repeat>
+      </tbody>
+    </table>
+
+
+
+
+  </div>
+  <center>
+
+    <script>
+      
+      $('.print').click(function() {
+        var id = $(this).attr('data');
+        window.open('{{@BASE}}/admin/print/t/' + id);
+      });
+     
+
+      $('.printt').click(function() {
+        var id = $(this).attr('data');
+        window.open('{{@BASE}}/admin/print/' + id);
+      });
+
+      
+      $("#vehicleInfo").validate({
+        rules: {
+          date1: {
+            required: true,
+            date: true
+          },
+          date2: {
+            required: true,
+            date: true
+          }
+        }
+      });
+    </script>
+
+
+    <script>
+      $('#availableData').dataTable(
+      {
+        "bPaginate": true,
+        "bLengthChange": true,
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": true,
+        "bJQueryUI":true,
+        "bAutoWidth": false,
+        "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+
+      } );
+
+    </script>

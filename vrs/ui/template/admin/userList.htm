@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#userList').dataTable(
+        {
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bJQueryUI":true,
+            "bAutoWidth": false
+
+        } );
+    });
+
+</script>
+<a href="{{@BASE}}/admin/addUsers">Add Users</a>
+<center>
+    <h1>User</h1>
+    <table id="userList"  class="tableDecor">
+        <thead style="background:grey">
+            <tr><th>Username</th><th>Full name</th><th>Wheeler type</th><th>Action</th></tr>
+        </thead>
+        <tbody style="background:white">
+        <F3:repeat group="{{@userList}}" value="{{@list}}">
+            <tr>
+                <td>{{@list.1}}</td>
+                <td>{{@list.0}}</td>
+
+                <td>{{@list.3}}</td>
+                <td ><F3:check if="{{@list.3 == 'all'}}"><F3:true>&nbsp;</F3:true><F3:false><a  href="{{@BASE}}/admin/edit/{{@list.1}}" class="view">edit </a> <a href="{{@BASE}}/admin/delete/{{@list.1}}" class="view" >delete</a></F3:false></F3:check></td>
+
+            </tr>
+        </F3:repeat>
+        </tbody>
+
+    </table>
+</center>

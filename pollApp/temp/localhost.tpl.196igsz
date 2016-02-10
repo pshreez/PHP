@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+ 
+    <title>Admin - <?php echo ($_site=F3::get('site')); ?></title>
+   <link rel="icon" type="image/png" href="<?php echo ($_BASE=F3::get('BASE')); ?>/<?php echo ($_UI=F3::get('UI')); ?>images/11.png">
+    <link type="text/css" rel="stylesheet" href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/quiz-theme/jquery-ui-1.8.22.custom.css" />
+    <link type="text/css" rel="stylesheet" href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/dataTablesJui.css" />
+    <link type="text/css" rel="stylesheet" href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/jquery.pnotify.default.css" />
+    <link type="text/css" rel="stylesheet" href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/style.css" />
+    <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-ui-1.8.22.custom.min.js"></script>
+    <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/slides.min.jquery.js"></script>
+    <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery.pnotify.min.js"></script>
+    <!--    <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/cssrefresh.js"></script>-->
+  </head>
+  <body>
+ <div id="loading">Loading...</div>
+    <div id="header"><?php if (F3::get('SESSION.asid')): ?>
+  
+    <strong style="float: right;"><?php echo F3::get('SESSION.admin->fullname'); ?></strong>
+  
+  <?php else: ?>
+<?php endif; ?>
+<img src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>images/12.png"  style="float:left;padding-left:40px;" height=120px /></div>
+    <div id="navigation">
+ <ul>
+     <?php if (F3::get('SESSION.asid')): ?>
+    
+    <li><a href="<?php echo $_BASE; ?>/admin/user/">USERS</a></li>
+    <li><a href="<?php echo $_BASE; ?>/polls/">POLLS</a></li>
+    <li><a href="<?php echo $_BASE; ?>/admin/report">REPORT</a></li>
+    <li><a href=" <?php echo $_BASE; ?>/admin/logout">LOGOUT</a ></li>
+    
+    <?php else: ?>
+        <li style="border:none;"> <font size="7" style="text-align: center; position:relative;left:180px; border-style-inner:none;color:white">Admin login</font></li>
+    
+ </ul>
+    
+ <?php endif; ?></div>
+    <div class="main"><div id="admin" >
+          <form id="login" method="post" class="background">
+    <h1>ADMIN</h1>
+
+      <fieldset id="inputs" >
+        <label>Admin Username</label>   <input id="username" type="text" placeholder="Username" autofocus required name="usr"><br style="clear: left;" /><br>
+        <label>Password</label><input id="password" type="password" placeholder="Password" required name="pwd">
+
+    </fieldset>
+    <fieldset id="actions">
+        <input type="button" id="submit" value="Log in">
+
+    </fieldset>
+</form>
+</div>
+
+
+<script>
+  $("#submit").click(function() {
+    var datas=$("#login").serialize();
+    $.post("<?php echo $_BASE; ?>/admin",datas,
+    function(data){
+      console.log(data);
+      if(data.message){
+        showMessage({t: 'success', m:data.message });
+        window.location="<?php echo $_BASE; ?>/admin/user";
+      }else{
+        showMessage({t: 'error', m:data.mes });
+      }
+    },"json");
+  });
+
+
+</script></div>
+    <div id="footer" style="clear:both"><font color="#339900"><center>Copyright &copy; 2012 FOCUSONE<center></font></div>
+    <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/script.js"></script>
+    <script type="text/javascript">
+      var base = "<?php echo $_BASE; ?>/";
+    </script>
+  </body>
+</html>

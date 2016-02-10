@@ -1,0 +1,44 @@
+<style>
+	ul {
+		margin: 10px 0px;
+	}
+	li {
+		list-style: disc;
+		padding: 0px;
+	}
+</style>
+<div class="home" style="padding:10px; background-color: #DDD; display: inline-block;" id="registerFeed">
+	<a href="#" class="printFeed">Print this receipt</a><br><br>
+  <F3:check if="{{@pic}}">
+    <F3:true>
+  <img src="{{@BASE}}/photo/{{@pic->vehicle_id}}.jpg" height="100px" width="100px">
+    </F3:true>
+    <F3:false>
+      <span style="background:white">no pic available</span>
+    </F3:false>
+  </F3:check><br>
+  
+	 Reference no:<span style="color:red">{{@refer}}</span><br><br>
+	<span style="color: #999;">
+    <!--(तपाईको अनलाईन नामसारी फर्म स्वीकृत भएको  छ । सवारी  {{@vehicle}} नामसारी  प्रकियामा छ|)-->
+     तपाईको अनलाईन नामसारी फारम यातायात व्यवस्था कार्यालय {{@value}} मा प्राप्त भयो|
+     तपाई मिति <span style="color:red">{{@date}} </span>भित्र 
+   निम्न सक्कलै कागजात सहित  {{@value}}  मा सम्पर्क गर्नु होला ।
+  </span>
+	<ul>
+		<li>भन्सार प्रज्ञापन पत्र</li>
+		<li>भन्सार कार्यालयको रसिद</li>
+		<li>ईन्जिन नंबर र चेसिस नंबर खुलेको फोटो</li>
+		<li>व्यक्तिको हकमा सक्कलै नागरिकता</li>
+		<li>दुई वटा पासपोर्ट साईजको फोटो</li>
+		<li>कम्पनी वा संस्थाको भएमा आधिकारिक प्रतिनिधी</li>
+		<li>दर्ताको बखत नियमानुसार लाग्ने राजश्व रकम</li>
+
+
+	</ul>
+</div>
+<script type="text/javascript">
+	$('.printFeed').click(function() {
+		window.print();
+	});
+</script>

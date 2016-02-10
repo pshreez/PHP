@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title><?php echo ($_html_title=$this->get('html_title')); ?></title>
+      <meta charset='utf8' />
+   </head>
+   <body>
+      
+<p>Blog Titles</p>
+
+<?php if (is_array(($_list=$this->get('list')))):foreach ((($_list=$this->get('list'))?:array()) as $_item):?>
+	<p><a href="view/<?php echo $_item['id']; ?>"><?php echo trim($_item['title']); ?></a> by <?php echo $_item['author']; ?></p>
+	<p><?php echo $_item['summary']; ?></p>
+<?php endforeach;endif;?>
+
+
+   </body>
+</html>

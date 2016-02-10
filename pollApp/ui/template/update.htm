@@ -1,0 +1,167 @@
+
+
+
+<script type="text/javascript">
+  var count = 0;
+  var alpha =new Array("D:","E:","F:","G:","H:","I:","J:");
+  var num=0;
+  $(function(){
+    $('p#add_field').click(function(){
+      var opt = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+      var opts = $("#inputtext tbody").children("tr").length;
+
+      if(opts < 10) {
+        $("#inputtext ").append('<tr><td><label>' + opt[opts] + ':</label></td><td><input type="text" name="option[]" ><a id="' + opts + '" href="#" class="extraLink">X</a></td></tr>');
+      }
+
+      if(opts > 8) {
+        $(this).hide();
+        showMessage({
+          m: 'No more options are available ',
+          t: 'success'
+        })
+      }
+      return false;
+    });
+  });
+
+  $("#inputtext tbody tr td  a").live("click", function() {
+    var link=$("#inputtext tbody").find('tr:last,td:last').remove();
+    if(link){
+      $("p#add_field").show();
+    }
+    return false;
+  });
+
+ 
+
+</script>
+
+
+
+
+
+<div id="form" class="background" class="fontsize">
+  <div id="createDialog" style="display:none;background:white">The published poll cannot be edited </div>
+  <div style="width:auto;background:#339900;height:25px;padding:5px;color:white"><strong>Edit Form  /  </strong> All form fields are required</div>
+  <form name="PollForm" method="post" font-color="red" id="pad-form" data-webforms2-force-js-validation="true" >
+    <fieldset id="inputs" >
+      <label for='keyword'> Keyword :&nbsp;</label>
+      <input type="text" name="keyword" id="keyword"  size="40" value="{{@POST.keyword }}"
+             autofocus required name="keyword" pattern="[a-zA-Z0-9].{2,10}"/><br />
+
+      <label for='question'> Question :&nbsp;&nbsp;</label>
+      <input type="text" name="question" id="question" value="{{@POST.question }}" size="60"
+             autofocus required name="question" /><span id="quesSpan" style="width:400px;color:red;"></span><br />
+
+      <div id="options" >
+        <table id="inputtext" style="position:relative;left:25px">
+          <F3:repeat group="{{@options}}" key="{{@i}}" value="{{@option}}">
+            <tr><td><label>{{@option.name}}:</label></td>
+              <td><input type="text"  value="{{trim(@option.value)}}"autofocus  required name="option[]" id="field_{{@i}}" /></td>
+            </tr>
+          </F3:repeat>
+        </table>
+      </div>
+
+
+      <p id="add_field" style="position:relative;left:80px;"><a href="#"><span> Add more options.....</span></a></p>
+
+
+      <label for='keyword'>Expiry Date: </label><input type="text" size="20px;" id="date" value="{{@POST.expiry_date }}"   required name="expiry_date"><br>
+      <label for="createPollReply" >Reply SMS:</label><textarea id="createPollReply" name="reply" style="border: 1px dotted #339900;margin-left:10px;">{{@POST.reply}}</textarea>
+      No. of characters: <strong id="createPollCharacters">0</strong> Limit: <strong>100</strong>
+      </p>
+
+      <span style="position:relative;left:100px;">
+        <input type="checkbox" name="private" value="1"{{@POST.private == 'y' ? ' checked="checked"' : ''}} >Make private
+      </span>
+
+
+
+    </fieldset>
+
+    <fieldset id="actions">
+      <input  type="button" value="Submit" id="submit" />
+      <input  type="button" value="Update & Publish" id="createPublish" />
+      <input  type="button" value="Cancel"  id="resett">
+    </fieldset>
+
+
+  </form>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+  var n=$("#createPollReply").val().length;
+  $("#createPollCharacters").text(n);
+   
+  $("#resett").click( function(){
+    window.location='{{@BASE}}/myPolls';
+  });
+
+  $("#submit").click(function() {
+    var datas=$("#pad-form").serialize();
+    var id='{{@PARAMS.id}}';
+    $.post("{{@BASE}}/edit/"+ id,datas,
+    function(data){
+      if(data.message){
+        showMessage({t: 'success', m:data.message });
+      }else{
+        showMessage({t: 'error', m:data.mes });
+      }
+
+    },"json");
+  });
+
+
+  $("#createPublish").click(function() {
+
+    var c = confirm('The published polls cannot be edited');
+    if(c){
+      var datas=$("#pad-form").serialize();
+      $.post("{{@BASE}}/updatepublish/{{@PARAMS.id}}",datas,
+      function(data){
+        if(data.message){
+          showMessage({t: 'success', m:data.message });
+          FB.ui({
+            method: 'feed',
+            link: 'http://smscentral.com.np/poll/poll/' + data.id,
+            picture: 'http://smscentral.com.np/poll/ui/images/fblogo.png',
+            name:  data.keyword,
+            caption: data.question,
+            description: data.option +"To answer this question, type @poll&lt;space&gt;"+data.keyword+ "&lt;space&gt;[option] and SMS to 4321. For e.g. @poll"+" "  +data.keyword +"  "+ "a"
+          }, function (response) {
+            console.log(response);
+            if (response && response.post_id) {
+              showMessage({t: 'success', m: 'Successfully shared on Facebook'});
+              setTimeout(function() {
+                window.location = "{{@BASE}}/myPolls"
+              }, 2000);
+            }
+          });
+        }
+        else{
+          showMessage({t: 'error', m:data.mes });
+        }
+      },"json");
+    }
+  });
+
+  $( "#date" ).datepicker({ dateFormat: "yy-mm-dd", maxDate:"+6m",minDate:"+1d"}) ;
+
+  
+  $("#createPollReply").keyup(function() {
+    $("#createPollCharacters").text($(this).val().length);
+
+    if($(this).val().length > 100) {
+      $("#createPollCharacters").css("color", "red");
+    } else {
+      $("#createPollCharacters").css("color", "inherit");
+    }
+    return false;
+  });
+</script>

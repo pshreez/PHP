@@ -1,0 +1,15 @@
+<div class="home">
+    <table border="1" width="400px;">
+    <thead>
+      <tr><th>Vehicle no</th>
+        <th>Date of Registration</th></tr>
+      
+    </thead>
+    <tbody>
+    
+      <tr><td><a href="<?php echo ($_BASE=$this->get('BASE')); ?>/vehicleInfo/<?php echo ($_id=$this->get('id')); ?>" >1123444444</a></td>
+     <td><a href="<?php echo $_BASE; ?>/vehicleInfo/<?php echo $_id; ?>" ">23rd dec</a></td></tr>
+    
+    </tbody>
+  </table>
+</div>

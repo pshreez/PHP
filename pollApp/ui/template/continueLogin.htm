@@ -1,0 +1,29 @@
+<div id="continue" style="display:none;">
+    Please login to continue......
+
+</div>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+           $( "#continue" ).dialog({
+           // autoOpen: false,
+            show: "blind",
+           // hide: "explode",
+            resizable: false,
+            height:140,
+            modal: true,
+            buttons: {
+
+                Close: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    });
+
+
+
+</script>

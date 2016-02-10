@@ -1,0 +1,36 @@
+
+
+
+<center>
+
+    <form name="admin-login" action=""accept-charset="utf-8" method="post" class="home"  style="width:400px;padding:20px">
+			<ul  style="list-style: none; display:inline padding:10px;">
+				<li>
+					<label for="usermail">Username</label>
+                                        <input type="username" name="username" placeholder="username" required  value="{{@POST.username }}" readonly >
+				</li>
+				<li>
+					<label for="password">Password</label>
+					<input type="password" name="password" placeholder="password"    ></li>
+                                <li>
+					<label for="fullname">Full name</label>
+					<input type="text" name="fullname" placeholder="fullname"  value="{{@POST.fullname }}"></li>
+                                <li>
+					<label for="type">Wheeler type</label>
+					   <select name="type"id="type" >
+                                       <option  value="22"{{@POST.type == 22 ? ' selected ="selected"' : ''}}>४  पांग्रे </option>
+                                       <option value="21"{{@POST.type == 21 ? ' selected ="selected"' : ''}}>२  पांग्रे </option>
+                                   
+
+                        </select></li>
+				<li>
+                                   <input type="submit" value="Submit"  ><input type="submit" value="cancel" id="cancel" >				</li>
+			</ul>
+		</form>
+    </center>
+
+<script>
+    $("#cancel").bind("click", function() {
+  $("input[type=text],input[type=password]").val("");
+});
+    </script>

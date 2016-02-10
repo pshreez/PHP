@@ -1,0 +1,104 @@
+
+
+<style>
+    #pollList #viewPoll{
+        position :relative;
+       left:0px;
+}
+</style>
+<a id="createPoll" href="{{@BASE}}/myPolls" class="button"  style="position:relative;background:#339900;float:left;left:10px;color:white;border-style: none;">Create Poll</a>
+<!--div id="polltable"><table></table> </div>-->
+ {{@keyword}}
+<div id="formContain" style="margin-top:50px;">
+ 
+<table id="pollList" class="decorate" ;">
+   
+  <thead >
+    <tr >
+        <th >Keyword</th>
+        <th >Question</th>
+        
+
+        <th width="150px">Status</th>
+       
+   </tr>
+  </thead>
+  <tbody class="">
+
+
+  <F3:check if="{{@myList}}">
+      <F3:true>
+          <F3:repeat group="{{@myList}}"  key="{{@pid}}" value="{{@values}}">
+
+         <tr>
+
+             <td><a href="{{@BASE}}/pollView/{{@values.2}}" data-id="{{@values.2}}" >{{@values.0}}</a></td>
+              <td><a href="{{@BASE}}/pollView/{{@values.2}}" data-id="{{@values.2}}" > {{@values.1}}</a></td>
+              <td width="150px"> <F3:check if="{{@values.3 != NULL }}"><F3:true><font color="#339900">Published</font>  / </F3:true></F3:check>
+         <F3:check if="{{@values.3 == NULL }}"><F3:true> Unpublished  / </F3:true></F3:check>
+           <F3:check if="{{@values.4}} > {{@nowDate}}"><F3:true><font color="#339900">Active</font></F3:true<F3:false><font color=" #A80000 ">Expired</font> </F3:false> </F3:check></td>
+             
+
+
+        </tr>
+    </F3:repeat>
+          
+      </F3:true></F3:check>
+  
+</tbody>
+</table>
+</div>
+<script>
+$(document).ready(function(){
+    $('#pollList').dataTable();
+     
+$( "#createPoll" )
+            .button()
+            .click(function() {
+              getView({
+              url: "{{@BASE}}/create",
+               id: "formContain "
+    });
+    return false;
+            });
+
+
+});
+
+  var options = {
+    "bProcessing": true,
+    "bJQueryUI":false,
+    "bAutoWidth": false,
+    "oLanguage": {
+      "sZeroRecords": "No polls to be displayed"
+    },
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": {{@conf.PAGESIZE}},
+    "aoColumnDefs": [{
+        "sWidth": '50px',
+        "aTargets": [-1]
+      }, {
+        "sWidth": '100px',
+        "aTargets": [0]
+      }]
+  };
+
+  $myPolls = $("#pollList").dataTable(options);
+  $('#pollList tbody td a').click(function () {
+    var nTr = $(this).parents('tr')[0];
+    $(this).parents('tr').toggleClass('opened');
+    if($(this).parents('tr').hasClass("opened")) {
+      $myPolls .fnOpen(nTr, getPollDetails($(this).attr('data-id')));
+    } else {
+     $myPolls .fnClose(nTr);
+    }
+    return false;
+  });
+
+
+
+ 
+
+
+
+</script>

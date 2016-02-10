@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+ 
+    <title>Admin - {{@site}}</title>
+   <link rel="icon" type="image/png" href="{{@BASE}}/{{@UI}}images/11.png">
+    <link type="text/css" rel="stylesheet" href="{{@BASE}}/{{@UI}}css/quiz-theme/jquery-ui-1.8.22.custom.css" />
+    <link type="text/css" rel="stylesheet" href="{{@BASE}}/{{@UI}}css/dataTablesJui.css" />
+    <link type="text/css" rel="stylesheet" href="{{@BASE}}/{{@UI}}css/jquery.pnotify.default.css" />
+    <link type="text/css" rel="stylesheet" href="{{@BASE}}/{{@UI}}css/style.css" />
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery-ui-1.8.22.custom.min.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/slides.min.jquery.js"></script>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/jquery.pnotify.min.js"></script>
+    <!--    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/cssrefresh.js"></script>-->
+  </head>
+  <body>
+ <div id="loading">Loading...</div>
+    <div id="header"><F3:include href="template/admin/header.htm"/></div>
+    <div id="navigation"><F3:include href="template/admin/navigation.htm"/></div>
+    <div class="main"><F3:include href="template/admin/{{@template}}.htm"/></div>
+    <div id="footer" style="clear:both"><font color="#339900"><center>Copyright &copy; 2012 FOCUSONE<center></font></div>
+    <script type="text/javascript" src="{{@BASE}}/{{@UI}}js/script.js"></script>
+    <script type="text/javascript">
+      var base = "{{@BASE}}/";
+    </script>
+  </body>
+</html>

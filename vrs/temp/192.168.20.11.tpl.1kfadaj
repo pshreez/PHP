@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><?php echo ($_title=F3::get('title')); ?></title>
+        <link rel="stylesheet" href="<?php echo ($_BASE=F3::get('BASE')); ?>/<?php echo ($_UI=F3::get('UI')); ?>css/style.css" type="text/css">
+        <link type="text/css" rel="stylesheet" href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/jquery.dataTables.css" />
+        <link href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/smoothness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.6.2.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-1.9.0.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery-ui-1.10.0.custom.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/jquery.dataTables.min.js"></script>
+       
+        <script src="" type="text/javascript"></script>
+
+
+    </head>
+    <body>
+        <!-- define header--->
+    <header class="headerbackground">
+        
+    </header>
+    <!--- define navigaition -->
+    <nav>
+        
+        <style>
+	ul a{
+		text-decoration: none;
+		color: white;
+	}
+	ul a:hover{
+    color:red;
+	}
+	ul#menu{
+    list-style: none;
+    margin:0;
+    padding:0;
+    position:relative;
+	}
+	ul.list ul{
+    display:none;
+    position:absolute;
+    background:white;
+    -webkit-border-radius: 15px;
+		-moz-border-radius: 15px;
+    border-radius:15px;
+	}
+	ul.list li:hover > ul#menu
+	{
+    display:block;
+	}
+	ul.menu{
+    color:#606060;
+	}
+	ul.menu li{
+    max-height: 10px;
+	}
+	.size{
+    font-size: 12px;
+	}
+</style>
+<div style="color:red;background: black;clear:both;overflow:hidden;width:auto;margin:auto">
+	<ul style="display:inline;float:left;margin: 0px;" class="list">
+		<li style="display:inline-block;padding: 5px;"> <a href="<?php echo $_BASE; ?>/user/home">Home</a></li>
+		<li style="display:inline-block;padding: 5px;"> <a href="<?php echo $_BASE; ?>/user/home" id="help">Help</a>
+			<ul id="menu" style="display:none;position:absolute;top: auto; z-index: 10;">
+				<li style="padding:5px; list-style: none;"><a href="<?php echo $_BASE; ?>/help/register/" class="size">नयाँ  सवारी दर्ता गर्ने प्रक्रिया </a></li>
+				<li style="padding:5px; list-style: none;"><a href="<?php echo $_BASE; ?>/help/transfer/" class="size">सवारी नामसारी गर्ने प्रक्रिया </a></li>
+			</ul>
+		</li>
+	</ul>
+	<?php if (F3::get('SESSION.onlineUser')): ?>
+		
+			<ul style="display:inline;float:right; margin: 0px;">
+				<li style="display:inline-block;padding:5px">
+					<span style="margin-right: 10px;"><?php echo F3::get('SESSION.onlineUser'); ?></span>
+					<a href="<?php echo $_BASE; ?>/user/logout" style="margin-right: 30px;">logout</a></li>
+			</ul>
+		
+		<?php else: ?>
+			<span style="display:inline;float:right;padding:5px;margin-right: 30px;"> <a href="<?php echo $_BASE; ?>/user/register" id="user-register" > Register</a></span>
+		
+	<?php endif; ?>
+</div>
+<script>
+	$("#help").hover(function(){
+    $('#menu').show();
+	});
+</script>
+
+
+    </nav>
+    <!-- main content area--->
+    <section>
+        <div>
+  <h1 style="margin: 0px 0px 0px 10px; display:inline;">नयाँ  सवारी दर्ता फारम</h1>
+  <a href="#" id="saveRegister">
+    <img src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>/images/save.png" title="Save" style="position: relative; top: 10px; left: 5px;" />
+  </a>
+  <!---  <input type="button" id="saveRegister" name="saveRegister" value="save">-->
+</div>
+<?php if (($_error=F3::get('error'))): ?>
+  <div align="right" style="color:red"><?php echo $_error; ?>
+  </div>
+<?php endif; ?>
+<h2 align="right" style="font-size: 12px; color: #810541; margin: 0px;">(Fields with <b> *</b> are required  and others are optional)  </h2>
+
+<form  method="post" id="new"enctype="multipart/form-data">
+  <div id="registration">
+    <fieldset>
+      <legend>सवारीको विवरण</legend>
+      <table>
+        <tr>
+          <td class="left">
+            <label for=""> सवारीको किसिम </label>
+          </td><td>
+            <select name="wheeler"id="wheeler">
+              <option  value="22"<?php echo F3::get('POST.wheeler') == 22 ? ' selected ="selected"' : ''; ?>>४  पांग्रे </option>
+              <option value="21"<?php echo F3::get('POST.wheeler') == 21 ? ' selected ="selected"' : ''; ?>>२  पांग्रे </option>
+              <option value="21"<?php echo F3::get('POST.wheeler') == 22 ? ' selected ="selected"' : ''; ?>>अन्य </option>
+            </select>
+        </tr>
+        <tr>
+          <td class="left"><label for="">मोडल:</label></td><td><input type="text" name="model" id="model" class="required" value="<?php echo F3::get('POST.model'); ?>">*जस्तै :-Unicorn </td></tr>
+        <tr>
+          <td class="left"><label for="">निर्माता कम्पनी </label></td><td>
+            <select name="manufacture_id" id="manufacture_id" class="required">
+              <?php if (is_array(($_company=F3::get('company')))):foreach ((($_company=F3::get('company'))?:array()) as $_type):?>
+                <option value="<?php echo $_type['0']; ?>"<?php echo F3::get('POST.manufacture_id') == $_type['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_type['1']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+            <input type="text" name="other_company" value="<?php echo F3::get('POST.other_company'); ?>" id="other_company" class="other">
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">निर्माण भएको साल</label>
+          </td>
+          <td><input type="text" name="manufacture_date" id="manufacture_date"  class="required" value="<?php echo F3::get('POST.manufacture_date') ? F3::get('POST.manufacture_date') : ($_date=F3::get('date')) ; ?>">*(साल /- महिना -गते)<span class="dateformat">date format is wrong</span></td></tr>
+        <tr>
+          <td class="left" ><label for="">इन्धनको किसिम</label></td><td>
+            <select name="fuel_type_id" id="fuel_type_id">
+              <?php if (is_array(($_fuel_type=F3::get('fuel_type')))):foreach ((($_fuel_type=F3::get('fuel_type'))?:array()) as $_list):?>
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.fuel_type_id') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['1']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+            <input type="text" name="other_fuel" value="<?php echo F3::get('POST.other_fuel'); ?>" id="other_fuel" class="other">
+          </td><td></td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">इन्जिन नम्बर</label></td><td><input type="text" name="engine_num" id="engine_num" class="required" value="<?php echo F3::get('POST.engine_num'); ?>">*जस्तै :- ME4KC097J98029181
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">चेसिस नम्बर</label></td><td><input type="text" name="chessis_num" id="chessis_num" class="required" value="<?php echo F3::get('POST.chessis_num'); ?>">*जस्तै:-KC09E4124201
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">सिलिण्डर संख्या</label>
+          </td>
+          <td>
+            <input type="text" name="cylinder_num" id="cylinder_num" class="required" value="<?php echo F3::get('POST.cylinder_num'); ?>">*</td></tr>
+        <tr>
+          <td class="left">
+            <label for="">सि सि /हर्ष पावर  </label>
+          </td>
+          <td>
+            <input type="text" name="horse_power" id="horse_power" class="required"value="<?php echo F3::get('POST.horse_power'); ?>">*
+            <select  name="horse_power_type" id="horse_power">
+              <option value="cc"<?php echo F3::get('POST.horse_power_type') == "cc" ? ' selected ="selected"' : ''; ?>>सि सि</option>
+              <option value="hp"<?php echo F3::get('POST.horse_power_type') == "hp" ? ' selected ="selected"' : ''; ?>>हर्ष पावर </option>
+             
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">इलेक्ट्रोनिक  उपकरण</label>
+          </td>
+          <td>
+            <input type="text" name="electronic_device" id="electronic_device" value="<?php echo F3::get('POST.electronic_device'); ?>">
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="left">
+            <label for="">प्रयोजन</label>
+          </td>
+          <td>
+            <select name="purpose_id" id="purpose_id" class="required">
+              <?php if (is_array(($_use_purpose=F3::get('use_purpose')))):foreach ((($_use_purpose=F3::get('use_purpose'))?:array()) as $_list):?>
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.purpose_id') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['1']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+            <input type="text" name="other_use" value="<?php echo F3::get('POST.other_use'); ?>" id="other_use" class="other">
+          </td>
+        </tr>
+        <tr id="hood">
+          <td class="left">
+            <label for="">हुड</label>
+          </td>
+          <td>
+            <select name="hood" id="hoods">
+              <option value="1"<?php echo F3::get('POST.hood') == 1 ? ' selected ="selected"' : ''; ?>> छ</option>
+              <option value="2"<?php echo F3::get('POST.hood') == 2 ? ' selected ="selected"' : ''; ?>> छैन </option>
+            </select>
+          </td>
+        </tr>
+        <tr><td class="left">
+            <label for="vehicle_type">सवारीको  किसिम</label>
+          </td><td>
+            <select name="type" id="type">
+              <?php if (is_array(($_vehicle_type=F3::get('vehicle_type')))):foreach ((($_vehicle_type=F3::get('vehicle_type'))?:array()) as $_list):?>
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.type') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['1']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+            <input type="text" name="other_vehicle" value="<?php echo F3::get('POST.other_vehicle'); ?>" id="other_vehicle" class="other">
+          </td>
+        </tr>
+        
+      </table>
+    </fieldset>
+
+
+    
+
+
+    <fieldset>
+			
+      <legend>भन्सार विवरण</legend>
+      <table >
+				<tr>
+					<td class="left">
+						<label for="" style="font-weight: bold">सवारी प्राप्त भएको विवरण</label>
+					</td>
+					<td>
+						नया &nbsp;<input type="radio" name="received_type" id="new_type">लीलामी&nbsp;<input type="radio" name="received_type" id="bansar_type">भन्सार&nbsp;<input type="radio" name="received_type" id="lilami_type">अन्य&nbsp;<input type="radio" name="received_type" id="anya_type">
+					</td>
+				</tr> 
+			</table >
+			<table id="customoffice" style="display: none">
+        <tr>
+          <td class="left">
+            <label for="">भन्सार कार्यालय</label>
+          </td>
+          <td>
+            <select  name="custom_office_id" id="custom_office">
+              <?php if (is_array(($_custom_office=F3::get('custom_office')))):foreach ((($_custom_office=F3::get('custom_office'))?:array()) as $_list):?>
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.custom_office_id') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['1']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">प्रज्ञापन पत्र नम्बर </label></td><td><input type="text" name="pragyapan_patra_no" id="pragyapan_patra_no" class="required" value="<?php echo F3::get('POST.pragyapan_patra_no'); ?>">*</td></tr>
+        <tr>
+          <td class="left">
+            <label for="">प्रज्ञापन पत्र मिति</label></td> <td><input type="text" id="custom_Date" name="custom_Date"  class="date" value="<?php echo F3::get('POST.custom_Date') ? F3::get('POST.custom_Date') : $_date; ?>">*(साल - महिना -गते)<span class="dateformat">date format is wrong</span></td></tr>
+        <tr>
+          <td class="left">
+            <label for="">रसिद नम्बर</label>
+          </td>
+          <td>
+              <input type="text" name="receipt" id="receipt_num" class="required" value="<?php echo F3::get('POST.receipt') ?F3::get('POST.receipt') :F3::get('POST.receipt_num'); ?>">*
+          </td>
+        </tr>
+        <tr>
+            <td>
+        <label for="">रसिद मिति</label>
+            </td>
+            <td>
+                <input type="text" name="receipt" id="receipt_date" class="required" value="<?php echo F3::get('POST.receipt') ?F3::get('POST.receipt') :F3::get('POST.receipt_num'); ?>">*
+            </td>
+        </tr>
+        
+
+      </table>
+    </fieldset>
+    
+
+    <div id="vehicleInfo">
+      <fieldset >
+        <legend>वजन क्षमता</legend>
+        <table>
+          <tr>
+            <td>
+              <label for="">कुल वजन</label>
+              <input type="text"  name="weight"id="weight"  value="<?php echo F3::get('POST.weight') ? F3::get('POST.weight') : 0; ?>" size="2" maxlength="4">
+              <select name="weight_type">
+                <option selected="selected" value="kg"<?php echo F3::get('POST.weight_type') == 'kg' ? ' selected ="selected"' : ''; ?>>के जी</option>
+                <option value="tn"<?php echo F3::get('POST.weight_type') == 'tn' ? ' selected ="selected"' : ''; ?>>टन</option>
+              </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <label for="">वजन क्षमता</label>
+              <input type="text" name="weight_capacity" id="weight_capacity"  value="<?php echo F3::get('POST.weight_capacity') ? F3::get('POST.weight_capacity') : 0 ; ?>" size="2" maxlength="4">
+              <select name="weight_capacity_type">
+                <option selected="selected" value="kg"<?php echo F3::get('POST.weight_type') == 'kg' ? ' selected ="selected"' : ''; ?>>के जी</option>
+                <option value="tn"<?php echo F3::get('POST.weight_type') == 'tn' ? ' selected ="selected"' : ''; ?>>टन</option>
+              </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <label for="">सिट संख्या</label>
+              <input type="text" name="seat_num" id="seat_num"  value="<?php echo F3::get('POST.seat_num') ? F3::get('POST.seat_num') : 0 ; ?>" size="2" maxlength="4"></td></tr>
+        </table>
+      </fieldset>
+    </div>
+
+    <fieldset>
+      <legend>सवारीको रङ्ग</legend>
+      <table>
+        <tr>
+          <td class="left">
+            <label for="">बडिको रङ्ग</label>
+          </td>
+          <td>
+            <select  name="color_id" id="color_id">
+              <?php if (is_array(($_vehicle_color=F3::get('vehicle_color')))):foreach ((($_vehicle_color=F3::get('vehicle_color'))?:array()) as $_list):?>
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.color_id') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['1']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+          </td></tr>
+        <tr id="glass_color">
+          <td>
+            <label for="">शिशाको रङ्ग</label></td><td>
+            <select name="glass_color_id" id="glass_color_id" >
+              <option value="1"<?php echo F3::get('POST.glass_color_id') == 1 ? ' selected ="selected"' : ''; ?>> छ</option>
+              <option value="2"<?php echo F3::get('POST.glass_color_id') == 2 ? ' selected ="selected"' : ''; ?>> छैन </option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset >
+      <legend>सवारी दर्ता  गर्ने अञ्चल छान्नु होस |</legend>
+      <table>
+        <tr><td class="left"><label for="">अञ्चल</label></td><td>
+            <select name="zone_id" id="zone_id" >
+              <?php if (is_array(($_zone_code=F3::get('zone_code')))):foreach ((($_zone_code=F3::get('zone_code'))?:array()) as $_list):?>
+
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.zone_id') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['2']; ?></option>
+
+              <?php endforeach;endif;?>
+            </select>
+        
+      </table>
+    </fieldset>
+
+    
+
+    <table >
+      <tr><td colspan="2"><input type="button"  class="button" value="सवारी धनीको विवरणको लागि यहाँ थिच्नु  होला |" id="btnSubmit" style="margin-left: 10px;"><!---<input type="button" value="cancel"  name="" id="">--></td>
+        <!---<a href="<?php echo $_BASE; ?>/owner/<?php echo ($_vid=F3::get('vid')); ?>">पछाडी <a>-->
+    </table>
+  </div>
+
+  <div id="owner"><h1><?php echo ($_heading=F3::get('heading')); ?></h1><h2>  <a href="<?php echo $_BASE; ?>/register"><?php echo ($_back=F3::get('back')); ?> </a></h2>
+    <fieldset>
+      <legend>व्यक्तिगत विवरण</legend>
+      <table >
+        <tr>
+          <td class="left">
+            <label for="">नयाँ सवारी धनीको फोटो / अथवा स्टाम्प </label>
+          </td>
+          <td>
+        <?php if (F3::get('POST.picture')): ?><img src="<?php echo $_BASE; ?>/photo/<?php echo F3::get('POST.picture'); ?>" height="100px" width="100px">
+          <?php else: ?>
+              <input name="uploadfile" type="file"  data-max-size='32k' class="required" data-type='image' id="inputimage" />
+              <span>Your photo must be: In color; 2 x 2 inches (51 x 51 mm) in size; Sized such that the head is between 1 inch and 1 3/8 ..</span>
+          
+        <?php endif; ?>
+      </td>
+      </tr>
+        <tr>
+          <td class="left"><label for="">सवारी धनीको किसिम</label></td><td>
+            <select name="owner_type" id="owner_type">
+              <?php if (is_array(($_owner_type=F3::get('owner_type')))):foreach ((($_owner_type=F3::get('owner_type'))?:array()) as $_list):?>
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.owner_type') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['1']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="name"><span id="names">नाम</span>  </label>
+          </td>
+          <td>
+            <input type="text" name="first_name" id="first_name" class="required" value="<?php echo F3::get('POST.first_name'); ?>">*</td></tr>
+        <tr id="caste">
+          <td class="left" >
+            <label for="caste" class="labels" >थर</label>
+          </td>
+          <td>
+            <input type="text" name="last_name" id="last_name" class="required" value="<?php echo F3::get('POST.last_name'); ?>">*</td></tr>
+        <tr id="father">
+          <td class="left">
+            <label for="father_name" class="labels">बाबु /आमा/ पतीको नाम</label></td><td><input type="text" name="father_name" id="father_name" value="<?php echo F3::get('POST.father_name'); ?>"></td></tr>
+        
+        <tr>
+          <td class="left">
+            <label for="dob"><span id="reg">जन्म मिति</span></label>
+          </td>
+          <td>
+            <input type="text" name="dob" id="dob"value="<?php echo F3::get('POST.dob'); ?>" >(साल - महिना -गते)
+          </td>
+        </tr>
+        <tr id="regNum">
+          <td class="left">
+            <label for=""><span id="reg">रजिष्ट्रेशन नम्बर</span> </label>
+          </td>
+          <td>
+            <input type="text" name="registration_num" id="registration_num" value="<?php echo F3::get('POST.registration_num'); ?>" >
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="email">इमेल ठेगाना </label>
+          </td>
+          <td>
+            <input type="text" name="email" id="email" value="<?php echo F3::get('POST.email'); ?>">
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="mobileno">सम्पर्क नम्बर</label>
+          </td>
+          <td>
+            <input type="text" name="mobileno" id="mobileno" class="required" value="<?php echo F3::get('POST.mobileno'); ?>">*
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>
+        <span  id="address">स्थायी ठेगाना</span>
+      </legend>
+      <table >
+        <tr>
+          <td class="left">
+            <label for="">अञ्चल</label>
+          </td>
+          <td>
+            <select name="p_zone_id" id="p_zone_id">
+              <?php if (is_array(($_zone_code=F3::get('zone_code')))):foreach ((($_zone_code=F3::get('zone_code'))?:array()) as $_list):?>
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.p_zone_id') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['2']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">जिल्ला</label>
+          </td>
+          <td>
+            <select name="p_district_id" id="p_district_id">
+              
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">नगरपालिका / गा. वि. स.</label>
+          </td>
+          <td><input type="text" name="p_metropolitan"id="" class="required" value="<?php echo F3::get('POST.p_metropolitan'); ?>">*
+          </td>
+        </tr>
+        <tr>
+          <td  class="left"><label for="">वडा  नम्बर </label>
+          </td>
+          <td>
+            <input type="text" name="p_ward_no"id="p_ward_no" value="<?php echo F3::get('POST.p_ward_no'); ?>">
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="left">
+            <label for="">फोन नम्बर </label>
+          </td>
+          <td>
+            <input type="text" name="p_phone"id="p_phone" class="required" value="<?php echo F3::get('POST.p_phone'); ?>">*
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset id="presentAddress">
+      <legend>हालको ठेगाना</legend>
+      <table>
+        <tr>
+          <td class="left">
+            <label for="">अञ्चल</label>
+          </td><td>
+            <select name="temp_zone_id"id="temp_zone_id">
+              
+              <?php if (is_array(($_zone_code=F3::get('zone_code')))):foreach ((($_zone_code=F3::get('zone_code'))?:array()) as $_list):?>
+                <option value="<?php echo $_list['0']; ?>"<?php echo F3::get('POST.temp_zone_id') == $_list['0'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['2']; ?></option>
+              <?php endforeach;endif;?>
+            </select>
+          </td></tr>
+        <tr><td class="left">
+            <label for="">जिल्ला</label>
+          </td>
+          <td>
+            <select name="temp_district_id"id="temp_district_id">
+              
+            </select></td></tr>
+        <tr>
+          <td class="left">
+            <label for="">नगरपालिका / गा. वि. स.</label>
+          </td>
+          <td>
+            <input type="text" name="temp_metropolitan"id="temp_metropolitan" class="required" value="<?php echo F3::get('POST.temp_metropolitan'); ?>">*
+          </td>
+        </tr>
+        <tr>
+          <td class="left">
+            <label for="">वडा  नम्बर </label>
+          </td>
+          <td>
+            <input type="text" name="temp_ward_no"id="temp_ward_no" value="<?php echo F3::get('POST.temp_ward_no'); ?>" class="required">*
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="left">
+            <label for="">फोन नम्बर </label>
+          </td>
+          <td>
+            <input type="text" name="temp_phone"id="temp_phone" class="required" value="<?php echo F3::get('POST.temp_phone'); ?>">*
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <br>
+
+    <div id="6" style="display:none;" class="hide">
+      <fieldset>
+        <legend>संरक्षकको विवरण</legend>
+        <table>
+          <tr>
+            <td class="left">
+              <label for="">संरक्षकको नाम थर </label>
+            </td>
+            <td>
+              <input type="text" name="nabalik_guardian_name"id="nabalik_guardian_name" class="required" value="<?php echo F3::get('POST.nabalik_guardian_name'); ?>">*
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <label for="">संरक्षकको नाता</label>
+            </td>
+            <td>
+              <input type="text" name="nabalik_relation"id="nabalik_relation" class="required" value="<?php echo F3::get('POST.nabalik_relation'); ?>">*
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <label for="">नागरिकता  / पासपोर्ट नम्बर </label>
+            </td>
+            <td><input type="text" name="nabalik_identity_no"id="nabalik_identity_no" class="required" value="<?php echo F3::get('POST.nabalik_identity_no'); ?>">*
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <label for="">जिल्ला</label>
+            </td>
+            <td>
+              <select name="nabalik_district"id="nabalik_district">
+                <option value="">Select</option>
+                <?php if (is_array(($_district_code=F3::get('district_code')))):foreach ((($_district_code=F3::get('district_code'))?:array()) as $_list):?>
+                  <option value="<?php echo $_list['1']; ?>"<?php echo F3::get('POST.nabalik_district') == $_list['1'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['1']; ?></option>
+                <?php endforeach;endif;?>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <label for="">जारी साल</label>
+            </td>
+            <td>
+              <input type="text" name="nabalik_year" id="nabalik_year"  value="<?php echo F3::get('POST.nabalik_year'); ?>" class="date"  class="required">*(साल - महिना -गते)
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <label for=""> संरक्षकको ठेगानां</label>
+            </td>
+            <td>
+              <input type="text"  name="nabalik_address" id="nabalik_address" class="required" value="<?php echo F3::get('POST.nabalik_address'); ?>">
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+    </div>
+
+    <div id="5" style="display:none;" class="hide">
+    </div>
+
+
+    <div id="2" style="display:none;" class="hide">
+      <fieldset>
+        <legend>ॠणीको  विवरण</legend>
+        <table>
+          <tr>
+            <td class="left">
+              <label for="">ॠणीको नाम थर </label>
+            </td>
+            <td>
+              <input type="text"  name="bank_name" id="bank_name" class="required" value="<?php echo F3::get('POST.bank_name'); ?>">*</td></tr>
+          <tr>
+            <td class="left">
+              <label for="">ॠणीको  नागरिकता नम्बर</label>
+            </td>
+            <td>
+              <input type="text"  name="creditor_name" id="creditor_name" class="required" value="<?php echo F3::get('POST.creditor_name'); ?>" >*</td></tr>
+          <tr>
+            <td class="left">
+              <label for="">जारी जिल्ला</label>
+            </td>
+            <td>
+              <select  name="creditor_district" id="creditor_district">
+                <option value="">Select</option>
+                <?php if (is_array(($_district_code=F3::get('district_code')))):foreach ((($_district_code=F3::get('district_code'))?:array()) as $_list):?>
+                  <option value="<?php echo $_list['1']; ?>"<?php echo F3::get('POST.creditor_district') == $_list['1'] ? ' selected ="selected"' : ''; ?> ><?php echo $_list['1']; ?></option>
+                <?php endforeach;endif;?>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <label for="">जारी साल</label>
+            </td>
+            <td>
+              <input type="text"  name="creditor_year" id="creditor_year" value="" class="date" value="<?php echo F3::get('POST.creditor_year'); ?>">*(साल - महिना -गते)</td></tr>
+          <tr>
+            <td class="left">
+              <label for="">ॠणीको  ठेगाना</label>
+            </td>
+            <td>
+              <input type="text"  name="creditor_address" id="creditor_address" class="required" value="<?php echo F3::get('POST.creditor_address'); ?>"></td></tr>
+        </table>
+      </fieldset>
+    </div>
+
+
+    <div id="3" style="display:none;" class="hide">
+      <fieldset >
+        <legend>  नागरिकता/ पासपोर्ट विवरण</legend>
+        <table >
+          <tr>
+            <td class="left">
+              <label for="">राष्ट्रियता </label>
+            </td>
+            <td>
+              <input type="text"  name="per_nagarikta" id="per_nagarikta" class="required" value="<?php echo F3::get('POST.per_nagarikta'); ?>">*</td></tr>
+          <tr>
+            <td class="left">
+              <label for=""> नागरिकता / पासपोर्ट नम्बर</label>
+            </td>
+            <td>
+              <input type="text"  name="per_identificationno" id="per_identificationno" class="required" value="<?php echo F3::get('POST.per_identificationno'); ?>">*
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <label for=""> दुताबास दार्ता  नम्बर </label>
+            </td>
+            <td>
+              <input type="text"  name="" id="" class="required" value="<?php echo F3::get('POST'); ?>">*
+            </td>
+        </tr>
+          <tr>
+            <td class="left">
+              <label for="">जारी  जिल्ला</label>
+            </td><td>
+              <select  name="per_district" id="per_district">
+                <option value="">Select</option>
+                <?php if (is_array(($_district_code=F3::get('district_code')))):foreach ((($_district_code=F3::get('district_code'))?:array()) as $_list):?>
+                  <option value="<?php echo $_list['1']; ?>"<?php echo F3::get('POST.per_district') == $_list['1'] ? ' selected ="selected"' : ''; ?>><?php echo $_list['1']; ?></option>
+                <?php endforeach;endif;?>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="left">
+              <label for="">जारी साल</label>
+            </td>
+            <td>
+              <input type="text"  name="per_year" id="per_year"  class="date" class="required" value="<?php echo F3::get('POST.per_year'); ?>"> *(साल - महिना -गते)</td></tr>
+        </table>
+      </fieldset>
+    </div>
+
+    <table>
+      <tr>
+        <td class="left"> <img id="captcha_image" src="<?php echo $_BASE; ?>/image" title="captcha image" alt="captcha" />
+        </td>
+        <td>
+          <input type="text" name="code"  name="" id="code" class="required">*
+          <p>यहाँ सेकुरिटी कोड लेख्नु होला |</p>
+						
+        </td>
+      <tr>
+        <td>
+        </td>
+        <td class="left"><input type="submit" value="submit" class="button">&nbsp;&nbsp;<input type="button" value="back"  name="" id="cancel" class="button"></td>
+    </table>
+
+  </div>
+</form>
+
+
+
+
+<script type="text/javascript">
+  $("#new").validate({
+    messages: {
+      required: "Required.",
+      email: "Invalid email",
+      lot_number: "Invalid lot number",
+      number: "Invalid number"
+    }
+  });
+
+ 
+  $(".other").hide();
+  $("#regNum").hide();
+  $("#vehicle_symbol_type_two").hide();
+  $("#wheeler").change(function()
+  {
+    var wheeler = $(this).children(":selected").attr("value");
+    if(wheeler == 22 )
+    {
+      $("#vehicle_symbol_type_four").show();
+      $("#vehicle_symbol_type_two").hide();
+      $("#vehicleInfo").show();
+      $("#hood").show();
+      $("#glass_color").show();
+    }
+    else{
+      $("#vehicle_symbol_type_two").show();
+      $("#vehicle_symbol_type_four").hide();
+      $("#vehicleInfo").hide();
+      $("#hood").hide();
+      $("#glass_color").hide();
+
+    }
+
+  });
+
+  jQuery.validator.addMethod("mobileNo", function(phone_number, element) {
+    return this.optional(element) || phone_number.length == 10 &&
+      phone_number.match(/^(98|97)+[0-9]{8}$/);
+  }, "Please specify a valid phone number");
+
+  /*  jQuery.validator.addMethod("picture", function(val, element) {
+    return this.optional(element) ||
+      val.match(/(?:gif|jpg|png|bmp)$/);
+  }, "Please insert a picture ");
+   */
+
+  $("#manufacture_date").rules("add", {date:true});
+  //$("#registration_date").rules("add", {date:true});
+  //$("#inspection_date").rules("add", {date:true});
+  $("#custom_Date").rules("add", {date:true});
+  //$("#entry_date").rules("add", {date:true});
+  // $("#lot_number").rules("add", {maxlength:2,number:true});
+  // $("#number").rules("add", {maxlength: 4,number:true});
+  $("#model").rules("add", {maxlength: 12});
+  $("#mobileno").rules("add", {  required: true, mobileNo : true});
+  //$("#inputimage").rules("add", {  required: true});
+  $("#weight").rules("add", {number:true});
+  $("#weight_capacity").rules("add", {number:true});
+  $("#seat_num").rules("add", {number:true});
+  $("#owner").hide();
+  $("#email").rules("add", {email:true});
+  $(".dateformat").hide();
+  $("#vehicleOwner").validate();
+
+  //gives owner type eg personal,bank,importer
+  $("#owner_type").change(function () {
+    var id = $(this).children(":selected").attr("value");
+    $(".hide").hide();
+    $("#" + id).show();
+    if( id == 1 || id == 4 || id == 2)
+    {
+      $("#caste").hide();
+      $("#grand_father").hide();
+      $("#father").hide();
+      $("#presentAddress").hide();
+      $('#address').text('ठेगाना');
+      $('#reg').text(' दर्ता मिति');
+      $("#regNum").show();
+      if(id == 1)
+      {
+        $('#names').text('कम्पनीको नाम ');
+      }
+      if(id == 4)
+      {
+        $('#names').text('सस्थाको नाम');
+      }
+      if(id == 2)
+      {
+        $('#names').text('बैंक तथा बित्तिय संस्थाको नाम');
+      }
+
+    }
+    else
+    {
+      $('#address').text('स्थायी ठेगाना');
+      $('#reg').text('जन्म मिति ');
+      $('#names').text('नाम');
+      $("#caste").show();
+      $("#grand_father").show();
+      $("#father").show();
+      $("#presentAddress").show();
+    }
+  });
+
+  //onclick shows th owner page
+  $("#btnSubmit").click(function() {
+    if ($("#new").validate().form()) {
+      $("#owner").show();
+      $("#registration").hide();
+    }
+  });
+
+  // $("#new").submit(function() {//generate new captcha
+  //  $("#captcha_image").attr('src', '');
+  // $("#captcha_image").attr('src', '<?php echo $_BASE; ?>/image');
+  //  });
+
+  $("#cancel").click(function(){
+    $("#owner").hide();
+    $("#registration").show();
+  });
+
+
+
+
+  var bank=2;
+  var personal=3;
+  var nabalik=6;
+    <?php if (F3::get('POST.owner_type') == 2 || F3::get('POST.owner_type') == 4 ||F3::get('POST.owner_type') ==1): ?>
+    
+    $("#caste").hide();
+  $("#grand_father").hide();
+  $("#father").hide();
+  $("#presentAddress").hide();
+    
+    <?php else: ?>
+    $("#grand_father").show();
+  $("#father").show();
+  $("#presentAddress").show();
+    
+    <?php endif; ?>
+
+    var i= "<?php echo F3::get('POST.owner_type'); ?>";
+    <?php if (F3::get('POST.owner_type')): ?>
+    
+    i == bank ?  $("#"+bank).show():  $("#"+bank).hide();
+  i == personal ?  $("#"+personal).show():  $("#"+personal).hide();
+  i == nabalik ?  $("#"+nabalik).show():  $("#"+nabalik).hide();
+    
+    <?php endif; ?>
+
+
+    var img = document.getElementById('inputimage');
+  var width = img.clientWidth;
+  var height = img.clientHeight;
+
+  /*
+  var img = document.getElementById('file');
+  var width = img.clientWidth;
+  var height = img.clientHeight;
+  jQuery.validator.addMethod("picSize", function(height, width) {
+    return  img.height <600 || img.width <600;
+  }, "Please insert a picture  size smaller than 500kb ");
+   */
+
+  $("#saveRegister").click(function(){
+   
+    $('input').removeClass('required');
+    $("#mobileno").rules("remove");
+    $("#inputimage").rules("remove");
+    $("#new").attr('action','<?php echo $_BASE; ?>/saveRegister');
+    $("#new").submit();
+  });
+
+  /*
+      $("#saveRegister").click(function() {
+        if ($("#new").validate().form()) {
+            $("#new").attr('action','<?php echo $_BASE; ?>/saveRegister');
+        }
+    });*/
+
+  // Dynamic permanent address load district and zone
+  function pAddress() {
+    var zone = $('#p_zone_id').val();
+    $.get('<?php echo $_BASE; ?>/getDistricts/' + zone, '', function(data) {
+      var districts = '';
+      var post_district = '<?php echo trim(F3::get('POST.p_district_id')); ?>';
+      for(i in data) {
+        districts += '<option value="' + data[i] + '"' + (data[i] == post_district ? ' selected="selected"' : '') + '>' + data[i] + '</option>';
+      }
+      $('#p_district_id').html(districts);
+      console.log(districts);
+    }, 'json');
+  }
+  // Dynamic temporary address load district and zone
+  function tAddress() {
+    var zone = $('#temp_zone_id').val();
+    $.get('<?php echo $_BASE; ?>/getDistricts/' + zone, '', function(data) {
+      var districts = '';
+      var post_district = '<?php echo trim(F3::get('POST.temp_district_id')); ?>';
+      for(i in data) {
+        districts += '<option value="' + data[i] + '"' + (data[i] == post_district ? ' selected="selected"' : '') + '>' + data[i] + '</option>';
+      }
+      $('#temp_district_id').html(districts);
+      console.log(districts);
+    }, 'json');
+  }
+  $(document).ready(function() {
+    pAddress();
+    tAddress();
+    console.log('districts');
+  });
+  $('#p_zone_id').change(function() {
+    pAddress();
+  });
+  $('#temp_zone_id').change(function() {
+    tAddress();
+  });
+  
+  $('#inputimage').bind('change', function() {
+    //this.files[0].size gets the size of your file.
+    if(this.files[0].size >5000 ){
+      alert("please insert small size photo");
+    }
+  });
+  
+  //show other change on company
+  $('#manufacture_id').change(function (){
+    var choose = $(this).children(":selected").attr("value");
+    if(choose == '2045'){
+      $('#other_company').show();
+    } 
+    else
+    {
+      $('#other_company').hide();
+    }
+  });
+ 
+  $('#fuel_type_id').change(function (){
+    var choose = $(this).children(":selected").attr("value");
+    if(choose == '10'){
+      $('#other_fuel').show();
+    }
+    else
+    {
+      $('#other_fuel').hide();
+    }
+  });
+  $('#purpose_id').change(function (){
+    var choose = $(this).children(":selected").attr("value");
+    if(choose == '9'){
+      $('#other_use').show();
+    }
+    else
+    {
+      $('#other_use').hide();
+    }
+  });
+  $('#type').change(function (){
+    var choose = $(this).children(":selected").attr("value");
+    if(choose == '257'){
+      $('#other_vehicle').show();
+    }
+    else
+    {
+      $('#other_vehicle').hide();
+    }
+  });
+
+  var wheel='<?php echo F3::get('POST.wheeler'); ?>';
+  if(wheel == 22){
+      $("#hood").show();
+      $("#glass_color").show();
+  }else{
+     $("#hood").show();
+      $("#glass_color").show();
+  }
+
+  
+   var company='<?php echo F3::get('POST.manufacture_id'); ?>';
+   var fuel='<?php echo F3::get('POST.fuel_type_id'); ?>';
+   var purpose='<?php echo F3::get('POST.purpose_id'); ?>';
+   var type='<?php echo F3::get('POST.type'); ?>';
+   if(company == '2045')
+     {
+      
+       $('#other_company').show();
+     }
+      if(fuel == '10')
+     {
+       $('#other_fuel').show();
+     }
+      if(purpose == '9')
+     {
+       $('#other_use').show();
+     }
+      if(type == '257')
+     {
+       $('#other_vehicle').show();
+     }
+		 $("#new_type").click(function(){
+			 $("#customoffice").show();
+			});
+			$("#anya_type").click(function(){
+				$("#customoffice").hide();
+			});
+		 
+  //other_fuel other_use other_vehicle
+</script>
+<!--http://docs.jquery.com/Plugins/Validation/Methods#List_of_built-in_Validation_methods-->
+        
+    </section>
+    <!--sidebar--->
+    <aside>
+
+    </aside>
+    <!--footer--->
+    <footer>
+
+    </footer>
+    <script type="text/javascript">
+        var base = "<?php echo $_BASE; ?>/";
+    </script>
+ <script type="text/javascript" src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/fileValidator.js"></script>
+        <script src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/sh_main.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/sh_javascript_dom.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo $_BASE; ?>/<?php echo $_UI; ?>js/sh_html.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="<?php echo $_BASE; ?>/<?php echo $_UI; ?>css/sh_mac_classic.min.css" type="text/css">
+</body>
+</html>

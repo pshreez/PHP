@@ -1,0 +1,15 @@
+
+    <table id="viewpolls" cellspacing="1px" cellpadding="5px" border="0" class="decorate">
+        <thead>
+            <tr><th> Latest Polls</th></tr>
+        </thead>
+        <tbody>
+
+        <F3:repeat group="{{@latest_polls}}" key="{{@id}}" value="{{@lq}}">
+            <tr><td>{{@lq}}</td></tr>
+        </F3:repeat>
+
+
+        </tbody>
+    </table>
+</table>

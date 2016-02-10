@@ -1,0 +1,174 @@
+<div id="viewPoll"  style="text-decoration: none;">
+    <div id="poll_info" style="first-letter:capitalize;">
+        <F3:check if="{{@published_date}}"><F3:true>
+                <div  style="color:white;float:right;padding-right:50px;padding-top:45px;" >
+
+                    <a class="share-fb" id="shareFB" href="#" data-id="{{@id}}"></a><br>
+                    <a class="share-gp" href="https://plus.google.com/share?url=http://smscentral.com.np/poll/poll/{{@id}}" data-id="{{@id}}" style="padding: 0px !important;"></a><br>
+                    <a class="share-tw" href="https://twitter.com/share?url=http://smscentral.com.np/poll/poll/{{@id}}&text={{@question}}&via=smscentral&related=smscentral&hashtags=poll" data-id="{{@id}}" style="padding: 0px !important;"></a></br>
+                    <F3:exclude>   <a class="invite-fb"  id="invite" href="#" data-id="{{@id}}" style="padding: 0px !important;"></a><br></F3:exclude>
+
+                </div>
+            </F3:true></F3:check>
+
+        <div class="heading" style="height:auto;padding:40px;padding-bottom: 15px;border-top-left-radius:15px;border-top-right-radius:15px;">
+
+            <font style="color:#522931;font-size:20px;display:block;">{{@question}}</font>
+
+
+            <ul  style="list-style:none;color:#522931;"  >
+
+                <F3:repeat group="{{@options}}"   value="{{@values}}"  >
+
+                    <li style="text-transform:capitalize;font-size:15px;margin:2px;">
+                        <span style="width:200px;">  <strong> {{@values.0}}:</strong> {{@values.1}}</span>
+                    <F3:check if="{{@total != 0}}" ><F3:true><div  style="width: 200px;
+                                                                   border: 1px solid #000;height:15px;
+                                                                   background-color: #ddd;display:inline-block;position:relative;right:150px;float:right;"><div style="background:green;display:inline-block;height:15px;width: {{@values.3*2}}px;clear:right;">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red">{{@values.2}}&nbsp;&nbsp;Votes
+
+                                    </span>
+                                </div> </div></F3:true></F3:check><br>
+                    </li>
+                </F3:repeat>
+
+
+            </ul>
+
+
+            <div >
+
+
+                <F3:check if="{{@total != 0 }}"><F3:true>Total votes : {{@total}} </F3:true><F3:False>No votes yet</F3:False></F3:check>
+                <F3:check if="{{@total == 0 }}"><F3:true>No votes yet </F3:true></F3:check>
+
+            </div>
+
+
+
+        </div>
+
+
+        <div style="padding:10px; color: #6F103B;text-align:center;" class="pollbk" >
+
+
+
+            To vote , type @poll<strong>&lt;space&gt;</strong>{{strtolower(@keyword)}}<strong>&lt;space&gt;</strong>[option] and SMS to 4321. For e.g. @poll {{@keyword}} a
+        </div>
+        <div class="heading" style="padding:10px;border-bottom-left-radius:15px;border-bottom-right-radius:15px;padding-left:35px;">
+            <div style="color: #522931;text-align: center;">
+                <strong >Created by ::</strong>&nbsp;&nbsp;<span ><span style="margin:8px;margin-right:16px;font-size:18px;">{{@fullname}}</span><img src="https://graph.facebook.com/{{@user_id}}/picture" width="30px" height="30px" /></span><br>
+                Created date  :  {{date("F j, Y",strtotime(@created_date))}}
+                <span style="padding:10px">&</span>
+                <F3:check if="{{@expiry_date != NULL}}"><F3:true> Expiry date  :  {{date("F j, Y",strtotime(@expiry_date))}}</F3:true>
+                </F3:check>
+                <br><br>
+                <F3:check if="{{@SESSION.sid && @user_id == @SESSION.user->id }}">
+
+                    <F3:true>
+
+                        <F3:check if="{{@published_date == NULL }}"> 
+                            <F3:true>
+                                <F3:check if="{{@expiry_date > @date }}">
+                                    <F3:true>
+                                        <a href="{{@BASE}}/edit/{{@id}}" class="userfn" data-id="{{@id}}"> Edit</a>
+                                        <a href="{{@BASE}}/publish/{{@id}}" class="userfn" data-id="{{@id}}"> Publish</a>
+                                    </F3:true>
+                                </F3:check>
+
+
+
+                            </F3:true>
+                        </F3:check>
+                    </F3:True>
+                    <a href="#" id="delete" data-id="{{@id}}" id="del" class="userfn" > Delete</a>
+                    <br></br>
+                    <F3:check if="{{@published_date == NULL}}"> <F3:true>
+
+                            <div style="padding:10px;"><i>This is a private poll,not yet published,The published  poll can be shared on Facebook,Google+ and twitter</i></div>
+                        </F3:False></F3:check>
+
+
+
+                    </F3:true>
+                </F3:check>
+
+
+
+
+
+                </F3:true>
+                </F3:check>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<script>
+
+   
+
+    var desc ="";
+        <F3:repeat group="{{@options}}"  value="{{@values}}">
+        desc = desc + " ({{@values.0}}) {{@values.1}},";
+        </F3:repeat>
+
+        $("#shareFB").click(function(){
+  
+        FB.ui({
+            method: 'feed',
+            link: 'http://smscentral.com.np/poll/pollView/{{@id}}',
+            picture: 'http://smscentral.com.np/poll/ui/images/fblogo.png',
+            name: "{{@keyword}}",
+            caption: "{{htmlentities(@question)}}",
+            description: desc +"To answer this question, type @poll&lt;space&gt;{{strtolower(@keyword)}}&lt;space&gt;[option] and SMS to 4321. For e.g. @poll {{strtolower(@keyword)}} a"
+        }, function (response) {
+            if (response && response.post_id) {
+                showMessage({t: 'success', m: 'Successfully shared on Facebook'});
+            }
+        });
+        return false;
+    }); 
+
+    $('a[class="invite-fb"][data-id="{{@id}}"]').click(function() {
+        inviteFriends({
+            link: 'http://smscentral.com.np/poll/pollView/{{@id}}',
+            keyword: "{{@keyword}}",
+            question: "{{htmlentities(@question)}}",
+            desc: desc + "To answer this question, type @poll&lt;space&gt;{{strtolower(@keyword)}}&lt;space&gt;[option] and SMS to 4321. For e.g. @poll {{strtolower(@keyword)}} a",
+            message: "{{@conf.smes}}"
+        });
+        return false;
+    });
+
+
+
+    // Share Google Plus and Twitter
+    $('a[class="share-gp"][data-id="{{@id}}"], a[class="share-tw"][data-id="{{@id}}"]').click(function() {
+        window.open($(this).attr("href"), '_blank', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+        return false;
+    });
+
+      
+
+
+    $( "#delete" ).click(function()
+    {
+        var id = $(this).attr('data-id');
+          var c = confirm('Are you sure?');
+                if(c){
+                    window.location = '{{@BASE}}/poll/delete/'+id;
+                    showMessage({
+                        m: 'Poll deleted.',
+                        t: 'success'
+                    })
+                  }
+                });
+</script>
+
+
+<div id="confirm" style="display:none;color:white">Are you sure you want to delete the poll? the deleted polls willnot be available anymore</div>

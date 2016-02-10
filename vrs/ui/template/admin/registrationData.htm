@@ -1,0 +1,112 @@
+<script type="text/javascript">
+	$(function() {$( "#vehicleFrom" ).datepicker({dateFormat: 'yy-mm-dd'});});
+	$(function() {$( "#vehicleTo" ).datepicker( {dateFormat: 'yy-mm-dd'});});
+
+	$(document).ready(function() {
+		$('#registrationData').dataTable(
+		{
+			"bPaginate": true,
+			"bLengthChange": true,
+			"bFilter": true,
+			"bSort": true,
+			"bInfo": true,
+			"bJQueryUI":true,
+			"bAutoWidth": false
+
+		} );iew
+	});
+</script>
+<div id="" >
+	<center>
+		<h1 style="margin: 5px;">New Registration Data</h1>
+		<F3:check if="{{@PARAMS.message}}">
+			<div style="background: lavender;" id="message">The data bas been deleted</div>
+		</F3:check>
+		<form id="vehicleInfo" method="post" action="{{@BASE}}/admin/newRegistration" style="padding: 5px 10px; border-radius: 10px; border: 1px solid; display: inline-block; background-color: #6db3f2;">
+			<label for="vehicleFrom" >From:</label>
+			<input id="vehicleFrom" type="text" name="date1" placeholder="from" value="{{@POST.date1}}"  class="required"/>
+			&nbsp; &nbsp;&nbsp; &nbsp;
+			<label for="vehicleTo">To:</label>
+			<input id="vehicleTo" type="text"  name="date2" placeholder="to" value="{{@POST.date2}}" class="required"/>
+			&nbsp; &nbsp;
+			<select name="status"><option value="pending"{{@POST.status == 'pending' ? 'selected=selected':''}}>Pending</option>
+				<option value="approved"{{@POST.status == 'approved' ? 'selected=selected':''}}>Approved</option></select>
+			<input  type="submit" value="show"   class="button"/>
+			<!--  <button style="margin-left: 5px;">View</button>-->
+		</form>
+	</center>
+</div>
+<F3:check if="{{@POST}}">
+	<F3:true>
+		<F3:check if="{{count(@data) >0}}">
+			<F3:true>
+				<center>
+					<h1>{{@heading}}</h1>
+					<table class="tableDecor" id="registrationData">
+						<thead style="background:grey">
+							<tr>
+                <th>Reference N0</th>
+                <th>Entry date</th>
+               <!-- <th>vehicle no</th>-->
+                <th>Engine number</th>
+                <th>Chessis number</th>
+								<th>Model </th>
+								<th>IP address</th>
+						<F3:check if="{{@SESSION.wheeler == 1}}"><F3:true><th>wheeler</th></F3:true></F3:check>
+						<th>Action</th></tr>
+						</thead>
+						<tbody style="background:white">
+						<F3:repeat group="{{@data}}" value="{{@list}}">
+							<tr>
+                <td>{{@list.7}}</td>
+								<td>{{@list.1}}</td>
+							<!--	<td>{{@list.0}}</td>-->
+								<td>{{@list.2}}</td>
+								<td>{{@list.3}}</td>
+								<td>{{@list.4}}</td>
+								<td width="100px">{{@list.5}}</td>
+							<F3:check if="{{@SESSION.wheeler == 1}}">
+                <F3:true>
+                  <td>{{@list.6}}</td>
+                </F3:true>
+              </F3:check>
+							<td>
+                
+              <F3:check if="{{@POST.status == 'pending'}}">
+                <F3:true>
+                  <a href="{{@BASE}}/admin/viewRegistration/{{@list.7}}"  class="hyperlink">View</a>
+                </F3:true>
+              </F3:check>
+							<a href="#" class="print hyperlink"  data="{{@list.7}}">Print</a></td>
+							</tr>
+              
+						</F3:repeat>
+						</tbody>
+					</table>
+				</center>
+			</F3:true>
+			<F3:false>
+				No data records yet
+			</F3:false>
+		</F3:check>
+	</F3:true>
+</F3:check>
+<script type="text/javascript">
+	$('.print').click(function() {
+		var id = $(this).attr('data');
+		window.open('{{@BASE}}/admin/print/' + id);
+	});
+	$("#vehicleInfo").validate({
+		rules: {
+			date1: {
+				required: true,
+				date: true
+			},
+			date2: {
+				required: true,
+				date: true
+			}
+		}
+	});
+	$("#message").fadeOut(3000);
+</script>

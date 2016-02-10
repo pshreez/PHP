@@ -1,0 +1,42 @@
+<div id="formContainer" style="display: block;">
+  <form id="reportForm">
+    <label for="reportFrom">From:</label>
+    <input id="reportFrom" type="text" name="from" class="textfield" style="margin-left: 5px;" />
+    <label for="reportTo" style="margin-left: 5px;">To:</label>
+    <input id="reportTo" type="text" name="to" class="textfield" style="margin-left: 5px;" />
+    <label for="reportTelco" style="margin-left: 5px;">Telco:</label>
+    <select id="reportTelco" name="telco" class="textfield" style="margin-left: 5px;">
+      <option value="">All</option>
+      <option value="ntc">NTC</option>
+      <option value="spice">Spice</option>
+      <option value="utl">UTL</option>
+    </select>
+    <button style="margin-left: 5px;">View</button>
+  </form>
+</div>
+<div id="reportListContainer"></div>
+<script type="text/javascript">
+  document.title = "<?php echo ($_title=F3::get('title')); ?> - Admin - <?php echo ($_site=F3::get('site')); ?>";
+  $("#reportFrom").datepicker({
+    dateFormat: "yy-mm-dd",
+    onSelect: function(selectedDate) {
+      $("#reportTo").datepicker("option", "minDate", selectedDate);
+    }
+  });
+  $("#reportTo").datepicker({
+    dateFormat: "yy-mm-dd",
+    onSelect: function(selectedDate) {
+      $("#reportFrom").datepicker("option", "maxDate", selectedDate);
+    }
+  });
+  $("#reportForm").submit(function() {
+    postData({
+      url: "<?php echo ($_BASE=F3::get('BASE')); ?>/admin/report",
+      data: $("#reportForm").serialize(),
+      type: "html"
+    }, function(data) {
+      $("#reportListContainer").html(data);
+    });
+    return false;
+  });
+</script>

@@ -1,0 +1,75 @@
+
+<div style="padding:20px;padding-bottom:30px;"><div style="position:relative;">
+        <table id="userList" class="decorate" width="823px">
+            <thead>
+                <tr><th>Email</th><th>Username</th><th>Full Name</th><th>Active</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+            <F3:repeat group="{{@userList}}" value="{{@ul}}">
+                <tr>
+                <F3:repeat group="{{@ul}}" value="{{@u}}">
+                    <td>{{@u}}</td>
+                </F3:repeat>
+                </tr>
+            </F3:repeat>
+            </tbody>
+        </table>
+        <div id="confirmDelete" title="Delete User?" style="color:white;display:none;">
+
+            <p>The user will be deleted permanently and data couldnot be restored!!!!</p>
+        </div>
+        <div id="confirmBlock"  style="background:white; color:grey;display:none;">
+
+            <p>The user will be block and data couldnot be restored!!!!</p>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var options = {
+            "bProcessing": true,
+            "bJQueryUI":false,
+            "bAutoWidth": false,
+            "oLanguage": {
+                "sZeroRecords": "No polls to be displayed"
+            },
+            "sPaginationType": "full_numbers",
+            "iDisplayLength": {{@conf.PAGESIZE}},
+            "aoColumnDefs": [{
+                    "sWidth": '50px',
+                    "aTargets": [-1]
+                }, {
+                    "sWidth": '100px',
+                    "aTargets": [0]
+                }]
+        };
+
+        $pollTable = $("#userList").dataTable(options);
+        $('#userList').dataTable();
+    });
+
+    $(document).ready(function(){
+        $( ".deleteLink" ).click(function()
+        {
+            var id = $(this).attr('data-id');
+             var c = confirm('Do you surely want to delete this user?');
+                if(c){
+                        window.location = '{{@BASE}}/admin/user/delete/'+id;
+                    }
+        });
+        
+        $( ".blockLink" ).click(function()
+        {
+            var id = $(this).attr('data-id');
+         
+            window.location = '{{@BASE}}/admin/user/'+id;
+        
+            $("a[data-id=\"" + id + "\"][class=\"blockLink\"]").text($("a[data-id=\"" + id + "\"][class=\"blockLink\"]").text() == 'Block' ? 'Unblock' : 'Block');
+        });
+    });
+   
+
+</script>

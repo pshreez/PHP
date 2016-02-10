@@ -1,0 +1,28 @@
+<div class="home">
+<form name="admin-login" action=""accept-charset="utf-8">
+			<ul  style="list-style: none; display:inline padding:10px;">
+                               <li>
+					<label for="usermail">Fullname</label>
+					<input type="username" name="username" placeholder="fullname" required width="300px">
+				</li>
+				<li>
+					<label for="usermail">Username</label>
+					<input type="username" name="username" placeholder="username" required width="300px">
+				</li>
+				<li>
+					<label for="password">Password</label>
+					<input type="password" name="password" placeholder="password" required width="300px"></li>
+				<li>
+                                    <li>
+					<label for="password">Operator type</label>
+                                        <select>
+                                            <option></option>
+                                        <option>2 wheeler</option>
+                                        <option>4 wheeler</option>
+                                        </select></li>
+				<li>
+                                   <input type="submit" value="Register"  > <input type="submit" value="cancel"  ></li>				</li>
+			</ul>
+		</form>
+
+</div>

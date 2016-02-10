@@ -1,0 +1,35 @@
+<table id="reportList" class="decorate" cellspacing="0" cellpadding="0"  style="width:800px;position:relative;left:22px;width:823px">
+  <thead>
+    <tr><th>Username</th><th>No. of SMS</th></tr>
+  </thead>
+  <tbody>
+  <F3:repeat group="{{@report}}" value="{{@re}}">
+    <tr>
+    <F3:repeat group="{{@re}}" value="{{@r}}">
+      <td>{{@r}}</td>
+    </F3:repeat>
+    </tr>
+  </F3:repeat>
+</tbody>
+</table>
+<script type="text/javascript">
+  var options = {
+    "bProcessing": true,
+    "bJQueryUI":false,
+    "bAutoWidth": false,
+    "oLanguage": {
+      "sZeroRecords": "No polls to be displayed"
+    },
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": {{@conf.PAGESIZE}},
+    "aoColumnDefs": [{
+        "sWidth": '50px',
+        "aTargets": [-1]
+      }, {
+        "sWidth": '100px',
+        "aTargets": [0]
+      }]
+  };
+
+  $userTable = $("#reportList").dataTable(options);
+</script>

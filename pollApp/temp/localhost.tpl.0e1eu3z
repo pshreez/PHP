@@ -1,0 +1,35 @@
+<table id="reportList" class="decorate" cellspacing="0" cellpadding="0"  style="width:800px;position:relative;left:22px;width:823px">
+  <thead>
+    <tr><th>Username</th><th>No. of SMS</th></tr>
+  </thead>
+  <tbody>
+  <?php if (is_array(($_report=F3::get('report')))):foreach ((($_report=F3::get('report'))?:array()) as $_re):?>
+    <tr>
+    <?php if (is_array($_re)):foreach (($_re?:array()) as $_r):?>
+      <td><?php echo $_r; ?></td>
+    <?php endforeach;endif;?>
+    </tr>
+  <?php endforeach;endif;?>
+</tbody>
+</table>
+<script type="text/javascript">
+  var options = {
+    "bProcessing": true,
+    "bJQueryUI":false,
+    "bAutoWidth": false,
+    "oLanguage": {
+      "sZeroRecords": "No polls to be displayed"
+    },
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": <?php echo F3::get('conf.PAGESIZE'); ?>,
+    "aoColumnDefs": [{
+        "sWidth": '50px',
+        "aTargets": [-1]
+      }, {
+        "sWidth": '100px',
+        "aTargets": [0]
+      }]
+  };
+
+  $userTable = $("#reportList").dataTable(options);
+</script>
