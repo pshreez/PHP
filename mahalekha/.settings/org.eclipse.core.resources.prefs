@@ -1,0 +1,18 @@
+#Mon Aug 19 15:06:30 NPT 2013
+eclipse.preferences.version=1
+encoding//application/modules/agreement/controllers/agreement.php=UTF-8
+encoding//application/modules/agreement/views/agreement_list.php=UTF-8
+encoding//application/modules/agreement/views/agreement_view.php=UTF-8
+encoding//application/modules/budget/views/budget_view.php=UTF-8
+encoding//application/modules/conf/views/conf_view.php=UTF-8
+encoding//application/modules/currency/controllers/currency.php=UTF-8
+encoding//application/modules/currency/views/currency_list.php=UTF-8
+encoding//application/modules/currency/views/currency_view.php=UTF-8
+encoding//application/modules/expenditure/views/expenditure_view.php=UTF-8
+encoding//application/modules/login/controllers/login.php=UTF-8
+encoding//application/modules/login/views/login_view.php=UTF-8
+encoding//application/modules/organization/views/organization_view.php=UTF-8
+encoding//application/modules/revenue/views/revenue_view.php=UTF-8
+encoding//application/views/includes/footer.php=UTF-8
+encoding//application/views/includes/header.php=UTF-8
+encoding//application/views/includes/navigation.php=UTF-8
