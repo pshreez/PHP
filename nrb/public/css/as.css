@@ -1,0 +1,170 @@
+body{
+   font-family : Verdana , sans-serifs;
+   background-color : lavender;
+   
+}
+
+div#container{
+   background: #a6cc8b;
+}
+div#header i{
+    position: absolute; 
+    left :400px;
+}
+    
+}
+
+div#center{
+
+width :500px;
+float :right ;
+
+}
+
+
+ div #register{
+  border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+	
+    float: left;
+	 margin-left: 0;
+     clear: left;
+
+   padding: 10px;
+    width: 500px;
+   
+    background-image: -moz-linear-gradient(top,  #cbe3ba,  #a6cc8b);
+	backgrou nd-image: -webkit-gradient(linear, left top, left bottom, from(#cbe3ba), to(#a6cc8b));
+	
+	backg round: url(image_gallery.jpg) no-repeat left top, -moz-linear-gradient(top, #2F2727, #1a82f7) ;
+
+    backg round:  -webkit-gradient(linear,left top,left bottom, from(#1a82f7), to(#2F2727));
+    position: absolute; 
+    left :400px;
+ }
+  
+
+
+
+h1{
+   font-weight :bold;
+}
+
+
+form dt {
+    width: 120px;
+    display: block;
+    float: left;
+    clear: left;
+	padding :10px;
+	font-weight :bold;
+	font-size :18px;
+	color : grey;
+	
+}
+form dd {
+    margin-left: 0;
+	width : 200px;
+    float: left;
+	padding :10px;
+    
+}
+
+form input[type='text'] ,input[type='password']{
+ background-color : lavender;
+ }
+
+form #submitbutton {
+    margin-left: 80px;
+	background-color : black;
+	border : 2px;
+	color : white;
+}
+
+h1,h2,p,a{
+  
+
+  color : grey ;
+}
+
+  h1,p{
+    position: relative;
+	left :400px;
+  	color : black;
+	}
+   h3#login{
+    text-decoration : none;
+    position: relative;
+   	top : 20px;
+    left :420px;
+    font-size : 16px;
+    color : black;
+    }
+  h3#registerLabel{
+  	text-decoration :none;
+    position: relative;
+    left :420px;
+  	font-size : 16px;
+  	color : black;
+    }
+	
+	
+	h3#registerlabel{
+		position:relative;
+		left:420px;
+		
+}
+	}
+	
+	
+     a{
+	 text-decoration :none;
+	 }
+	
+	a:hover{
+	 text-decoration :none;
+	 color:red;
+	}
+	a#link-register{
+	   text-decoration :none;
+		text-decoration : none;
+	position: relative;
+	left :180px;
+	}
+	
+	a#forgot{
+	text-decoration :none;
+	  position:absolute;
+	  left: 300px;
+	  top :140px;
+	}
+
+	
+	
+	li{
+	list-style:none;
+	color :white;
+	font-size : 12px;
+	}
+	
+	
+	/*********************************** cpatcha **********************/
+	
+	div #recaptcha_image{
+	width :250px;
+}	
+	
+	.recaptchatable .recaptcha_image_cell, #recaptcha_table {
+    background-color:lavender !important; // reCAPTCHA widget background color
+  }
+  
+  table #recaptcha_table{
+   width : 100px;
+  }
+  
+  #recaptcha_response_field {
+    border-color: #FF0000 ; // Text input field border color
+    background-color: #FF0000 ; //Text input field background color
+  }

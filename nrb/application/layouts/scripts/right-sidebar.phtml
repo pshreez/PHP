@@ -1,0 +1,30 @@
+
+
+
+	
+			    <ul>
+			    
+				
+				<li>     <a  href="<?php 
+					   echo $this->url(array('controller'=>'currencyinfo','action'=>'index'));
+					   ?>">Get Foreign Currency Information
+			        </a></li>
+			
+		
+				<li><a  href="<?php 
+					   echo $this->url(array('controller'=>'currencyinfo','action'=>'select'));
+					   ?>">See graph of the foreign currencies
+				    </a></li>
+			 
+			 
+				<li>	<a href="<?php 
+						   echo $this->url(array('controller'=>'paginator','action'=>'index'));
+						   ?>">See all currency information
+					</a> </li>
+				<li>	<a href="<?php 
+						   echo $this->url(array('controller'=>'paginator','action'=>'recent'));
+						   ?>">Today's currency Rate
+					</a> </li>
+                </ul>
+			
+		

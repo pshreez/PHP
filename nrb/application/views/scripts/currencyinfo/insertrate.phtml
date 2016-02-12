@@ -1,0 +1,21 @@
+
+<?php
+if(count($this->paginator)):?>
+<table >
+<tr>
+
+<th>id</th>
+<th>name/th>
+
+
+</tr>
+
+<?php foreach($this->information as $currencies):?>
+<tr>
+
+<td><?php echo $currencies['id'];?></td>
+<td><?php echo $currencies['name'];?></td>
+
+</tr>
+<?php endforeach;?>
+</table>

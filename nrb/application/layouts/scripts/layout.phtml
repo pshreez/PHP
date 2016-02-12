@@ -1,0 +1,60 @@
+
+<?php 
+
+
+
+
+$this ->headMeta()->appendHttpEquiv('Content-Type','text/html;charset=utf-8');
+$this ->headTitle()->setSeparator('-');
+$this ->headTitle('Nepal Rastra Bank');
+echo $this->doctype(); 
+//$this->layout()->nav=$this->action('render','menu',null,array('menu'=>$thismainMenuId));
+//$this->layout()->admin=$this->action('render','main',null,array('menu'=>$this->adminmainMenuId));
+//$this->layout()->LoginForm = $this->action('index','login');
+?>
+
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"  lang="en">
+  <head>
+  <?php echo $this->headMeta();?>
+    <?php echo $this->headTitle();?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/style.css')?>
+	<?php $this->headScript()
+              ->appendFile( $this->baseUrl('js/jquery-1.6.2.min.js') )
+              ->appendFile( $this->baseUrl('js/jquery.TableCSVExport.js') )
+			  ->appendFile( $this->baseUrl('js/jquery.table2CSV.js') );?>
+
+
+  </head>
+  <body>
+  <div id="container" class="clearfix">
+  <?php echo '<div id="header">'.$this->partial('header.phtml').'</div>';?>
+    <div class="content" >
+	 <?php
+if(!Zend_Auth::getInstance()->getIdentity())
+{	 
+	echo $this->partial('menu.phtml');
+						  }
+     else
+	 {
+	
+	echo  '<div id="right-sidebar" >'.$this->partial('right-sidebar.phtml').'</div>';
+		
+	}?>
+	
+     
+      <div id="main" >
+
+	   <?php echo $this->layout()->content; ?>
+	  </div>
+    
+    </div>
+	</div>
+	
+	
+	
+	
+</body>
+</html>
+
+
+

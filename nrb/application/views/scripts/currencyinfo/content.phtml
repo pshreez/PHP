@@ -1,0 +1,31 @@
+<html>
+<head><script src="js/jquery-1.7.2.min.js" type="text/javascript">//jquerylibrary</script>
+<script src="js/jquery-ui-1.8.22.custom.min.js" type="text/javascript">//datepicker</script>
+<link rel="stylesheet" type="text/css" href="../css/ui-lightness/jquery-ui-1.8.22.custom.css">
+<script>
+$(function() {//$.documentready
+$( "#fromDate" ).datepicker({ dateFormat: "yy-mm-dd" });
+$( "#toDate" ).datepicker({ dateFormat: "yy-mm-dd" });
+});
+
+</script>
+</head>
+
+
+<body>
+
+<div id="currencyInfo">
+<table align="center"><tr><td>
+<div id="date"><?php
+$this->title ="Content";
+$this->headTitle('Content');
+ $date = new Zend_Date();
+				print "<center>".$date."</center>";
+echo $this->form ;
+?></div>
+</td></tr>
+</div>
+
+
+</body>
+</html>

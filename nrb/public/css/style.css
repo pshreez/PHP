@@ -1,0 +1,512 @@
+body{
+   font-family : Verdana , sans-serifs;
+    background-color: #888888;
+    backgro und: -moz-linear-gradient(#649FE9, #2171C1) repeat scroll 0 0 #2171C1;
+	back ground -moz-linear-gradient(top,  #cbe3ba,  #a6cc8b);
+	backgrou nd:  -webkit-gradient(linear,left top,left bottom, from(#1a82f7), to(#2F2727));
+   
+    }
+	h1{
+	color:white;
+	}
+#contain{
+position:absolute;
+top:180px;
+left:150px;
+width:600px;
+height:300px;
+}
+
+
+div#currency{
+	position:absolute;
+	left:30px;
+	width:400px;
+	font-size:20px;
+
+    }
+	
+	div#datenow{
+	position:absolute;
+	top:20px;
+	left:30px;
+	width:400px;
+	font-size:20px;
+
+	}
+ div#currencyGraph{
+ position:absolute;
+ left:300px;
+ background:#808372;;
+ top:180px;
+   border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	padding:20px;
+ }
+
+
+
+
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+    }
+ 
+.clearfix {
+	display: inline-block;
+    }
+ 
+html[xmlns] .clearfix {
+	display: block;
+    }
+ 
+* html .clearfix {
+	height: 1%;
+    }
+	
+.ui-datepicker{
+    background:white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+    }
+.ui-datepicker-title{
+    color:grey;
+    }
+	
+.ui-datepicker .ui-datepicker-prev { left:4px;margin:o auto; }
+.ui-datepicker .ui-datepicker-next { right:4px; }
+
+div#container{
+    margin : 0 auto;
+    padding : 20px; 
+    
+    height: 700px;
+	background-color:#888888;
+	backgro und-color: -moz-linear-gradient(#649FE9, #2171C1) repeat scroll 0 0 #2171C1;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    }
+table th,thead{
+background:#808372;
+
+}
+
+
+.roweven{
+background:lavender;
+}
+
+ div.content{
+    margin:20px;
+    padding:10px;
+
+    }
+ div#date{
+ background:white;
+ }
+ 
+ 
+ /*************header****************/  
+ div #header{
+    position :absolute;
+    left:140px;
+	width:980px;
+	height:110px;
+    padding:10px;	
+	font:white;
+	
+
+    background-color: transparent;
+    background-image: -moz-linear-gradient(center top , rgba(68, 68, 68, 0.75), rgba(60, 60, 60, 0.75));
+	background-color: -webkit-gradient(center top , rgba(68, 68, 68, 0.75), rgba(60, 60, 60, 0.75));
+
+    }
+ 
+ div a#logout{
+    position :absolute;
+    left:790px;
+	top:50px;
+	width:90px;
+    font-size :20px;
+    text-decoration:none;
+    font-style:italic; 
+	color:white;
+	background-color:#808372;
+	border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	
+    }
+div#out{
+background-color:#808372;
+}
+ 
+ div #loggedInAs{
+    position :absolute;
+    left:690px;
+	top:75px;
+    font-size :20px;
+    color: white;
+	
+	width:250px;
+	border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+    }
+
+/****************sidebar*********************/
+
+div #right-sidebar{
+	position:absolute;
+	right :140px;
+	top :200px;
+	background :white;
+	margin:auto;
+	padding :10px;
+	border-top-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	background:lavender;
+   }
+#main{
+background:white;
+}
+div#right-sidebar  ul li a{
+    text-decoration:none;
+    font-weight:bold;
+	
+   }
+
+div#right-sidebar ul li{
+	margin:10px;
+	list-style-type:none;
+	padding : 10px;
+	font-size:12px;
+   }
+
+div#navigation-left{
+	position: absolute; 
+	left :180px;
+	float:left;
+	clear:both;
+	top:180px;
+    width : 200px;
+	padding:20px;
+	background:#f5f5ef;
+	border-top-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+    }
+
+div#navigation-right{
+    width : 300px;
+    background:#f5f5ef;
+	float:right;
+	clear:both;
+    position: absolute; 
+    right :50px;
+	top:150px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+	}
+
+a{
+ color:#808372;
+ text-decoration:none;
+}
+ 
+
+
+ 
+/**************content****************/
+	
+	
+div#currencyInfo{
+    
+	background :#808372;
+    margin-left: 0;
+	position: absolute; 
+    padding: 12px;
+    width: 600px;
+   
+	top:180px;
+    left:140px;
+    }
+
+  
+div#pagination{
+	position: absolute;
+	top:180px;
+    left:200px;
+	background :white;
+	padding:40px;
+	margin:auto;
+	  border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+    }
+	
+div.paginationControl{
+    padding:20px;
+    }
+	
+
+div#table-data{
+    position:absolute;
+    background:white;
+    top:170px;
+    left:140px;
+	width:400px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+	padding:30px;
+	}
+div#recentData{
+position:absolute;
+    background:white;
+    top:180px;
+    left:200px;
+	width:400px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+	padding:30px;
+}
+
+
+
+table#result-data{
+    position:relative;
+    top:30px;
+    padding:30px;
+	border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+    }
+table#recent{
+position:relative;
+    top:30px;
+    padding:30px;
+	border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+}
+
+div#invalid{
+	background : lavender;
+	width: 300px;
+	position : absolute;
+	top :150px;
+	left:400px;
+ 
+    }
+
+div#wrong{
+    background : lavender;
+    width: 300px;
+    position :absolute;
+    top : 150px;
+    left:400px;
+    }
+
+
+ table#index,div#loginForm{
+ 
+    background:#808372;
+	float:none;
+    padding: 10px;
+    width: 500px;
+    position: absolute; 
+    left :450px;
+	top :180px;
+    }
+	div#register{
+	 background:#808372;
+	float:none;
+    padding: 10px;
+    width: 600px;
+    position: absolute; 
+    left :450px;
+	top :180px;
+	 border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+	}
+  
+    	
+div#navigation-left ul {
+	margin : 0px;
+	padding : 10px;  
+    text-decoration :none;	   
+    }
+
+div#navigation-left ul  li {
+	list-style-type:none;
+	text-decoration :none;
+	margin : 20px;
+    }
+	
+div#navigation-right ul {
+	margin : 0px;
+	padding : 10px;   
+	text-decoration :none;
+    }
+
+div#navigation-right ul  li {
+	list-style-type:none;
+	margin : 20px;
+	text-decoration :none;
+    }
+
+
+
+
+form dt {
+	width: 120px;
+	display: block;
+	float: left;
+	clear: left;
+	padding :10px;
+	font-weight :bold;
+	font-size :14px;
+	color : white;
+    }
+		
+form dd {
+	margin-left: 0;
+	width : 200px;
+	float: left;
+	padding :10px;
+    }
+
+form input[type='text'] ,input[type='password'],select{
+    background-color : lavender;
+    width:200px;
+    display:block;
+    margin-bottom:10px;
+ 
+}
+    }
+
+
+
+ 
+ 
+div#login{
+    text-decoration : none;
+    position: absolute;
+	top:170px;
+    left :370px;
+	font-size : 14px;
+    color : white;
+
+	
+    }
+	
+div#registerLabel{
+  	text-decoration :none;
+    position: absolute;
+    left :480px;
+  	font-size : 14px;
+  	color : black;
+	top :200px;
+	color:white;
+	
+	}
+
+form #
+
+	
+/***************pseudo classes****************/	
+a:link{
+	text-decoration :none;
+	color; yello;
+	}
+	
+a:hover,a:active{
+	text-decoration :none;
+	color:white;
+	background-color:#808372;
+    }
+a#link-register{
+	text-decoration :none;
+    text-decoration : none;
+	position: relative;
+	left :180px;
+	}
+	
+a#forgot{
+	text-decoration :none;
+	position:absolute;
+	left: 300px;
+	top :130px;
+	}
+a#return{
+	text-decoration :none;
+	position:absolute;
+	left: 200px;
+	top :130px;
+	font-size:24px;
+	font-style:italic;
+	}
+
+span#date{
+	color :lavender;
+	font-weight:bold italics;
+	}
+#submit,#submitbutton{  
+ 
+	
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 0 0 #FFFFFF inset;
+    color:black;
+    display: inline-block;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #FFFFFF;
+   
+ }
+	
+	/*********************************** captcha **********************/
+	
+	
+dd ul li {
+	color:white;
+	font-size:12px;
+	}
+	
+div #recaptcha_image{
+	width :250px;
+    }	
+	
+.recaptchatable .recaptcha_image_cell,#recaptcha_table {
+    background-color:lavender !important;              
+  
+  
+ 
+
+  
+  /***********end**********************************/
+

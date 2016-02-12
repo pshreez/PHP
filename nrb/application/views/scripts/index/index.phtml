@@ -1,0 +1,26 @@
+
+<?php
+$this->title="Foreign Exchange Rate";
+$this->headTitle($this->title);
+?>
+<?php
+ if (!Zend_Auth::getInstance()->getIdentity()):?>
+
+<table id="index">
+<tr>
+  <td><a href= "<?php 
+     echo $this->url(array('controller'=>'index','action'=>'register'));?>" >
+	 Register<a></td>
+</tr>
+<tr>
+  <td>
+     <a href= "<?php 
+     echo $this->url(array('controller'=>'index','action'=>'login'));?>" >
+	 Login</a>
+	 </td></tr>
+	 <tr><td><img src="img/pic.jpg" width="100px"></td><td>Take account of your money </td></tr>
+</table>
+
+
+
+<?php endif;?>

@@ -1,0 +1,46 @@
+
+<a id="return" href= "<?php 
+					//echo $this->url(array('controller'=>'currencyinfo','action'=>'index'));
+					  ?>" >
+				</a><br><br>
+
+<div id="pagination">
+
+<?php
+if(count($this->paginator)):?>
+
+<table id='paginated-table'>
+
+				
+<tr>
+<th><b>Currency Name</b></th>
+<th><b>Buying price</b></th>
+<th><b>Selling price</b></th>
+<th><b>Date</b></th>
+
+</tr>
+
+<?php foreach($this->paginator as $currencies):?>
+<tr class="roweven">
+<td ><?php echo $currencies['name'];?></td>
+<td ><?php echo $currencies['buy_price'];?></td>
+<td><?php echo $currencies['sell_price'];?></td>
+<td ><?php echo $currencies['date'];?></td>
+</tr>
+<?php endforeach;?>
+</table>
+
+
+  <?php endif;?>
+  
+  <?php echo $this->paginationControl($this->paginator,
+  'Sliding','paginator/my_pagination_control.phtml');?>
+  
+  
+  
+  
+
+
+
+
+

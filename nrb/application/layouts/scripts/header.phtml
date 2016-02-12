@@ -1,0 +1,23 @@
+
+		 
+
+		 
+
+		<h1 >Foreign Currency Exchange</h1>
+		  
+  
+		  
+		<?php 
+		$auth = Zend_Auth::getInstance();
+		if($auth->hasIdentity()):?>
+		 <div id="loggedInAs"> <?php
+				echo "<i>".$this->LoggedInAs()."</i>";
+				?></div>
+		<a id="logout" href= "<?php 
+		echo $this->url(array('controller'=>'index','action'=>'logout'));
+		 ?>" >
+	       Logout</a>
+		<?php  endif; ?>
+		 
+		</div>
+							

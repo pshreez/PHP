@@ -1,0 +1,47 @@
+<div id="table-data" >
+<?php
+if ($this->currency_id || $this->fromDate || $this->toDate):
+?>
+
+<?php
+    $serialize=serialize(array( $this->currency_id,$this->fromDate,$this->toDate));
+	//var_dump($serialize);die;?>
+<div class="roweven"><center><a href="<?php echo $this->url(array( 'controller'=>'paginator', 'action'=>'csv', 'id'=>$serialize), null, true); ?>">Download this</a></center></div>
+
+
+<?php endif;?>
+<?php
+if(count($this->currencies)):?>
+
+<table id="result-data">
+
+<thead>
+<tr >
+
+<td width="120px"><strong>Date</strong></td>
+<td width="130px"><strong>Buying Price</strong></td>
+<td width="130px"><strong>Selling Price</strong></td>
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<?php foreach($this->currencies as $value):?>
+<tr class="roweven">
+
+
+<td><?php echo $value['date'];?></td>
+<td><?php echo $value['buy_price'];?></td>
+<td><?php echo $value['sell_price'];?></td>
+
+</tr>
+<?php endforeach;?><hr width="400px">
+<div id="currency"><span ><b ><center><?php echo $value['name'];?></center></b></span><hr width="400px"></div>
+
+<?php endif;?>
+</tbody>
+</table>
+</div>
+</div>

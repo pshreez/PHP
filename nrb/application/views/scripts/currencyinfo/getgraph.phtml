@@ -1,0 +1,85 @@
+
+<?php if($this->dataArray){
+
+     $data=json_encode($this->dataArray);
+	// var_dump($data);die;
+	 }?>
+<?php if($this->months)
+{  
+      $months=json_encode($this->months);
+	   // var_dump($months);
+	   }
+	  ?>
+	  
+	  
+<?php if($this->year && $this->currencyName) : ?>
+  
+
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript">
+		
+$(function () {
+    var chart;
+	var month=<?php echo $months;?>;
+	var data=<?php echo $data;?>;
+	var year=<?php echo $this->year['yr'];?>;
+	var  currency='<?php echo $this->currencyName['nm'];?>';
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'contain',
+                type: 'line',
+                marginRight: 100,
+                marginBottom: 15
+            },
+            title: {
+                text: 'Monthly Average Currency'+ 'of  '+ currency + ' '+year,
+                x: -10 //center
+            },
+            subtitle: {
+                text: 'Source: nrb.org.np',
+                x: -10
+            },
+            xAxis: {
+                categories:month
+            },
+            yAxis: {
+                title: {
+                    text: 'Currency'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        this.x +': '+'Rs'+ ' '+ this.y ;
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -10,
+                y: 100,
+                borderWidth: 0
+            },
+            series: data
+        });
+    });
+    
+});
+
+
+		</script>
+	</head>
+<?php endif;?>
+	<body>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+
+<div id="contain" ></div>
+

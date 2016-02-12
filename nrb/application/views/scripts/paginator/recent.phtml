@@ -1,0 +1,21 @@
+<div id ="recentData">
+<table id="recent">
+<tr>
+<th><b>Currency Name</b></th>
+<th><b>Buying price</b></th>
+<th><b>Selling price</b></th>
+</tr>
+<tr>
+<?php if($this->data):?>
+<?php foreach ($this->data as $currencies):?>
+<tr class="roweven">
+<td ><?php echo $currencies['name'];?></td>
+<td ><?php echo $currencies['buy_price'];?></td>
+<td><?php echo $currencies['sell_price'];?></td>
+</tr>
+<?php endforeach;?>
+<?php endif;?>
+</table><hr width="400px">
+<div id="datenow"><span ><b ><center><?php echo $this->data['date'];?>
+</center></b></span><hr width="400px"></div>
+</div>
