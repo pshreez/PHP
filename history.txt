@@ -1,0 +1,500 @@
+  165  ./mongod --shutdown
+  166  mongod --shutdown
+  167  ps -ax
+  168  kill 2310
+  169  ls
+  170  ps -ax
+  171  ls
+  172  ./mongod
+  173  ls
+  174  ./mongod
+  175  ls
+  176  ./mongo
+  177  sqlplus
+  178  sqlplus sdangol@//localhost:1521/orcl
+  179   sudo sqlplus sdangol@//localhost:1521/orcl
+  180   sudo sqlplus sdangol@//localhost:1521/orcl
+  181  sudo sqlplus sdangol@//localhost:1521/orcl
+  182  sqlplus sdangol@//localhost:1521/orcl
+  183  ssh sdangol@//localhost:1521/orcl
+  184  ssh sdangol@10.0.1.15
+  185  ssh sdangol@10.0.2.15
+  186  ssh sdangol@10.0.2.15:1521
+  187  ifconfig
+  188  ifconfig
+  189  ifconfig
+  190  telnet 127.0.0.1 1521
+  191  ssh sdangol@127.0.0.1
+  192  ssh sdangol@127.0.0.1
+  193  ssh sdangol@127.0.0.1
+  194  ssh sdangol@127.0.0.1
+  195  ifconfig
+  196  sudo ssh sdangol@127.0.0.1
+  197  sudo ssh sdangol@127.0.0.1
+  198  sqlplus sdangol@127.0.0.1
+  199  sudo sqlplus sdangol@127.0.0.1
+  200  sqlplus /nolog
+  201  SQLPLUS /NOLOG
+  202  ssh -p sdangol@127.0.0.1
+  203  ssh -p sdangol@127.0.0.1 1521
+  204  ssh  sdangol@127.0.0.1 1521
+  205  ssh  oracle@127.0.0.1 
+  206  ssh  oracle@127.0.0.1 
+  207  ssh  oracle@127.0.0.1 
+  208  git -- version
+  209  git --version
+  210  git config ==global user.name "shreez"
+  211  git config --global user.name "shreez"
+  212  git config --global user.email "dangol.shreejana@gmail.com"
+  213  git clone https://github.com/in28minutes/SpringMvcStepByStep.git
+  214  ls
+  215  cd Documents
+  216  ls
+  217  mkdir Spring
+  218  ls
+  219  cd Spring/
+  220  ls
+  221  git clone https://github.com/in28minutes/SpringMvcStepByStep.git
+  222  ls
+  223  cd mongodb
+  224  ls
+  225  cd bin
+  226  ls
+  227  mongo
+  228  ./mongo
+  229  ls
+  230  cd Documents/
+  231  LS
+  232  CD ..
+  233  LS
+  234  cd ..
+  235  ls
+  236  cd Downloads/
+  237  ls
+  238  cd ..
+  239  ls
+  240  cd Documents/
+  241  ls
+  242  cd ..
+  243  ls
+  244  cd mongodb
+  245  ls
+  246  cd bin
+  247  ls
+  248  ./mongo
+  249  mongod --dbpath /data/db
+  250  ./mongod --dbpath /data/db --repair --repairpath /data/db0
+  251  ./mongo
+  252  ./mongod
+  253  history
+  254  python
+  255  python
+  256  npm install -g protactor
+  257  npm install -g protractor
+  258  su npm install -g protractor
+  259  su npm install -g protractor
+  260  sudo passwd root
+  261  su npm install -g protractor
+  262  sudo npm install -g protractor
+  263  webdriver-manager update
+  264  sudo webdriver-manager update
+  265  sudo webdriver-manager start
+  266  ls
+  267  cd ~/
+  268  ls
+  269  cd Applications/
+  270  ls
+  271  ls - all
+  272  ls
+  273  cd ..
+  274  ls
+  275  su 
+  276  su
+  277  ls
+  278   cd ~/Applications
+  279  ls
+  280  su
+  281  sudo 
+  282  su cd ~/Applications
+  283  ls
+  284  sudo chown -Rv ~/config.inc.php
+  285  cd /Applications/XAMPP/xamppfiles/
+  286  ls
+  287  sudo ./xampp start
+  288  sudo ./xampp stop
+  289  ls
+  290  cd /Documents
+  291  ls
+  292  cd ..
+  293  cd ..
+  294  cd..
+  295  cd ..
+  296  ls
+  297  cd usr
+  298  ls
+  299  cd ..
+  300  ls
+  301  cd Users
+  302  ls
+  303  cd Shreezana
+  304  ls
+  305  cd Documents/
+  306  ls
+  307  mkdir AppToSucceed
+  308  ls
+  309  cd AppToSucceed/
+  310  ls
+  311  git init .
+  312  git add .
+  313  ls
+  314  git clone https://github.com/ApptoSucceed/ApptoSucceedWebsite.git
+  315  git clone https://github.com/ApptoSucceed/ApptoSucceedWebsite.git
+  316  git clone https://github.com/pshreez/ASP.NET.git
+  317  git clone https://github.com/ApptoSucceed/ApptoSucceedWebsite.git
+  318  ls
+  319  rm ASP.NET/
+  320  rm ASP.NET/
+  321  ls
+  322  login
+  323  ls
+  324  cd Documents/
+  325  ls
+  326  cd cd AppToSucceed/
+  327  ls
+  328  cd AppToSucceed/
+  329  ls
+  330  cd ApptoSucceedWebsite/
+  331  ls
+  332  cd ETC
+  333  ls
+  334  cd ..
+  335  ls
+  336  vim index.php 
+  337  cd /Applications/
+  338  ls
+  339  history
+  340  cd /Applications/XAMPP/
+  341  ls
+  342  cd ht docs
+  343  cd htdocs
+  344  ls
+  345  git clone https://github.com/ApptoSucceed/ApptoSucceedWebsite.git
+  346  ls
+  347  sudo ./xampp start
+  348  history
+  349  cd /Applications/XAMPP/xamppfiles/
+  350  sudo ./xampp start
+  351  ls
+  352  cd htdocs/
+  353  ls
+  354  sudo ./xampp stop
+  355  sudo ./xampp stop
+  356  ls
+  357  cd /Applications/XAMPP/xamppfiles/
+  358  sudo ./xampp stop
+  359  history
+  360  cd /Applications/XAMPP/xamppfiles/
+  361  cd htdocs/
+  362  sudo ./xampp start
+  363  cd htdocs/
+  364  ls
+  365  cd /Applications/XAMPP/xamppfiles/
+  366  sudo ./xampp start
+  367  cd /Applications/XAMPP/xamppfiles/
+  368  ls
+  369  sudo ./xampp stop
+  370  cd /Applications/XAMPP/xamppfiles/
+  371  sudo ./xampp stop
+  372  cd /Applications/XAMPP/xamppfiles/
+  373  sudo ./xampp start
+  374  cd /Applications/XAMPP/xamppfiles/
+  375  ls
+  376  cd ..
+  377  ls
+  378  cd htdocs
+  379  ls
+  380  clone https://github.com/ApptoSucceed/ApptoSucceedWebsite.git
+  381  git init
+  382  git clone https://github.com/ApptoSucceed/ApptoSucceedWebsite.git
+  383  ls
+  384  cd /Applications/XAMPP
+  385  ls
+  386  cd htdocs
+  387  ls
+  388  cd /Applications/XAMPP
+  389  cs htdocs
+  390  cd htdocs
+  391  ls
+  392  mkdir test_SOAP
+  393  cd test_SOAP/
+  394  ls 
+  395  vim index.php
+  396  vim dbConnect.php
+  397  ls
+  398  git init
+  399  cd /Applications/XAMPP
+  400  ls
+  401  cd htdocs
+  402  ls
+  403  cd ApptoSucceedWebsite/
+  404  git init
+  405  cd ..
+  406  git branch "issue=#31-Buttons for EDUCATORS, PARENTS and 16- 19 year old"
+  407  cd ApptoSucceedWebsite/
+  408  ls
+  409  git branch "issue=#31-Buttons for EDUCATORS, PARENTS and 16- 19 year old"
+  410  git branch "issue=#31-(Buttons for EDUCATORS, PARENTS and 16- 19 year old)
+  411  exit
+  412  git branch "issue=#31-Buttons for EDUCATORS, PARENTS and 16- 19 year old"
+  413  ls
+  414  ls
+  415  cd ApptoSucceedWebsite/
+  416  cd /Applications/XAMPP
+  417  cd ApptoSucceedWebsite/
+  418  cd htdocs
+  419  ls
+  420  cd ApptoSucceedWebsite/
+  421  ls
+  422  git branch "issue=#31-Buttons for EDUCATORS, PARENTS and 16- 19 year old"
+  423  git branch "issue=#31-(Buttons for EDUCATORS, PARENTS and 16- 19 year old)
+  424  whoami
+  425  su -hadoop
+  426  su - hadoop
+  427  su - hadoop
+  428  exit
+  429  ls
+  430  whoami
+  431  git config user.name
+  432  git help config 
+  433  git original master
+  434  git origin master
+  435  git push origin master
+  436  git remote -v
+  437  ls
+  438  cd /Applications/XAMPP
+  439  cd htdocs
+  440  ls
+  441  cd ApptoSucceedWebsite/
+  442  ls
+  443  git remote -v
+  444  history
+  445  ls
+  446  cd ..
+  447  git remote
+  448  cd ApptoSucceedWebsite/
+  449  git remote
+  450  CD GRIT
+  451  GIT PUSH ORIGIN MASTER
+  452  git push origin master
+  453  git status
+  454  git status
+  455  git status
+  456  git status
+  457  ls
+  458  cd ..
+  459  ls
+  460  git clone https://github.com/pshreez/PHP.git
+  461  ls
+  462  cd php
+  463  ls
+  464  git status
+  465  echo 'shreejana' >README
+  466  echo 'shreejana' > README
+  467  echo 'My Project' > README
+  468  git status
+  469  vim README
+  470  ls
+  471  ls
+  472  git status
+  473  history
+  474  git add README
+  475  git status
+  476  git commit
+  477  git commit 'File added'
+  478  ls
+  479  git status
+  480  git add CONTRIBUTING.md
+  481  echo 'My Project' > CONTRIBUTING.md
+  482  ls
+  483  git status
+  484  git add CONTRIBUTING.md 
+  485  ls
+  486  git status
+  487  git status -s
+  488  git commit
+  489  git commit -m ' files added'
+  490  git status
+  491  git push 
+  492  ls
+  493  cd /Applications/XAMPP
+  494  ls
+  495  cd htdocsls
+  496  cd htdocs
+  497  ls
+  498  cd PHP
+  499  ls
+  500  git status
+  501  git push origin master
+  502  git branch "issue-#(31)-(Buttons for EDUCATORS, PARENTS and 16- 19 year old)"
+  503  git branch "issue-#(1)-(php data change)"
+  504  git branch "issue-#(1)-(php-data-change)"
+  505* 
+  506  git bradnch -a
+  507  git branch -a
+  508  ls
+  509  vim CONTRIBUTING.md 
+  510  ls
+  511  git checkout php-data-change
+  512  git checkout "php-data-change"
+  513  git checkout issue-#(1)-(php-data-change)
+  514  git checkout "issue-#(1)-(php-data-change)"
+  515  vim CONTRIBUTING.md 
+  516  git commit -am 'data added'
+  517  ls
+  518  vim CONTRIBUTING.md 
+  519  git status
+  520  git checkout issue-#(1)-(php-data-change)
+  521  git checkout "issue-#(1)-(php-data-change)"
+  522  ls
+  523  vim CONTRIBUTING.md 
+  524  git push origin master
+  525  git status
+  526  git commit -am "shreejana commit"
+  527  ls
+  528  cd README
+  529  vim README
+  530  ls
+  531  git add -p
+  532  git stash pop
+  533  git commit -m 'adding data'
+  534  git push origin master
+  535  git push origin branch
+  536  git push origin issue-#(1)-(php-data-change)
+  537  git push origin "issue-#(1)-(php-data-change)"
+  538  ls
+  539  git branch -a
+  540  git branch
+  541  git branch
+  542* git
+  543  git checkout "Branch1"
+  544  ls
+  545  vim me.txt 
+  546  ls
+  547  git branch -a
+  548  ls
+  549  vim me.txt 
+  550  git commit -m 'Branch1 Added'
+  551  git add me.txt 
+  552  git commit -m 'Branch1 Added'
+  553  git push origin master
+  554  git branch -a
+  555  git checkout Branch1
+  556  git revert n master
+  557  git revert -n master
+  558  git revert -n master..branched
+  559  git revert -n master
+  560  git checkout Branch1
+  561  git merge master
+  562  git add CONTRIBUTING.md 
+  563  git checkout Branch1
+  564  git add README
+  565  git checkout Branch1
+  566  git push origin master
+  567  ls
+  568  clear
+  569  ls
+  570  git branch -a
+  571  git branch -d Branch1
+  572  git branch -d "issue-#(1)-(php-data-change)"
+  573  git branch -d Branch1
+  574  git branch -a
+  575  git branch -d  master
+  576  git branch -d  remotes/origin/HEAD -> origin/master
+  577  git branch -a
+  578  git revert -n master
+  579  git revert -n origin
+  580  git revert 
+  581  ls
+  582  git branch -a
+  583  git checkout Branch1
+  584  git add README
+  585  git checkout Branch1
+  586  git add CONTRIBUTING.md 
+  587  git checkout Branch1
+  588  ls
+  589  vi me.txt 
+  590  git commit -m "Changes done to Branch1"
+  591  git add me.txt
+  592  git commit -m "Changes done to Branch1"
+  593  git push -u origin Branch1
+  594  git status
+  595  git checkout master
+  596* echo "shreejana" > NEWFILE
+  597  lw
+  598  lw
+  599  ls
+  600  git add NEWFILE.txt 
+  601  git commit -m "newfile added"
+  602  git push -u master
+  603  git push -u origin master
+  604  git checkout Branch1
+  605  git merge origin/master
+  606  git merge origin/master
+  607  git push origin Branch1
+  608  git checkout Branch1
+  609  git merge master
+  610  git commit -m "file added to branch1"
+  611  git checkout master
+  612  git pull
+  613  git checkout Branch1
+  614  git checkout master
+  615  git checkout -b Branch1
+  616  git commit -a -m "file added"
+  617  git checkout master 
+  618  git merge Branch1
+  619  git status
+  620  git push origin master
+  621  git branch -a
+  622  git branch -d Branch1
+  623  git branch -D Branch1
+  624  git branch -a
+  625  git checkout Branch2
+  626  ls
+  627  vi me.txt 
+  628  git add me.txt 
+  629  git commit -m " file changed Branch2"
+  630  git push origin Branch2
+  631  git checkout master
+  632  git merge Branch2
+  633  git merge Branch2
+  634  git checkout master
+  635  git add me.txt
+  636  git commit -m "file changed"
+  637  git merge Branch2
+  638  git merge Branch2
+  639  git push origin master
+  640  git merge Branch2
+  641  git checkout master
+  642  git merge Branch2
+  643  git add me.txt
+  644  git commit -m -a  "file changed"
+  645  git commit -a  -m   "file changed"
+  646  git push origin master
+  647  git checkout master
+  648  git merge Branch2
+  649  git push original master
+  650  git push orginal master
+  651  git push origin master
+  652  git checkout master
+  653  git checkout Branch2
+  654  git rebase master
+  655  git status
+  656  git ass me.txt
+  657  git add me.txt
+  658  git status
+  659  git status
+  660  git checkout Branch2
+  661  git merge Branch2
+  662  git rebase master
+  663  git merge  master
+  664  history > history.txt
